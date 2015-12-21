@@ -25,7 +25,7 @@
                 <h6 class="logo-name"><small>Police</small>  </h6>
 
             </div>
-            <h3>Register Account</h3>
+            <h3> Login</h3>
             
             <form class="m-t" role="form" >
                 <div class="form-group">

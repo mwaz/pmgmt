@@ -49,15 +49,23 @@
                         </div>
                     </li>
                     <li class="active">
-                        <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="#">Dashboard v.1</a></li>
+                            <li class="active"><a href="#">Update Profile </a></li>
                            
                        
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                        <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
+
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#">Abstract Application's </a></li>
+                             <li><a href="#">Case Reportings </a></li>
+                              <li><a href="#">Finalized Claims </a></li>
+                            
+                            
+                        </ul>
                     </li>
                    
                     
@@ -65,29 +73,34 @@
                     
             
                     <li>
-                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Cases Section</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Typography</a></li>
+                            <li><a href="#">Add Case</a></li>
+                             <li><a href="#">Reported Cases</a></li>
+                              <li><a href="#">Finalized Case</a></li>
                             
-                            <li><a href="#">Badges, Labels, Progress</a></li>
+                            
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
+                        <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Bail Out's Section </span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Suspects Section</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             
-                            <li><a href="#">jqGrid</a></li>
+                            <li><a href="#">Add Suspect</a></li>
+                            <li><a href="#">View Suspects</a></li>
+                            <li><a href="#">WANTED criminals </a></li>
+                           
                         </ul>
                     </li>
                     
                    
                    
                     <li class="special_link">
-                        <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
+                        <a href="#"><i class="fa fa-spinner fa-spin"></i> <span class="nav-label">Evidence Database </span></a>
                     </li>
                 </ul>
 
@@ -109,7 +122,7 @@
 
 
                 <li>
-                    <a href="login.html">
+                    <a href="login.php">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>

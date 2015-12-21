@@ -2,7 +2,6 @@
 <html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/register.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:36 GMT -->
 <head>
 
     <meta charset="utf-8">
