@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Register</title>
+    <title>Rongai Police | Register</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -24,12 +24,12 @@
         <div>
             <div>
 
-                <h1 class="logo-name">IN+</h1>
+                <h6 class="logo-name"><small>Police </small> </h6>
 
             </div>
-            <h3>Register to IN+</h3>
-            <p>Create account to see it in action.</p>
-            <form class="m-t" role="form" action="http://webapplayers.com/inspinia_admin-v2.3/login.html">
+            <h3>Register Account</h3>
+            
+            <form class="m-t" role="form" >
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Name" required="">
                 </div>
@@ -45,9 +45,9 @@
                 <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
 
                 <p class="text-muted text-center"><small>Already have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                <a class="btn btn-sm btn-white btn-block" href="login.php">Login</a>
             </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+            <p class="m-t"> <small>Big Foot Innovations &copy; 2016-2017</small> </p>
         </div>
     </div>
 
@@ -67,5 +67,4 @@
 </body>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/register.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:36 GMT -->
 </html>
