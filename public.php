@@ -68,17 +68,7 @@
                         </ul>
                     </li>
                    
-                    
-                   
-                    
-            
-                    
-
-                   
-                    
-                   
-                   
-                </ul>
+                     </ul>
 
             </div>
         </nav>
@@ -158,7 +148,7 @@
                         Big Foot <strong>Techprenuers</strong>
                     </div>
                     <div>
-                        <strong>Copyright</strong> Big Foot Innovations &copy; 2016-2017
+                        <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
                     </div>
                 </div>
             </div>
