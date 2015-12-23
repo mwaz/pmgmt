@@ -1,12 +1,13 @@
 <?php
 function user_exists($User)
 {
-	$usernames = decode_result(exec_sql("SELECT `Username` FROM `User`"));
+	$unames = decode_result(exec_sql("SELECT `Username` FROM `User`"));
 	// ^ this is an array with n items. Each item is an associative array with one key 'username'
-	$usernames_arr = get_spec_key_values($usernames, 'Username');
-	return in_array($User, $usernames_arr) ? true: false;
+	$unames_arr = get_spec_key_values($unames, 'Username');
+	return in_array($User, $unames_arr) ? true: false;
 
 }
+
 
 function id_exists($idNumber)
 {
@@ -25,6 +26,9 @@ function id_exists($idNumber)
  	return in_array($email, $emails_arr) ? true: false;
  }
 
+
+ 
+
 function get_spec_key_values($array, $key)
 {
     $new_arr = [];
@@ -34,6 +38,23 @@ function get_spec_key_values($array, $key)
         $new_arr[] = $x[$key];
     }
     return $new_arr;
+}
+
+function checkUser()
+{
+    session_start();
+    if (!isset($_SESSION['login']))
+    {
+        header("Location: access-denied.php");
+    }
+   
+}
+
+function getUserId()
+{
+    $username = $_SESSION['login'];
+    $user_id = decode_result(exec_sql("SELECT `user_id` FROM `users` WHERE `username`='$username'"))[0]['user_id'];
+    return  $user_id;
 }
 
 ?>

@@ -189,67 +189,9 @@ checkUser();
         <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
-                <div class="left-box text-left animated fadeInRightBig">
-
-                     <div class="col-lg-4">
-
+                <div class="middle-box text-center animated fadeInRightBig">
                     <h3 class="font-bold">Update Profile </h3>
-               <div class="ibox-content">
-                            <div class="text-center">
-                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Update Profile</a>
-                            </div>
-                            <div id="modal-form" class="modal fade" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Profile Update</h3>
-
-                                                    <form role="form">
-                                                        <div class="form-group"><label>First Name</label> <input type="text" placeholder="First Name" class="form-control"></div>
-                                                        <div class="form-group"><label>Other Name</label> <input type="text" placeholder="Other Name" class="form-control"></div>
-                                                        <div class="form-group"><label>P.F Number</label> <input type="text" placeholder="PF Number" class="form-control"></div>
-                                                        <div class="form-group"><label>Age </label> <input type="text" placeholder="Age" class="form-control"></div>
-                                                        <div class="form-group"><label>Phone Number</label> <input type="email" placeholder="phone Number" class="form-control"></div>
-                                                        
-                                                        <div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                            <label for="inlineRadio1"> Male </label>
-                                        </div>
-                                        <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                            <label for="inlineRadio2"> Female </label>
-                                        </div>
-                                                        
-                                                        <div>
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update </strong></button>
-                                                            
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-6"><h4>Upload Picture</h4>
-                                                <form role="form" method="POST" enctype="multipart/form-data">
-
-                                                <input type="file" name="file to upload" id="file to upload">  </br>
-                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Upload image </strong></button>
-                                                            
-
-
-                                                </form>
-
-
-                                                   
-                                                    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-            </div>
                     
-
                 </div>
             </div>
 

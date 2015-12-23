@@ -2,8 +2,11 @@
 require 'db.php';
 require 'utils.php';
 
-$error_msg;
+$err_msg;
+$res;
 $db=init_db();
+
+
 
 if ($_POST)
 
@@ -14,6 +17,7 @@ if ($_POST)
     // brute force and password cracking.
     //User validation must be ensured..
     // the below variablestakes the user data from the form and stores it in the database 
+
      $Fname=$db->escape_string($_POST['Fname']);
      $Lname=$db->escape_string($_POST['Lname']);
       $User=$db->escape_string($_POST['User']);
@@ -25,35 +29,42 @@ if ($_POST)
 
           //checking if user exists 
           if(user_exists($User)){
-
-            $error_msg="Username exists in the database";
-            var_dump($User);
+            $err_msg="Username exists in the database";
+            exit;
 
           }
 
 
           //check if id exists 
+          
            if(id_exists($idNumber)){
             
-            $error_msg="ID Number exists in the database";
+            $err_msg="ID Number exists in the database";
+            exit;
 
+
+          //check if email exists in our database
 
           }
-          // if(email_exists($email)){
+           if(email_exists($email)){
             
-          //   $error_msg="Email exists in the database";
+             $err_msg="Email exists in the database";
+             exit;
 
-          // }
+
+
+        }
+
+
+    
 
           //checking if confirm password matches with password fields
 
           if($Pass != $passwordConfirm){
 
-            $error_msg="The passwords dont match";
+            $err_msg="The passwords dont match";
+        }
 
-             
-
-}
             else{
 
                 //hash the passwords
@@ -64,9 +75,13 @@ if ($_POST)
 
 
                 exec_sql($sql);
+
                 session_start();
+
                 $_SESSION['User']=$User;
-                header("location: index.php");
+                $_SESSION['Fname']=$Fname;
+                $_SESSION['Lname']=$Lname;
+                header("location: login.php");
 
             }
 
@@ -90,6 +105,7 @@ if ($_POST)
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -112,10 +128,10 @@ if ($_POST)
             
 
         <?php
-        if (isset($error_msg))
+        if (isset($err_msg))
         {
-            echo "<div class=\"alert alert-danger\">" . $error_msg . "</div>";
-            unset($error_msg);
+            echo "<div class=\"alert alert-danger\">" . $err_msg . "</div>";
+            unset($err_msg);
 
         }
 
@@ -149,7 +165,7 @@ if ($_POST)
                 <button type="submit" class="btn btn-primary block full-width m-b" name="submitBtn">Register</button>
 
                 <p class="text-muted text-center"><small>Already have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="index.php">Login</a>
+                <a class="btn btn-sm btn-white btn-block" href="login.php">Login</a>
             </form>
             <p class="m-t"> <small>BigFoot Innovations &copy; 2016-2017</small> </p>
         </div>

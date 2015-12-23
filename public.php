@@ -1,3 +1,13 @@
+<?php
+
+include 'utils.php';
+include 'db.php';
+init_db();
+checkUser();
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -12,6 +22,8 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -34,7 +46,8 @@
                             <img alt="image" class="img-circle" src="img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Mwaurah Waweruh</strong>
+                            <span class="clear"> <span class="block m-t-xs"> 
+                            <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
                              </span> <span class="text-muted text-xs block">Dummy User <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="#">Profile</a></li>
@@ -52,6 +65,7 @@
                         <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="#">Update Profile </a></li>
+
                            
                        
                         </ul>
@@ -66,19 +80,21 @@
                             
                             
                         </ul>
-                    </li>
-                   
+                        </li>
                      </ul>
 
             </div>
         </nav>
-
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-           
+            <form role="search" class="navbar-form-custom" action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
@@ -104,7 +120,7 @@
                 <div class="row  border-bottom white-bg dashboard-header">
 
                     <div class="col-sm-3">
-                        <h2>Welcome Mwaz</h2>
+                        <h2> Welcome <?php echo $_SESSION['login'] ?></h2>
               
                         <ul class="list-group clear-list m-t">
                            
@@ -115,33 +131,79 @@
                         <div class="statistic-box">
                         <h4>
                        
-                            <div class="m-t">
-                                <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                           <div class="m-t">
+                                <h4>RONGAI POLICE STATION </h4>
                             </div>
 
-                        </div>
+                   
+                    
                     </div>
 
+
             </div>
-        <div class="row">
+            </div>
+       <div class="row">
             <div class="col-lg-12">
-                <div class="wrapper wrapper-content">
-                        <div class="row">
-                        <div class="col-lg-4">
-                            <div class="ibox float-e-margins">
-                                
-                                
-                           
-                      
-                                  
-                                    </div>
-                                    
-                                    
-                                </div>
+               <div class="wrapper wrapper-content">
+                <div class="left-box text-left animated fadeInRightBig">
+
+                     <div class="col-lg-4">
+
+                    <h3 class="font-bold">Update Profile </h3>
+               <div class="ibox-content">
+                            <div class="text-center">
+                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Update Profile</a>
                             </div>
+                            <div id="modal-form" class="modal fade" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Profile Update</h3>
+
+                                                    <form role="form">
+                                                        <div class="form-group"><label>First Name</label> <input type="text" placeholder="First Name" class="form-control"></div>
+                                                        <div class="form-group"><label>Other Name</label> <input type="text" placeholder="Other Name" class="form-control"></div>
+                                                        <div class="form-group"><label>ID Number</label> <input type="text" placeholder="PF Number" class="form-control"></div>
+                                                        <div class="form-group"><label>Age </label> <input type="text" placeholder="Age" class="form-control"></div>
+                                                        <div class="form-group"><label>Phone Number</label> <input type="email" placeholder="phone Number" class="form-control"></div>
+                                                        
+                                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                            <label for="inlineRadio1"> Male </label>
+                                        </div>
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                            <label for="inlineRadio2"> Female </label>
+                                        </div>
+                                                        
+                                                        <div>
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update </strong></button>
+                                                            
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-sm-6"><h4>Upload Picture</h4>
+                                                <form role="form" method="POST" enctype="multipart/form-data">
+
+                                                <input type="file" name="file to upload" id="file to upload">  </br>
+                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Upload image </strong></button>
+                                                            
+
+
+                                                </form>
+
+
+                                                   
+                                                    
+                                            </div>
+                                        </div>
+                                  
                         </div>
+            
 
                         </div>
+
                 </div>
                 <div class="footer">
                     <div class="pull-right">
