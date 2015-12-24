@@ -121,7 +121,7 @@
                         <div class="row  border-bottom white-bg dashboard-header">
 
                             <div class="col-sm-3">
-                                <h2> <strong>Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
+                                <h2> <strong>Welcome: </strong> <?php echo $_SESSION['login'] ?></h2>
                       
                                 <ul class="list-group clear-list m-t">
                                    
