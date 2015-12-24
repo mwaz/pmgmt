@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS `police`;
+
 CREATE DATABASE `police`;
 USE `police`;
 
@@ -12,6 +14,7 @@ CREATE TABLE `User`(
 	  `Username` varchar (200) NOT NULL UNIQUE,
 	 `Password` varchar (200) NOT NULL,
 	`rank`  INT(1) NOT NULL,
+  `profile_image` varchar (200),
 	`Timestamp` timestamp DEFAULT NOW(),
 
 	PRIMARY KEY (`UserID`)

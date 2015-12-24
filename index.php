@@ -38,12 +38,17 @@
                         <div class="logo-element">
                             Rongai Police 
                         </div>
+                     <li>
+                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Police Portal</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="login.php">Login</a></li>
+                             <li><a href="register.php">Sign Up</a></li>
+                              
+                            
+                            
+                        </ul>
                     </li>
-                    <li class="active">
-                        <a href="login.php"><i class="fa fa-spinner fa-spin"> </i> </t> Login  <span class="nav-label"><a href="register.php"> 
-                        <i class="fa fa-spinner fa-spin"> </i> </t> Sign Up  </a> </span></a>
-        
-                    </li>
+
                     
                    
                     

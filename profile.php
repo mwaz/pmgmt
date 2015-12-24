@@ -26,11 +26,56 @@ if ($sql=true)
     }
 
 
+ // $qry='UPDATE users SET profile_image = ".$pathToImage." WHERE username="$_SESSION[login]"';
+ //        exec_sql($qry);
+ 
 
+
+ 
 }
+
+    
+
 
 
         ?>
+
+        <?php
+$target_dir = "/upload";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if($_POST) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
+?> 
 
 
 
@@ -203,10 +248,11 @@ if ($sql=true)
 
                                             
 
-                                                    <input type="file" name="file to upload" id="file to upload">  
-                                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
-                                                    <strong>Upload image </strong></button> </br></br> </br> </br> </br> </br> </br> </br> </br> </br> </br> </br> </br> 
-                                                     </div>
+                                                     <input type="file" name="fileToUpload" id="fileToUpload"> 
+
+                                                    <br>
+                                                    <br>
+                                                   </div>
                                                                 
              
                                                 
@@ -223,9 +269,28 @@ if ($sql=true)
                                                               </div>
                                                             
                                                               </fieldset>
-                                                              <div>
-                                                                  
+
+
+                                                             <div class="col-lg-12">
+                       <div class="wrapper wrapper-content">
+                        <div class="left-box text-left animated fadeInRightBig">
+
+                           
+
+
+
+
+                                <fieldset>
+                                <legend> View Profile </legend>
+        
+        Profile
+
+                               
                                                               </div>
+                                                              </div>
+                                                            
+                                                              </fieldset>
+                                                              <div>
                                                               
                                                              
                         </div>
