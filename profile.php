@@ -2,8 +2,34 @@
 
         include 'utils.php';
         include 'db.php';
-        init_db();
+       
         checkUser();
+        $db=init_db();
+        $msg;
+
+        if ($_POST) {
+            //preventing from sql injection
+
+
+    $Fname=$db->escape_string($_POST['Fname']);
+     $Oname=$db->escape_string($_POST['Oname']);
+       $email=$db->escape_string($_POST['email']);
+        $idNumber=$db->escape_string($_POST['id_No']);
+
+
+$sql="UPDATE `User` SET `Fname`='$Fname',`Lname`='$Oname',`Email`='$email',`idNumber`='$idNumber' WHERE `Username` ='$_SESSION[login]'";
+exec_sql($sql);
+
+if ($sql=true)
+    {
+        $msg="profile Updated";
+    }
+
+
+
+}
+
+
         ?>
 
 
@@ -121,7 +147,7 @@
                         <div class="row  border-bottom white-bg dashboard-header">
 
                             <div class="col-sm-3">
-                                <h2> <strong>Welcome: </strong> <?php echo $_SESSION['login'] ?></h2>
+                                <h2> <strong>Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
                       
                                 <ul class="list-group clear-list m-t">
                                    
@@ -145,8 +171,17 @@
 
                                 <fieldset>
                                 <legend> Profile Update </legend>
+                                 <?php
+        if (isset($msg))
+        {
+            echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+            unset($msg);
+
+        }
+        ?>
+
                                
-                                                    <form role="form" method="POST" enctype="multipart/form-data">
+                                                    <form role="form" method="POST" action="profile.php" enctype="multipart/form-data">
 
                                      <div class="form-group">
                                      <label class="col-sm-2 control-label"></label>
@@ -154,11 +189,11 @@
                                             <div class="col-md-6">
 
 
-                                            <strong> First Name :  </strong> <input type="text" placeholder="First Name " class="form-control input-lg m-b">
-                                              <strong> Other Name : </strong> <input type="text" placeholder="Other Name " class="form-control input-lg m-b">
+                                            <strong> First Name :  </strong> <input type="text" name="Fname" placeholder="First Name "  class="form-control input-lg m-b" required="" >
+                                              <strong> Other Name : </strong> <input type="text" name="Oname" placeholder="Other Name " class="form-control input-lg m-b" required="">
                                              
-                                             <strong> Email : </strong><input type="email" placeholder="Email Address" class="form-control input-lg m-b">
-                                               <strong> ID Number : </strong>  <input type="text" placeholder="ID Number " class="form-control input-lg m-b">
+                                             <strong> Email : </strong><input type="email" name="email" placeholder="Email Address" class="form-control input-lg m-b" required="">
+                                               <strong> ID Number : </strong>  <input type="text" name="id_No" placeholder="ID Number " class="form-control input-lg m-b" required="">
                                             </div>
                                         
                                         
@@ -329,5 +364,4 @@
             </script>
                 
         </body>
-
         </html>
