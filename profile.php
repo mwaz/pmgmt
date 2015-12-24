@@ -151,35 +151,36 @@
                                      <div class="form-group">
                                      <label class="col-sm-2 control-label"></label>
 
-                                            <div class="col-sm-7">
+                                            <div class="col-md-6">
 
 
-                                            First Name : <input type="text" placeholder="First Name " class="form-control input-lg m-b">
-                                              Other Name : <input type="text" placeholder="Other Name " class="form-control input-lg m-b">
+                                            <strong> First Name :  </strong> <input type="text" placeholder="First Name " class="form-control input-lg m-b">
+                                              <strong> Other Name : </strong> <input type="text" placeholder="Other Name " class="form-control input-lg m-b">
                                              
-                                              Email :<input type="email" placeholder="Email Address" class="form-control input-lg m-b">
-                                               ID Number : <input type="text" placeholder="ID Number " class="form-control input-lg m-b">
+                                             <strong> Email : </strong><input type="email" placeholder="Email Address" class="form-control input-lg m-b">
+                                               <strong> ID Number : </strong>  <input type="text" placeholder="ID Number " class="form-control input-lg m-b">
                                             </div>
                                         
                                         
 
-                                        <div class="col-sm-4"><h4>Upload Picture</h4>
+                                        <div ><h4>Upload Picture</h4>
 
-                                            <form role="form" method="POST" enctype="multipart/form-data">
+
+                                            
 
                                                     <input type="file" name="file to upload" id="file to upload">  
                                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
-                                                    <strong>Upload image </strong></button>
+                                                    <strong>Upload image </strong></button> </br></br> </br> </br> </br> </br> </br> </br> </br> </br> </br> </br> </br> 
                                                      </div>
                                                                 
              
                                                 
-                                        <div class "col-sm-6">
+                                        <div >
 
-                                                                <button class="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
+                                                                <button class="btn btn-lg btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
                                                                 
                                                             </div>
-                                                            </form>
+                                                          
                                                              
                                                              
                                                               </form>
@@ -187,6 +188,9 @@
                                                               </div>
                                                             
                                                               </fieldset>
+                                                              <div>
+                                                                  
+                                                              </div>
                                                               
                                                              
                         </div>
