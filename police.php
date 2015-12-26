@@ -157,7 +157,7 @@ checkUser();
                 <div class="row  border-bottom white-bg dashboard-header">
 
                     <div class="col-sm-3">
-                        <h2> Welcome <?php echo $_SESSION['login'] ?></h2>
+                        <h2> <strong> Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
 
                         <ol class="breadcrumb">
                         <li>
@@ -233,14 +233,14 @@ checkUser();
                                                 <input type="file" name="file to upload" id="file to upload">  </br>
                                                 <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Upload image </strong></button>
                                                             
-
+         
+                                            </div>
 
                                                 </form>
 
 
                                                    
-                                                    
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     </div>
