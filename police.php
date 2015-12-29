@@ -20,9 +20,9 @@ $phone=$db->escape_string($_POST['phone']);
 
 
 
-$sql= "INSERT INTO `User`(`UserID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
+$sql= "INSERT INTO `users`(`userID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
 
-$qry="UPDATE `User` set `idNumber`='$pf',`Fname`='$Fname',`Lname`='$Oname',`Email`='$email' WHERE `Username`='$_SESSION[login]'";
+$qry="UPDATE `users` set `idnumber`='$pf',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
  var_dump($qry);
 
 if($qry&&$sql==true){
@@ -40,7 +40,7 @@ exec_sql($sql);
 
 
 }
-$res=decode_result(exec_sql("SELECT * FROM `User` WHERE `Username`='$_SESSION[login]'"));
+$res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
 // if (count($res<1)){
 //    $msg="No records";
     
@@ -122,7 +122,7 @@ $res=decode_result(exec_sql("SELECT * FROM `User` WHERE `Username`='$_SESSION[lo
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Abstract Application's </a></li>
+                            <li><a href="abstract.php">Abstract Application's </a></li>
                              <li><a href="#">Case Reportings </a></li>
                               <li><a href="#">Finalized Claims </a></li>
                             
@@ -344,18 +344,18 @@ $res=decode_result(exec_sql("SELECT * FROM `User` WHERE `Username`='$_SESSION[lo
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <h3><strong><?php echo $x['Fname'];
+                        <h3><strong><?php echo $x['fname'];
                             echo "</t> </t>";
-                           echo $x['Lname'] ;
+                           echo $x['lname'] ;
                             ?> </strong></h3>
                         <p><i class="fa fa-envelope"></i> <?php foreach ($res as $x ) {
-                           echo $x['Email'] ;
+                           echo $x['email'] ;
                           
                         } ?></p>
                         <address>
                             <strong>User Details</strong><br>
                             ID: <?php foreach ($res as $x ) {
-                            echo $x['idNumber'];
+                            echo $x['idnumber'];
                            
                           
                         } ?> <br>

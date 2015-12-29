@@ -20,7 +20,7 @@ $phone=$db->escape_string($_POST['phone']);
 
 
 
-$sql= "INSERT INTO `users`(`claim_name`,`claim_details`) VALUES('$pf','$age','$phone') ";
+$sql= "INSERT INTO `User`(`claim_name`,`claim_details`) VALUES('$pf','$age','$phone') ";
 
 
 
@@ -39,7 +39,7 @@ exec_sql($sql);
 
 
 }
-$res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
+$res=decode_result(exec_sql("SELECT * FROM `User` WHERE `Username`='$_SESSION[login]'"));
 // if (count($res<1)){
 //    $msg="No records";
     
@@ -276,9 +276,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                                              <strong> Email : </strong><input type="email" name="email" placeholder="Email Address" class="form-control input-lg m-b" required="">
                                                <strong> Place of Loss (30 words max) : </strong> <textarea cols="15" rows="5" name="Oname" placeholder="Location Description " class="form-control input-lg m-b" required=""></textarea>
                                               
-                                               <strong> ID Number : </strong>  <input type="text" name="id_No" placeholder="<?php foreach ($res as $x ) {
-                            echo $x['idnumber'];
-                           } ?>" class="form-control input-lg m-b" readonly="" >
+                                               <strong> ID Number : </strong>  <input type="text" name="id_No" placeholder="ID Number " class="form-control input-lg m-b" readonly="" >
                                             <button class="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit Claim</strong></button>
                                                 
                                             </div>
