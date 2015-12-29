@@ -7,14 +7,18 @@ DROP TABLE IF EXISTS `User`;
 
 CREATE TABLE `User`(
 	`UserID` int (10) NOT NULL AUTO_INCREMENT,
-	`Fname` varchar (200) NOT NULL,
-	 `Lname` varchar (200) NOT NULL,
-	 `Email` varchar (200) NOT NULL ,
-	 `idNumber` INT (10) NOT NULL UNIQUE,
-	  `Username` varchar (200) NOT NULL UNIQUE,
-	 `Password` varchar (200) NOT NULL,
+	`Fname` varchar (40) NOT NULL,
+	 `Lname` varchar (40) NOT NULL,
+	 `Email` varchar (40) NOT NULL ,
+	 `idNumber` INT (10) NOT NULL ,
+	  `Username` varchar (20) NOT NULL UNIQUE,
+	 `Password` varchar (100) NOT NULL,
 	`rank`  INT(1) NOT NULL,
   `profile_image` varchar (200),
+  `pf_no` varchar(60) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+    `age` INT (100)NOT NULL,
+    `phone_no` varchar(30) NOT NULL,
 	`Timestamp` timestamp DEFAULT NOW(),
 
 	PRIMARY KEY (`UserID`)
@@ -45,5 +49,13 @@ CREATE TABLE `Cells`(
   `cell_capacity` INT (100) NOT NULL,
   `sus_id` INT(4) NOT NULL,
   PRIMARY KEY(`cell_id`)
+
+);
+CREATE TABLE `Claims`(
+  `claim_id` INT(4) NOT NULL AUTO_INCREMENT,
+  `claim_name` VARCHAR(255) NOT NULL,
+  `claim_details` VARCHAR (300) ,
+  `UserID` INT(4) NOT NULL,
+  PRIMARY KEY(`claim_id`)
 
 );

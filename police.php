@@ -3,11 +3,60 @@
 include 'utils.php';
 include 'db.php';
 
+$msg;
 init_db();
 checkUser();
+$qry=false;
+$db=init_db();
+if($_POST){
 
+$Fname=$db->escape_string($_POST['Fname']);
+$Oname=$db->escape_string($_POST['Oname']);
+$email=$db->escape_string($_POST['email']);
+$pf=$db->escape_string($_POST['pf']);
+$age=$db->escape_string($_POST['age']);
+$phone=$db->escape_string($_POST['phone']);
+
+
+
+
+$sql= "INSERT INTO `User`(`UserID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
+
+$qry="UPDATE `User` set `idNumber`='$pf',`Fname`='$Fname',`Lname`='$Oname',`Email`='$email' WHERE `Username`='$_SESSION[login]'";
+ var_dump($qry);
+
+if($qry&&$sql==true){
+    $msg="Successfully Updated profile";
+}
+else
+{
+    $msg="Failed to update profile,Please review details";
+}
+
+
+exec_sql($qry);
+exec_sql($sql);
+
+
+
+}
+$res=decode_result(exec_sql("SELECT * FROM `User` WHERE `Username`='$_SESSION[login]'"));
+// if (count($res<1)){
+//    $msg="No records";
+    
+// }
 
 ?>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -141,7 +190,7 @@ checkUser();
 
 
                 <li>
-                    <a href="login.php">
+                    <a href="logout.php">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
@@ -194,6 +243,14 @@ checkUser();
                      <div class="col-lg-4">
 
                     <h3 class="font-bold">Update Profile </h3>
+                    <?php
+        if (isset($msg))
+        {
+            echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+            unset($msg);
+
+        }
+        ?>
                <div class="ibox-content">
                             <div class="text-center">
                             <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Update Profile</a>
@@ -205,33 +262,30 @@ checkUser();
                                             <div class="row">
                                                 <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Profile Update</h3>
 
-                                                    <form role="form">
-                                                        <div class="form-group"><label>First Name</label> <input type="text" placeholder="First Name" class="form-control"></div>
-                                                        <div class="form-group"><label>Other Name</label> <input type="text" placeholder="Other Name" class="form-control"></div>
-                                                        <div class="form-group"><label>P.F Number</label> <input type="text" placeholder="PF Number" class="form-control"></div>
-                                                        <div class="form-group"><label>Age </label> <input type="text" placeholder="Age" class="form-control"></div>
-                                                        <div class="form-group"><label>Phone Number</label> <input type="email" placeholder="phone Number" class="form-control"></div>
+                                                    <form role="form" name="form" method="POST" enctype="multipart/form-data">
+                                                        <div class="form-group"><label>First Name</label> <input type="text" name="Fname" placeholder="First Name" class="form-control" required=""></div>
+                                                        <div class="form-group"><label>Other Name</label> <input type="text" name="Oname" placeholder="Other Name" class="form-control" required=""></div>
+                                                        <div class="form-group"><label>Email </label> <input type="email" name="email" placeholder="Email" class="form-control" required=""></div>
+                                                        
+                                                        <div class="form-group"><label>P.F Number</label> <input type="text" name="pf" placeholder="PF Number" class="form-control" required=""></div>
+                                                        <div class="form-group"><label>Age </label> <input type="text"  name="age" placeholder="Age" class="form-control"required=""></div>
+                                                        <div class="form-group"><label>Phone Number</label> <input  name="phone" type="text" placeholder="phone Number" class="form-control" required=""></div>
                                                         
                                                         <div class="radio radio-info radio-inline">
                                             <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
                                             <label for="inlineRadio1"> Male </label>
-                                        </div>
-                                        <div class="radio radio-inline">
+                                        </br>
+                                        
                                             <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
                                             <label for="inlineRadio2"> Female </label>
                                         </div>
                                                         
-                                                        <div>
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update </strong></button>
-                                                            
-                                                        </div>
-                                                    </form>
+                                                       
                                                 </div>
                                                 <div class="col-sm-6"><h4>Upload Picture</h4>
-                                                <form role="form" method="POST" enctype="multipart/form-data">
-
+                                                
                                                 <input type="file" name="file to upload" id="file to upload">  </br>
-                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Upload image </strong></button>
+                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
                                                             
          
                                             </div>
@@ -251,10 +305,80 @@ checkUser();
                     
 
                 </div>
+
+               
             </div>
 
                         </div>
                 </div>
+                
+                                 <div class="left-box text-left animated fadeInRightBig">
+
+                     <div class="col-lg-12">
+                     </br>
+
+                                <fieldset>
+
+                                <legend> View Profile </legend>
+        
+      
+
+                               <div>
+                                     <div class="col-lg-6">
+                <div class="contact-box">
+                    <a href="#">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
+                          if  ($_SESSION['isAdmin'] == true){
+                            echo "Police Officer";
+                            break;}
+                            else
+                            {
+                                echo "Public User";
+                            
+                          }
+                          
+                        } ?></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong><?php echo $x['Fname'];
+                            echo "</t> </t>";
+                           echo $x['Lname'] ;
+                            ?> </strong></h3>
+                        <p><i class="fa fa-envelope"></i> <?php foreach ($res as $x ) {
+                           echo $x['Email'] ;
+                          
+                        } ?></p>
+                        <address>
+                            <strong>User Details</strong><br>
+                            ID: <?php foreach ($res as $x ) {
+                            echo $x['idNumber'];
+                           
+                          
+                        } ?> <br>
+                           
+                            <abbr title="Phone">Phone:</abbr> <?php foreach ($res as $x ) {
+                           echo $x['phone_no'] ;
+                          
+                        } ?>
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+                    </div>
+                              
+                                                            
+                                                             
+                                                            </div>
+                                                              </fieldset>
+                                                               </div>
+                                                               
+
                 <div class="footer">
                     <div class="pull-right">
                         BigFoot <strong>Techprenuers</strong>
@@ -262,6 +386,7 @@ checkUser();
                     <div>
                         <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
                     </div>
+                </div>
                 </div>
             </div>
         </div>

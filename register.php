@@ -79,8 +79,7 @@ if ($_POST)
                 session_start();
 
                 $_SESSION['User']=$User;
-                $_SESSION['Fname']=$Fname;
-                $_SESSION['Lname']=$Lname;
+                
                 header("location: login.php");
 
             }
