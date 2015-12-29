@@ -1,8 +1,6 @@
 <?php
-define('username', 'root');
-define('dbname', 'police');
-define('password', 'waweru6095');
-define('host', 'localhost');
+
+require "config.php";
 
 function init_db()
 {
@@ -33,4 +31,5 @@ function decode_result($result)
     }
     return $data;
 }
+
 ?>
