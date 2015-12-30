@@ -4,7 +4,7 @@ include 'utils.php';
 include 'db.php';
 
 init_db();
-checkUser();
+//checkUser();
 
 
 ?>
@@ -186,17 +186,50 @@ checkUser();
                     </div>
 
             </div>
-        <div class="row">
-            <div class="col-lg-12">
-               <div class="wrapper wrapper-content">
-                <div class="middle-box text-center animated fadeInRightBig">
-                    <h3 class="font-bold">Update Profile </h3>
-                    
+        
+<div class="panel panel-primary">
+
+    <div class="panel panel-heading">
+        Change Password
+    </div>
+
+    <div class="panel-body">
+        
+        <form action="http://localhost:8080/user/change/password" method="post">
+            <div class="form-group col-md-12">
+                <label for="InputName">Old Password</label>
+
+                <div class="input-group col-md-6">
+                    <input type="password" class="form-control" name="password">
                 </div>
             </div>
 
-                        </div>
+            <div class="form-group col-md-12">
+                <label for="InputName">Password</label>
+
+                <div class="input-group col-md-6">
+                    <input type="password" class="form-control" name="new_password">
                 </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="InputName">Confirm Password</label>
+
+                <div class="input-group col-md-6">
+                    <input name="password_confirmation" class="form-control" type="password">
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <div class="input-group col-md-3">
+                    <input type="submit" value="Change" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
                 <div class="footer">
                     <div class="pull-right">
                         BigFoot <strong>Techprenuers</strong>

@@ -2,13 +2,12 @@
 <html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/404.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:36 GMT -->
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | 404 Error</title>
+    <title>Rongai Police | 404 Error</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -43,5 +42,5 @@
 </body>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/404.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:36 GMT -->
+
 </html>
