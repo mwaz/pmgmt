@@ -232,89 +232,27 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             </div>
 
                         </div>
-                    </div>
-
+                    
+            </div>
             </div>
         <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
                 <div class="left-box text-left animated fadeInRightBig">
 
-                     <div class="col-lg-4">
-
-                    <h3 class="font-bold">Update Profile </h3>
-                    <?php
-        if (isset($msg))
-        {
-            echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
-            unset($msg);
-
-        }
-        ?>
-               <div class="ibox-content">
-                            <div class="text-center">
-                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Update Profile</a>
-                            </div>
-                            <div id="modal-form" class="modal fade" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Profile Update</h3>
-
-                                                    <form role="form" name="form" method="POST" enctype="multipart/form-data">
-                                                        <div class="form-group"><label>First Name</label> <input type="text" name="Fname" placeholder="First Name" class="form-control" required=""></div>
-                                                        <div class="form-group"><label>Other Name</label> <input type="text" name="Oname" placeholder="Other Name" class="form-control" required=""></div>
-                                                        <div class="form-group"><label>Email </label> <input type="email" name="email" placeholder="Email" class="form-control" required=""></div>
-                                                        
-                                                        <div class="form-group"><label>P.F Number</label> <input type="text" name="pf" placeholder="PF Number" class="form-control" required=""></div>
-                                                        <div class="form-group"><label>Age </label> <input type="text"  name="age" placeholder="Age" class="form-control"required=""></div>
-                                                        <div class="form-group"><label>Phone Number</label> <input  name="phone" type="text" placeholder="phone Number" class="form-control" required=""></div>
-                                                        
-                                                        <div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                            <label for="inlineRadio1"> Male </label>
-                                        </br>
-                                        
-                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                            <label for="inlineRadio2"> Female </label>
-                                        </div>
-                                                        
-                                                       
-                                                </div>
-                                                <div class="col-sm-6"><h4>Upload Picture</h4>
-                                                
-                                                <input type="file" name="file to upload" id="file to upload">  </br>
-                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
-                                                            
-         
-                                            </div>
-
-                                                </form>
-
-
-                                                   
-                                           
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-            </div>
-                    
-
-                </div>
-
-               
-            </div>
-
-                        </div>
-                </div>
-                
-                                 <div class="left-box text-left animated fadeInRightBig">
-
                      <div class="col-lg-12">
+
+                    
+                   
+                    <?php
+                     if (isset($msg))
+                             {
+                               echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+                                    unset($msg); } ?>
+
+                                 
+                
+                                 
                      </br>
 
                                 <fieldset>
@@ -324,7 +262,23 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
       
 
                                <div>
-                                     <div class="col-lg-6">
+
+
+
+
+                                
+
+                    <div class="panel panel-primary">
+
+    <div class="panel panel-heading">
+        Profile View
+    </div>
+
+    <div class="panel-body">
+
+
+
+     <div class="col-lg-6">
                 <div class="contact-box">
                     <a href="#">
                     <div class="col-sm-4">
@@ -340,7 +294,8 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             
                           }
                           
-                        } ?></div>
+                        } ?>
+                        </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -366,18 +321,22 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         } ?>
                         </address>
                     </div>
+                    </a>
+                    
+                   
                     <div class="clearfix"></div>
                         </a>
                 </div>
             </div>
-                    </div>
-                              
-                                                            
-                                                             
-                                                            </div>
-                                                              </fieldset>
-                                                               </div>
-                                                               
+             </div>
+              </div>
+               </div>
+                </div>
+                 </div>
+                  </div>
+                   </div>
+                   
+                    <div class="clearfix"></div>          
 
                 <div class="footer">
                     <div class="pull-right">
@@ -387,22 +346,15 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
                     </div>
                 </div>
-                </div>
-            </div>
-        </div>
+           
 
-        </div>
+     
        
        
        
 
-            </div>
 
-
-
-        </div>
-    </div>
-
+       
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>

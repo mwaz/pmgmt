@@ -20,9 +20,10 @@ $phone=$db->escape_string($_POST['phone']);
 
 
 
-$sql= "INSERT INTO `users`(`claim_name`,`claim_details`) VALUES('$pf','$age','$phone') ";
+$sql= "INSERT INTO `users`(`userID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
 
-
+$qry="UPDATE `users` set `idnumber`='$pf',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
+ var_dump($qry);
 
 if($qry&&$sql==true){
     $msg="Successfully Updated profile";
@@ -121,7 +122,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Abstract Application's </a></li>
+                            <li><a href="abstract.php">Abstract Application's </a></li>
                              <li><a href="#">Case Reportings </a></li>
                               <li><a href="#">Finalized Claims </a></li>
                             
@@ -230,10 +231,11 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                                 <h4>RONGAI POLICE STATION </h4>
                             </div>
 
-                        </div>
-                    </div>
-
+                       
+                    
             </div>
+            </div>
+
         <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
@@ -241,23 +243,20 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
                      <div class="col-lg-12">
 
-                    <h3 class="font-bold">Apply for Abstract </h3>
+                    <h3 class="font-bold">Update Profile </h3>
+                   
                     <?php
-        if (isset($msg))
-        {
-            echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
-            unset($msg);
+                     if (isset($msg))
+                             {
+                               echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+                                    unset($msg); } ?>
 
-        }
-        ?>
-               
-                
                                  <div class="left-box text-left animated fadeInRightBig">
 
                     <div class="panel panel-primary">
 
     <div class="panel panel-heading">
-        Astract Application
+        Profile Update
     </div>
 
     <div class="panel-body">
@@ -269,10 +268,11 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
         <form action="abstract.php" method="post">
             <div class="form-group col-md-12">
+            
                 <label for="InputName">First Name</label>
 
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" name="Fname">
+                    <input type="text" class="form-control" name="Fname" required="">
                 </div>
             </div>
 
@@ -280,7 +280,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Other Names </label>
 
                 <div class="input-group col-md-6">
-                    <input type="password" class="form-control" name="Oname">
+                    <input type="password" class="form-control" name="Oname" required="">
                 </div>
             </div>
 
@@ -288,22 +288,36 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Email</label>
 
                 <div class="input-group col-md-6">
-                    <input name="email" class="form-control" type="email">
+                    <input name="email" class="form-control" type="email" required="">
                 </div>
             </div>
 
 
            <div class="form-group col-md-12">
-           <label for="InputName">Place of loss (max 30) </label>
+                 <label for="InputName">File Number </label>
 
-                <div class="input-group col-md-6">
+            <div class="input-group col-md-6">
 
-            <textarea cols="15" rows="5" name="Oname" placeholder="Location Description " class="form-control input-lg m-b" required=""></textarea>
+            <input name="pf" class="form-control" type="text" required="">
+                 </div>
             </div>
-            </div>
-
 
             <div class="form-group col-md-12">
+                <label for="InputName">Age </label>
+
+                <div class="input-group col-md-6">
+                    <input name="text" class="form-control" type="text" required="">
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="InputName">Phone Number</label>
+
+                <div class="input-group col-md-6">
+                    <input name="phone" class="form-control" type="text" required="">
+                </div>
+            </div>
+ <div class="form-group col-md-12">
                 <label for="InputName">ID No.</label>
 
                 <div class="input-group col-md-6">
@@ -311,28 +325,134 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             echo $x['idnumber'];
                            } ?>" readonly="">
                 </div>
-            </div>
+         
+            <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                            <label for="inlineRadio1"> Male </label>
+                                        </br>
+                                        
+                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                            <label for="inlineRadio2"> Female </label>
+                                        </div>
+                                                        
+                                                       
+                                                </div>
+                                                <div class="col-md-6"><h4>Upload Picture</h4>
+                                                
+                                                <input type="file" name="file to upload" id="file to upload">  </br>
+                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
+                                                            
+         
+                                            </div>
+                                              
 
 
-            <div class="form-group col-md-12">
-                <div class="input-group col-md-3">
-                    <input type="submit" value="Submit Claim" class="btn btn-primary">
-                </div>
-            </div>
+
         </form>
          </div>
          </div>
 
             </div>
+            </div>
+                    </div>
+
 
    
 
                                     
                 
+       
+       
+                        </div>
+                
+                
+                                 <div class="left-box text-left animated fadeInRightBig">
+
+                     <div class="col-lg-12">
+                     </br>
+
+                                <fieldset>
+
+                                <legend> View Profile </legend>
+        
+      
+
+                               <div>
+
+
+
+
+                                
+
+                    <div class="panel panel-primary">
+
+    <div class="panel panel-heading">
+        Profile View
+    </div>
+
+    <div class="panel-body">
+
+
+
+     <div class="col-lg-6">
+                <div class="contact-box">
+                    <a href="#">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
+                          if  ($_SESSION['isAdmin'] == true){
+                            echo "Police Officer";
+                            break;}
+                            else
+                            {
+                                echo "Public User";
+                            
+                          }
+                          
+                        } ?></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong><?php echo $x['fname'];
+                            echo "</t> </t>";
+                           echo $x['lname'] ;
+                            ?> </strong></h3>
+                        <p><i class="fa fa-envelope"></i> <?php foreach ($res as $x ) {
+                           echo $x['email'] ;
+                          
+                        } ?></p>
+                        <address>
+                            <strong>User Details</strong><br>
+                            ID: <?php foreach ($res as $x ) {
+                            echo $x['idnumber'];
+                           
+                          
+                        } ?> <br>
+                           
+                            <abbr title="Phone">Phone:</abbr> <?php foreach ($res as $x ) {
+                           echo $x['phone_no'] ;
+                          
+                        } ?>
+                        </address>
+                    </div>
+                    </a>
+                    
+                  
                     <div class="clearfix"></div>
-                        </a>
+                      
                 </div>
             </div>
+               </div>
+            </div>
+               </div>
+           
+               </div>
+            </div>
+              
+           
+             
+           
                    
                     <div class="clearfix"></div>          
 
@@ -348,18 +468,14 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
             </div>
         </div>
 
-        </div>
+
+     
        
        
        
 
-            </div>
 
-
-
-        </div>
-    </div>
-
+       
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
