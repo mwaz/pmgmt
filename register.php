@@ -27,6 +27,7 @@ if ($_POST) {
     //checking if user exists
     if (user_exists($User)) {
         $err_msg = "Username exists in the database";
+        echo $err_msg;
         exit;
 
     }
@@ -63,7 +64,9 @@ if ($_POST) {
         $Pass = sha1($Pass);
         //sQL QUERRY
         $sql = "INSERT INTO `users`(`Fname`,`Lname`,`Username`,`email`,`idNumber`,`Password`,`rank`)
-                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 0)";
+                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 1)";
+
+
 
 
         exec_sql($sql);
@@ -116,18 +119,22 @@ if ($_POST) {
         </div>
         <div>
             <h3>Register Account</h3>
-        </div>
 
-
+            
         <?php
-        if (isset($err_msg)) {
+        if (isset($err_msg)) 
+        {
             echo "<div class=\"alert alert-danger\">" . $err_msg . "</div>";
+            var_dump($err_msg);
             unset($err_msg);
 
         }
 
 
         ?>
+        </div>
+
+
         <form class="m-t" role="form" method="POST" action="register.php" name="form" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" class="form-control" name="Fname" placeholder="First Name" required="">

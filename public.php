@@ -4,6 +4,7 @@ include 'utils.php';
 include 'db.php';
 init_db();
 checkUser();
+checkUserPublic();
 
 ?>
 

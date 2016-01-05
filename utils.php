@@ -49,6 +49,24 @@ function checkUser()
     }
    
 }
+function checkAdmin()
+{
+    //session_start();
+    if (!isset($_SESSION['isAdmin']))
+    {
+        header("Location: 500.php");
+    }
+   
+}
+function checkUserPublic()
+{
+    session_start();
+    if (!isset($_SESSION['user']))
+    {
+        header("Location: 500.php");
+    }
+   
+}
 
 function getUserId()
 {

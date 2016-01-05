@@ -1,49 +1,45 @@
 <?php
-
+//include 'timeout.php';
 include 'utils.php';
 include 'db.php';
 
 $msg;
+$val="Abstract";
 init_db();
 checkUser();
 $qry=false;
 $db=init_db();
 if($_POST){
 
-$Fname=$db->escape_string($_POST['Fname']);
-$Oname=$db->escape_string($_POST['Oname']);
-$email=$db->escape_string($_POST['email']);
-$pf=$db->escape_string($_POST['pf']);
-$age=$db->escape_string($_POST['age']);
-$phone=$db->escape_string($_POST['phone']);
+
+$email=$db->escape_string($_POST['c_email']);
+$claim=$db->escape_string($_POST['claim_details']);
 
 
 
 
-$sql= "INSERT INTO `users`(`claim_name`,`claim_details`) VALUES('$pf','$age','$phone') ";
+
+
+$sql= "INSERT INTO `claims`(`claim_name`,`claim_details`,`userid`,`c_email`) VALUES('$val','$claim','$_SESSION[login]','$email')  " ;
 
 
 
-if($qry&&$sql==true){
-    $msg="Successfully Updated profile";
+if($sql==true){
+    $msg="Successfully Sent claim";
 }
 else
 {
-    $msg="Failed to update profile,Please review details";
+    $msg="Failed to send claim";
 }
 
 
-exec_sql($qry);
+
 exec_sql($sql);
 
 
 
 }
 $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
-// if (count($res<1)){
-//    $msg="No records";
-    
-// }
 
 ?>
 
@@ -243,6 +239,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
                     <h3 class="font-bold">Apply for Abstract </h3>
                     <?php
+
         if (isset($msg))
         {
             echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
@@ -272,7 +269,9 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">First Name</label>
 
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" name="Fname">
+                    <input type="text" class="form-control" name="Fname" placeholder="<?php foreach ($res as $x ) {
+                            echo $x['fname'];
+                           } ?>"  readonly="">
                 </div>
             </div>
 
@@ -280,7 +279,9 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Other Names </label>
 
                 <div class="input-group col-md-6">
-                    <input type="password" class="form-control" name="Oname">
+                    <input type="password" class="form-control" name="Oname" placeholder="<?php foreach ($res as $x ) {
+                            echo $x['lname'];
+                           } ?>"  readonly="">
                 </div>
             </div>
 
@@ -288,7 +289,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Email</label>
 
                 <div class="input-group col-md-6">
-                    <input name="email" class="form-control" type="email">
+                    <input name="c_email" class="form-control" type="email" required="">
                 </div>
             </div>
 
@@ -298,7 +299,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
                 <div class="input-group col-md-6">
 
-            <textarea cols="15" rows="5" name="Oname" placeholder="Location Description " class="form-control input-lg m-b" required=""></textarea>
+            <textarea cols="15" rows="5" name="claim_details" placeholder="Location Description " class="form-control input-lg m-b" required=""></textarea>
             </div>
             </div>
 

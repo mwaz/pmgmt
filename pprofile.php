@@ -16,14 +16,16 @@ $email=$db->escape_string($_POST['email']);
 $pf=$db->escape_string($_POST['pf']);
 $age=$db->escape_string($_POST['age']);
 $phone=$db->escape_string($_POST['phone']);
+$idNumber=$db->escape_string($_POST['idNumber']);
+
 
 
 
 
 $sql= "INSERT INTO `users`(`userID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
 
-$qry="UPDATE `users` set `idnumber`='$pf',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
- var_dump($qry);
+$qry="UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
+ var_dump($sql);
 
 if($qry&&$sql==true){
     $msg="Successfully Updated profile";
@@ -266,12 +268,21 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                
       
 
-        <form action="abstract.php" method="post">
+        <form action="pprofile.php" method="post">
+         <div class="form-group col-md-12">
+                <label for="InputName">User Name </label>
+
+                <div class="input-group col-md-6">
+                    <input type="text" class="form-control"  value="<?php foreach ($res as $x ) {
+                            echo $x['username'];
+                           } ?>" name="user" readonly="">
+                </div>
+            </div>
             <div class="form-group col-md-12">
             
                 <label for="InputName">First Name</label>
 
-                <div class="input-group col-md-8">
+                <div class="input-group col-md-6">
                     <input type="text" class="form-control" name="Fname" required="">
                 </div>
             </div>
@@ -280,9 +291,11 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Other Names </label>
 
                 <div class="input-group col-md-6">
-                    <input type="password" class="form-control" name="Oname" required="">
+                    <input type="text" class="form-control" name="Oname" required="">
                 </div>
             </div>
+
+           
 
             <div class="form-group col-md-12">
                 <label for="InputName">Email</label>
@@ -306,7 +319,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Age </label>
 
                 <div class="input-group col-md-6">
-                    <input name="text" class="form-control" type="text" required="">
+                    <input type="text" class="form-control" name="age" required="">
                 </div>
             </div>
 
@@ -321,10 +334,12 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">ID No.</label>
 
                 <div class="input-group col-md-6">
-                    <input name="idNumber" class="form-control" type="text" placeholder="<?php foreach ($res as $x ) {
+                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
                             echo $x['idnumber'];
                            } ?>" readonly="">
                 </div>
+
+
          
             <div class="radio radio-info radio-inline">
                                             <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">

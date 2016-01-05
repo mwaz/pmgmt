@@ -6,9 +6,12 @@ include 'db.php';
 $msg;
 init_db();
 checkUser();
+checkAdmin();
 $qry=false;
 $db=init_db();
 if($_POST){
+
+
 
 $Fname=$db->escape_string($_POST['Fname']);
 $Oname=$db->escape_string($_POST['Oname']);

@@ -2,9 +2,35 @@
 
 include 'utils.php';
 include 'db.php';
-init_db();
+$db = init_db();
 checkUser();
 $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
+
+if($_POST)
+{
+
+$name=$db->escape_string($_POST['case_name']);
+$idNumber=$db->escape_string($_POST['idNumber']);
+$location= $db->escape_string($_POST['location']);
+$case =$db-> escape_string($_POST['case']);
+
+$_SESSION['case']=$idNumber;
+$qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`)   VALUES('$location','$name','$case')"; 
+
+
+
+
+exec_sql($qry);
+
+if ($qry==true){
+    echo "Success";
+}
+    else
+        echo "failure";
+   
+
+
+}
 
 ?>
 
@@ -151,7 +177,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
                      <div class="col-lg-12">
 
-                    <h3 class="font-bold">Apply for Abstract </h3>
+                    <h3 class="font-bold">Report a case</h3>
                     <?php
         if (isset($msg))
         {
@@ -167,7 +193,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                     <div class="panel panel-primary">
 
     <div class="panel panel-heading">
-        Astract Application
+        Report Case
     </div>
 
     <div class="panel-body">
@@ -177,12 +203,15 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                
       
 
-        <form action="abstract.php" method="post">
+        <form action="case.php" method="post">
             <div class="form-group col-md-12">
                 <label for="InputName">First Name</label>
 
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" name="Fname">
+                    <input type="text" class="form-control" value="<?php foreach ($res as $x) {
+
+                        echo $x['fname'];
+                    } ?>" name="Fname">
                 </div>
             </div>
 
@@ -190,7 +219,10 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Other Names </label>
 
                 <div class="input-group col-md-6">
-                    <input type="password" class="form-control" name="Oname">
+                    <input type="text" class="form-control"  value="<?php foreach ($res as $x ) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+
+                        echo $x['lname'];
+                    } ?>"name="Oname">
                 </div>
             </div>
 
@@ -198,7 +230,14 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">Location/Locality</label>
 
                 <div class="input-group col-md-6">
-                    <input name="location" class="form-control" type="email">
+                    <input name="location" class="form-control" type="text" >
+                </div>
+            </div>
+             <div class="form-group col-md-12">
+                <label for="InputName">Case Heading</label>
+
+                <div class="input-group col-md-6">
+                    <input name="case_name" class="form-control" type="text" >
                 </div>
             </div>
 
@@ -217,7 +256,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <label for="InputName">ID No.</label>
 
                 <div class="input-group col-md-6">
-                    <input name="idNumber" class="form-control" type="text" placeholder="<?php foreach ($res as $x ) {
+                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
                             echo $x['idnumber'];
                            } ?>" readonly="">
                 </div>
@@ -226,7 +265,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
             <div class="form-group col-md-12">
                 <div class="input-group col-md-3">
-                    <input type="submit" value="Submit Claim" class="btn btn-primary">
+                    <input type="submit" value="Report Case" class="btn btn-primary">
                 </div>
             </div>
         </form>

@@ -22,7 +22,7 @@ CREATE TABLE `users` (
   `phone_no`      VARCHAR(30)  NOT NULL,
   `timestamp`     TIMESTAMP             DEFAULT NOW(),
 
-  PRIMARY KEY (`userid`)
+  PRIMARY KEY (`userID`)
 );
 
 
@@ -38,6 +38,8 @@ CREATE TABLE `criminals` (
 CREATE TABLE `cases` (
   `case_id`   INT(4)       NOT NULL AUTO_INCREMENT,
   `case_name` VARCHAR(255) NOT NULL,
+  `location`  VARCHAR(255) NOT NULL,
+  `case_desc` VARCHAR(255)  NOT NULL,
   `opened`    DATETIME     NOT NULL,
   `closed`    DATETIME     NOT NULL,
   `sus_id`    INT(4)       NOT NULL,
@@ -54,8 +56,9 @@ CREATE TABLE `cells` (
 );
 CREATE TABLE `claims` (
   `claim_id`      INT(4)       NOT NULL AUTO_INCREMENT,
-  `claim_name`    VARCHAR(255) NOT NULL,
+   `claim_name`    VARCHAR(255) NOT NULL,
   `claim_details` VARCHAR(300),
-  `userid`        INT(4)       NOT NULL,
+  `userid`        VARCHAR(255)       NOT NULL,
+  `c_email`        VARCHAR(255) NOT NULL,
   PRIMARY KEY (`claim_id`)
 );
