@@ -99,7 +99,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
                              </span> <span class="text-muted text-xs block"> Police Officer <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="#">Profile</a></li>
+                                <li><a href="pprofile.php">Profile</a></li>
                                 <li><a href="#">Contacts</a></li>
                                 <li><a href="#">Mailbox</a></li>
                                 <li class="divider"></li>
@@ -113,7 +113,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                     <li class="active">
                         <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="#">Update Profile </a></li>
+                            <li class="active"><a href="pprofile.php">Update Profile </a></li>
                            
                        
                         </ul>

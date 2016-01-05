@@ -271,7 +271,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
             
                 <label for="InputName">First Name</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-8">
                     <input type="text" class="form-control" name="Fname" required="">
                 </div>
             </div>
