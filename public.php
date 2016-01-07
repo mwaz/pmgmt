@@ -6,6 +6,9 @@ init_db();
 checkUser();
 checkUserPublic();
 
+$res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
+
+
 ?>
 
 
@@ -66,7 +69,7 @@ checkUserPublic();
                     <li class="active">
                         <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="#">Update Profile </a></li>
+                            <li class="active"><a href="puprofile.php">Personal Profile </a></li>
 
                            
                        
@@ -76,8 +79,8 @@ checkUserPublic();
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Abstract Application </a></li>
-                             <li><a href="#">Report A Case </a></li>
+                            <li><a href="abstract.php">Abstract Application </a></li>
+                             <li><a href="case.php">Report A Case </a></li>
                               <li><a href="#">Downloads </a></li>
                             
                             
@@ -144,91 +147,122 @@ checkUserPublic();
 
             </div>
             </div>
-       <div class="row">
+      <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
                 <div class="left-box text-left animated fadeInRightBig">
 
-                     <div class="col-lg-4">
+                     <div class="col-lg-12">
 
-                    <h3 class="font-bold">Update Profile </h3>
-               <div class="ibox-content">
-                            <div class="text-center">
-                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Update Profile</a>
-                            </div>
-                            <div id="modal-form" class="modal fade" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Profile Update</h3>
+                    
+                   
+                    <?php
+                     if (isset($msg))
+                             {
+                               echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+                                    unset($msg); } ?>
 
-                                                    <form role="form">
-                                                        <div class="form-group"><label>First Name</label> <input type="text" placeholder="First Name" class="form-control"></div>
-                                                        <div class="form-group"><label>Other Name</label> <input type="text" placeholder="Other Name" class="form-control"></div>
-                                                        <div class="form-group"><label>ID Number</label> <input type="text" placeholder="PF Number" class="form-control"></div>
-                                                        <div class="form-group"><label>Age </label> <input type="text" placeholder="Age" class="form-control"></div>
-                                                        <div class="form-group"><label>Phone Number</label> <input type="email" placeholder="phone Number" class="form-control"></div>
-                                                        
-                                                        <div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                            <label for="inlineRadio1"> Male </label>
-                                        </div>
-                                        <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                            <label for="inlineRadio2"> Female </label>
-                                        </div>
-                                                        
-                                                        <div>
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Update </strong></button>
-                                                            
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-sm-6"><h4>Upload Picture</h4>
-                                                <form role="form" method="POST" enctype="multipart/form-data">
+                                 
+                
+                                 
+                     </br>
 
-                                                <input type="file" name="file to upload" id="file to upload">  </br>
-                                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Upload image </strong></button>
-                                                            
+                                <fieldset>
+
+                                <legend> View Profile </legend>
+        
+      
+
+                               <div>
 
 
-                                                </form>
 
 
-                                                   
-                                                    
-                                            </div>
-                                        </div>
-                                  
+                                
+
+                    <div class="panel panel-primary">
+
+    <div class="panel panel-heading">
+        Profile View
+    </div>
+
+    <div class="panel-body">
+
+
+
+     <div class="col-lg-6">
+                <div class="contact-box">
+                    <a href="#">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
+                          if  ($_SESSION['user'] == true){
+                            echo "Public User";
+                            break;}
+                            else
+                            {
+                                echo "Police Officer";
+                            
+                          }
+                          
+                        } ?>
                         </div>
-            
-
                         </div>
-
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong><?php echo $x['fname'];
+                            echo "</t> </t>";
+                           echo $x['lname'] ;
+                            ?> </strong></h3>
+                        <p><i class="fa fa-envelope"></i> <?php foreach ($res as $x ) {
+                           echo $x['email'] ;
+                          
+                        } ?></p>
+                        <address>
+                            <strong>User Details</strong><br>
+                            ID: <?php foreach ($res as $x ) {
+                            echo $x['idnumber'];
+                           
+                          
+                        } ?> <br>
+                           
+                            <abbr title="Phone">Phone:</abbr> <?php foreach ($res as $x ) {
+                           echo $x['phone_no'] ;
+                          
+                        } ?>
+                        </address>
+                    </div>
+                    </a>
+                    
+                   
+                    <div class="clearfix"></div>
+                        </a>
                 </div>
+            </div>
+             </div>
+              </div>
+               </div>
+                </div>
+                 </div>
+                  </div>
+                   </div>
+                   
+                    <div class="clearfix"></div>          
+
                 <div class="footer">
                     <div class="pull-right">
-                        Big Foot <strong>Techprenuers</strong>
+                        BigFoot <strong>Techprenuers</strong>
                     </div>
                     <div>
                         <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
                     </div>
                 </div>
-            </div>
-        </div>
+           
 
-        </div>
+     
        
        
-       
-
-            </div>
-
-
-
-        </div>
-    </div>
 
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>

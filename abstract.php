@@ -1,5 +1,5 @@
 <?php
-//include 'timeout.php';
+
 include 'utils.php';
 include 'db.php';
 
@@ -69,6 +69,8 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -91,8 +93,9 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             <img alt="image" class="img-circle" src="img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
-                             </span> <span class="text-muted text-xs block"> Police Officer <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> 
+                            <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
+                             </span> <span class="text-muted text-xs block">Dummy User <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Contacts</a></li>
@@ -109,6 +112,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="#">Update Profile </a></li>
+
                            
                        
                         </ul>
@@ -117,61 +121,23 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Abstract Application's </a></li>
-                             <li><a href="#">Case Reportings </a></li>
-                              <li><a href="#">Finalized Claims </a></li>
+                            <li><a href="abstract.php">Abstract Application </a></li>
+                             <li><a href="case.php">Report A Case </a></li>
+                              <li><a href="#">Downloads </a></li>
                             
                             
                         </ul>
-                    </li>
-                   
-                    
-                   
-                    
-            
-                    <li>
-                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Cases Section</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Add Case</a></li>
-                             <li><a href="#">Reported Cases</a></li>
-                              <li><a href="#">Finalized Case</a></li>
-                            
-                            
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Bail Out's Section </span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Suspects Section</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            
-                            <li><a href="#">Add Suspect</a></li>
-                            <li><a href="#">View Suspects </a></li>
-                            <li><a href="#">Cells Capacity </a></li>
-                            <li><a href="#">WANTED criminals </a></li>
-
-                           
-                        </ul>
-                    </li>
-                    
-                   
-                   
-                    <li class="special_link">
-                        <a href="#"><i class="fa fa-spinner fa-spin"></i> <span class="nav-label">Evidence Database </span></a>
-                    </li>
-                </ul>
+                        </li>
+                     </ul>
 
             </div>
         </nav>
-
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-           <form role="search" class="navbar-form-custom" action="#">
+            <form role="search" class="navbar-form-custom" action="#">
                 <div class="form-group">
                     <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                 </div>
@@ -185,7 +151,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
 
                 <li>
-                    <a href="logout.php">
+                    <a href="login.php">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
@@ -201,17 +167,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 <div class="row  border-bottom white-bg dashboard-header">
 
                     <div class="col-sm-3">
-                        <h2> <strong> Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
-
-                        <ol class="breadcrumb">
-                        <li>
-                            <a href="police.php">Home</a>
-                        </li>
-                        <li class="#">
-                            <strong>Profile</strong>
-                        </li>
-                    </ol>
-
+                        <h2> Welcome <?php echo $_SESSION['login'] ?></h2>
               
                         <ul class="list-group clear-list m-t">
                            
@@ -222,13 +178,16 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         <div class="statistic-box">
                         <h4>
                        
-                            <div class="m-t">
+                           <div class="m-t">
                                 <h4>RONGAI POLICE STATION </h4>
                             </div>
 
-                        </div>
+                   
+                    
                     </div>
 
+
+            </div>
             </div>
         <div class="row">
             <div class="col-lg-12">

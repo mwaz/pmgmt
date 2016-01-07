@@ -4,11 +4,12 @@ $db = init_db();
 session_start();
 $error = false;
 if ($_POST) {
+
     if($_SESSION['login']==true){
       header("Location:logout.php");
 
     }
-    else
+   
 
     $post = true;
     //Reads user inputs from forms
@@ -32,8 +33,10 @@ if ($_POST) {
 
             header("Location: police.php");
 
-        } else {
+        } 
+        else {
             header("Location: public.php");
+           
             $_SESSION['user']=true;
             $_SESSION['user']=$usr;
 

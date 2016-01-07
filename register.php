@@ -27,44 +27,43 @@ if ($_POST) {
     //checking if user exists
     if (user_exists($User)) {
         $err_msg = "Username exists in the database";
-        echo $err_msg;
-        exit;
+        //echo $err_msg;
+   
 
     }
-
-
+    
     //check if id exists
 
-    if (id_exists($idNumber)) {
+    elseif (id_exists($idNumber)) {
 
-        $err_msg = "ID Number exists in the database";
-        exit;
+         $err_msg = "ID Number exists in the database";
+         
 
 
         //check if email exists in our database
 
-    }
-    if (email_exists($email)) {
+     }
+     elseif (email_exists($email)) {
 
         $err_msg = "Email exists in the database";
-        exit;
+      
 
 
-    }
+     }
 
 
     //checking if confirm password matches with password fields
 
-    if ($Pass != $passwordConfirm) {
+   elseif ($Pass != $passwordConfirm) {
 
         $err_msg = "The passwords dont match";
-    } else {
-
-        //hash the passwords
+    } 
+    else 
+    {      //hash the passwords
         $Pass = sha1($Pass);
         //sQL QUERRY
         $sql = "INSERT INTO `users`(`Fname`,`Lname`,`Username`,`email`,`idNumber`,`Password`,`rank`)
-                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 1)";
+                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 0)";
 
 
 
@@ -73,7 +72,7 @@ if ($_POST) {
 
         session_start();
 
-        $_SESSION['User'] = $User;
+      $User = $_SESSION['User'] ;
 
         header("location: login.php");
 
@@ -125,7 +124,7 @@ if ($_POST) {
         if (isset($err_msg)) 
         {
             echo "<div class=\"alert alert-danger\">" . $err_msg . "</div>";
-            var_dump($err_msg);
+            
             unset($err_msg);
 
         }
@@ -173,7 +172,7 @@ if ($_POST) {
             <small>BigFoot Innovations &copy; 2016-2017</small>
         </p>
     </div>
-</div>
+</dMiv>
 
 <!-- Mainly scripts -->
 <script src="js/jquery-2.1.1.js"></script>

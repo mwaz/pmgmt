@@ -2,6 +2,8 @@
 
 include 'utils.php';
 include 'db.php';
+$msg;
+
 $db = init_db();
 checkUser();
 $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
@@ -23,10 +25,10 @@ $qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`)   VALUES('$locatio
 exec_sql($qry);
 
 if ($qry==true){
-    echo "Success";
+    $msg="Successfully Reported a case";
 }
     else
-        echo "failure";
+        $msg="Failed to report the case,please Try Again  ";
    
 
 
@@ -102,8 +104,8 @@ if ($qry==true){
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">Abstract Application </a></li>
-                             <li><a href="#">Report A Case </a></li>
+                            <li><a href="abstract.php">Abstract Application </a></li>
+                             <li><a href="case.php">Report A Case </a></li>
                               <li><a href="#">Downloads </a></li>
                             
                             
@@ -178,11 +180,14 @@ if ($qry==true){
                      <div class="col-lg-12">
 
                     <h3 class="font-bold">Report a case</h3>
+                    
                     <?php
         if (isset($msg))
         {
             echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+            
             unset($msg);
+
 
         }
         ?>

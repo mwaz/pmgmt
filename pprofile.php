@@ -22,17 +22,25 @@ $idNumber=$db->escape_string($_POST['idNumber']);
 
 
 
-$sql= "INSERT INTO `users`(`userID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
 
-$qry="UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
- var_dump($sql);
 
-if($qry&&$sql==true){
+if (email_exists($email)) {
+
+        $msg = "Email exists in the database";
+      }
+
+
+elseif($qry&&$sql==true){
     $msg="Successfully Updated profile";
 }
 else
 {
-    $msg="Failed to update profile,Please review details";
+    
+   $sql= "INSERT INTO `users`(`pf_no`,`age`,`phone_no`) VALUES('$pf','$age','$phone') ";
+
+$qry="UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
+
+
 }
 
 
@@ -113,7 +121,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                         </div>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-th-large"></i> <span a href="police.php" class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="#">Update Profile </a></li>
                            
@@ -469,7 +477,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
              
            
                    
-                    <div class="clearfix"></div>          
+                    <div class="clearfix"> clear </div>          
 
                 <div class="footer">
                     <div class="pull-right">

@@ -22,8 +22,8 @@
 
 
     <div class="middle-box text-center animated fadeInDown">
-        <h1>Access Denied</h1>
-        <h3 class="font-bold">404</h3>
+        <h1>404</h1>
+        <h3 class="font-bold">Access Denied</h3>
 
         <div class="error-desc">
             The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>

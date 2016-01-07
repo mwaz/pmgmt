@@ -1,9 +1,9 @@
 <?php
 function user_exists($User)
 {
-	$unames = decode_result(exec_sql("SELECT `Username` FROM `users`"));
+	$unames = decode_result(exec_sql("SELECT `username` FROM `users`"));
 	// ^ this is an array with n items. Each item is an associative array with one key 'username'
-	$unames_arr = get_spec_key_values($unames, 'Username');
+	$unames_arr = get_spec_key_values($unames, 'username');
 	return in_array($User, $unames_arr) ? true: false;
 
 }
@@ -20,9 +20,10 @@ function id_exists($idNumber)
 
  function email_exists($email)
  {
- 	$emails = decode_result(exec_sql("SELECT `Email` FROM `users`"));
+ 	$emails = decode_result(exec_sql("SELECT `email` FROM `users`"));
  	 	// ^ this is an array with n items. Each item is an associative array with one key 'Email'
-  $emails_arr = get_spec_key_values($email, 'Email');
+  $emails_arr = get_spec_key_values($emails, 'email');
+
  	return in_array($email, $emails_arr) ? true: false;
  }
 
@@ -38,6 +39,7 @@ function get_spec_key_values($array, $key)
         $new_arr[] = $x[$key];
     }
     return $new_arr;
+    
 }
 
 function checkUser()
@@ -60,7 +62,7 @@ function checkAdmin()
 }
 function checkUserPublic()
 {
-    session_start();
+    //session_start();
     if (!isset($_SESSION['user']))
     {
         header("Location: 500.php");
