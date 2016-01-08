@@ -18,6 +18,7 @@ function id_exists($idNumber)
 
 }
 
+
  function email_exists($email)
  {
  	$emails = decode_result(exec_sql("SELECT `email` FROM `users`"));
@@ -39,7 +40,7 @@ function get_spec_key_values($array, $key)
         $new_arr[] = $x[$key];
     }
     return $new_arr;
-    
+
 }
 
 function checkUser()
@@ -73,7 +74,7 @@ function checkUserPublic()
 function getUserId()
 {
     $username = $_SESSION['login'];
-    $user_id = decode_result(exec_sql("SELECT `user_id` FROM `users` WHERE `username`='$username'"))[0]['user_id'];
+    $user_id = decode_result(exec_sql("SELECT `userID` FROM `users` WHERE `username`='$username'"))[0]['userID'];
     return  $user_id;
 }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 include 'utils.php';
 include 'db.php';
 $msg;
@@ -11,15 +10,14 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
 if($_POST)
 {
-     $user_id = getUserId();
 
 $name=$db->escape_string($_POST['case_name']);
 $idNumber=$db->escape_string($_POST['idNumber']);
 $location= $db->escape_string($_POST['location']);
 $case =$db-> escape_string($_POST['case']);
 
-
-$qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`,`userID`)   VALUES('$location','$name','$case','$user_id')"; 
+$_SESSION['case']=$idNumber;
+$qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`)   VALUES('$location','$name','$case')"; 
 
 
 
@@ -54,8 +52,6 @@ if ($qry==true){
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -78,9 +74,8 @@ if ($qry==true){
                             <img alt="image" class="img-circle" src="img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> 
-                            <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
-                             </span> <span class="text-muted text-xs block">Dummy User <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
+                             </span> <span class="text-muted text-xs block"> Police Officer <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Contacts</a></li>
@@ -94,10 +89,9 @@ if ($qry==true){
                         </div>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-th-large"></i> <span a href="police.php" class="nav-label">Profile</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="#">Update Profile </a></li>
-
                            
                        
                         </ul>
@@ -106,23 +100,61 @@ if ($qry==true){
                         <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="abstract.php">Abstract Application </a></li>
-                             <li><a href="case.php">Report A Case </a></li>
-                              <li><a href="#">Downloads </a></li>
+                            <li><a href="#">Abstract Application's </a></li>
+                             <li><a href="#">Case Reportings </a></li>
+                              <li><a href="#">Finalized Claims </a></li>
                             
                             
                         </ul>
-                        </li>
-                     </ul>
+                    </li>
+                   
+                    
+                   
+                    
+            
+                    <li>
+                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Cases Section</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#">Add Case</a></li>
+                             <li><a href="#">Reported Cases</a></li>
+                              <li><a href="#">Finalized Case</a></li>
+                            
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Bail Out's Section </span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Suspects Section</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            
+                            <li><a href="#">Add Suspect</a></li>
+                            <li><a href="#">View Suspects </a></li>
+                            <li><a href="#">Cells Capacity </a></li>
+                            <li><a href="#">WANTED criminals </a></li>
+
+                           
+                        </ul>
+                    </li>
+                    
+                   
+                   
+                    <li class="special_link">
+                        <a href="#"><i class="fa fa-spinner fa-spin"></i> <span class="nav-label">Evidence Database </span></a>
+                    </li>
+                </ul>
 
             </div>
         </nav>
+
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="#">
+           <form role="search" class="navbar-form-custom" action="#">
                 <div class="form-group">
                     <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                 </div>
@@ -136,7 +168,7 @@ if ($qry==true){
 
 
                 <li>
-                    <a href="login.php">
+                    <a href="logout.php">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
@@ -152,7 +184,17 @@ if ($qry==true){
                 <div class="row  border-bottom white-bg dashboard-header">
 
                     <div class="col-sm-3">
-                        <h2> Welcome <?php echo $_SESSION['login'] ?></h2>
+                        <h2> <strong> Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
+
+                        <ol class="breadcrumb">
+                        <li>
+                            <a href="police.php">Home</a>
+                        </li>
+                        <li class="#">
+                            <strong>Profile</strong>
+                        </li>
+                    </ol>
+
               
                         <ul class="list-group clear-list m-t">
                            
@@ -163,17 +205,15 @@ if ($qry==true){
                         <div class="statistic-box">
                         <h4>
                        
-                           <div class="m-t">
+                            <div class="m-t">
                                 <h4>RONGAI POLICE STATION </h4>
                             </div>
 
-                   
+                       
                     
-                    </div>
-
-
             </div>
             </div>
+
        <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
@@ -210,15 +250,12 @@ if ($qry==true){
                
       
 
-        <form action="case.php" method="post">
+        <form action="p_case.php" method="post">
             <div class="form-group col-md-12">
                 <label for="InputName">First Name</label>
 
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" value="<?php foreach ($res as $x) {
-
-                        echo $x['fname'];
-                    } ?>" name="Fname">
+                    <input type="text" class="form-control"  name="Fname" required =" ">
                 </div>
             </div>
 
@@ -226,10 +263,7 @@ if ($qry==true){
                 <label for="InputName">Other Names </label>
 
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control"  value="<?php foreach ($res as $x ) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-
-                        echo $x['lname'];
-                    } ?>"name="Oname">
+                    <input type="text" class="form-control" name="Oname" required="">
                 </div>
             </div>
 
@@ -263,9 +297,7 @@ if ($qry==true){
                 <label for="InputName">ID No.</label>
 
                 <div class="input-group col-md-6">
-                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
-                            echo $x['idnumber'];
-                           } ?>" readonly="">
+                    <input name="idNumber" class="form-control" type="text"  required="">
                 </div>
             </div>
 

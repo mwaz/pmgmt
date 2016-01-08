@@ -6,18 +6,12 @@ init_db();
 checkUser();
 checkUserPublic();
 
-$res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
+$res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
 
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html>
-
-
-
 <head>
 
     <meta charset="utf-8">
@@ -28,7 +22,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -42,286 +36,162 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 </head>
 
 <body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> 
-                            <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
-                             </span> <span class="text-muted text-xs block">Dummy User <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Contacts</a></li>
-                                <li><a href="#">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.php">Logout</a></li>
-                            </ul>
-                        </div>
-                        <div class="logo-element">
-                            Rongai Police 
-                        </div>
-                    </li>
-                    <li class="active">
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li class="active"><a href="puprofile.php">Personal Profile </a></li>
-
-                           
-                       
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-square"></i> <span class="nav-label">Application claims</span><span class="fa arrow"></span></a>
-
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="abstract.php">Abstract Application </a></li>
-                             <li><a href="case.php">Report A Case </a></li>
-                              <li><a href="#">Downloads </a></li>
-                            
-                            
-                        </ul>
-                        </li>
-                     </ul>
-
-            </div>
-        </nav>
-        <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="#">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
-        </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Rongai Police Management System</span>
-                </li>
-               
-
-
-                <li>
-                    <a href="login.php">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                </li>
-                <li>
-                    <a class="right-sidebar-toggle">
-                        <i class="fa fa-tasks"></i>
-                    </a>
-                </li>
-            </ul>
-
-        </nav>
-        </div>
-                <div class="row  border-bottom white-bg dashboard-header">
-
-                    <div class="col-sm-3">
-                        <h2> Welcome <?php echo $_SESSION['login'] ?></h2>
-              
-                        <ul class="list-group clear-list m-t">
-                           
-                        </ul>
-                    </div>
-                   
-                    <div class="col-sm-3">
-                        <div class="statistic-box">
-                        <h4>
-                       
-                           <div class="m-t">
-                                <h4>RONGAI POLICE STATION </h4>
-                            </div>
-
-                   
-                    
-                    </div>
-
-
-            </div>
-            </div>
-      <div class="row">
-            <div class="col-lg-12">
-               <div class="wrapper wrapper-content">
+<div id="wrapper">
+    <?php include 'menu.html' ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
                 <div class="left-box text-left animated fadeInRightBig">
 
-                     <div class="col-lg-12">
-
-                    
-                   
-                    <?php
-                     if (isset($msg))
-                             {
-                               echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
-                                    unset($msg); } ?>
-
-                                 
-                
-                                 
-                     </br>
-
-                                <fieldset>
-
-                                <legend> View Profile </legend>
-        
-      
-
-                               <div>
+                    <div class="col-lg-12">
 
 
-
-
-                                
-
-                    <div class="panel panel-primary">
-
-    <div class="panel panel-heading">
-        Profile View
-    </div>
-
-    <div class="panel-body">
-
-
-
-     <div class="col-lg-6">
-                <div class="contact-box">
-                    <a href="#">
-                    <div class="col-sm-4">
-                        <div class="text-center">
-                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
-                            <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
-                          if  ($_SESSION['user'] == true){
-                            echo "Public User";
-                            break;}
-                            else
-                            {
-                                echo "Police Officer";
-                            
-                          }
-                          
+                        <?php
+                        if (isset($msg)) {
+                            echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+                            unset($msg);
                         } ?>
-                        </div>
+
+                        <div>
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading"> Profile View
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-lg-6">
+                                        <div class="contact-box">
+                                            <a href="#">
+                                                <div class="col-sm-4">
+                                                    <div class="text-center">
+                                                        <img alt="image"
+                                                             class="img-circle m-t-xs img-responsive"
+                                                             src="img/a4.jpg">
+
+                                                        <div
+                                                            class="m-t-xs font-bold"><?php foreach ($res as $x) {
+                                                                if ($_SESSION['user'] == true) {
+                                                                    echo "Public User";
+                                                                    break;
+                                                                } else {
+                                                                    echo "Police Officer";
+
+                                                                }
+
+                                                            } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <h3><strong><?php echo $x['fname'];
+                                                            echo "</t> </t>";
+                                                            echo $x['lname'];
+                                                            ?> </strong></h3>
+
+                                                    <p>
+                                                        <i class="fa fa-envelope"></i> <?php foreach ($res as $x) {
+                                                            echo $x['email'];
+
+                                                        } ?></p>
+                                                    <address>
+                                                        <strong>User Details</strong><br>
+                                                        ID: <?php foreach ($res as $x) {
+                                                            echo $x['idnumber'];
+
+
+                                                        } ?> <br>
+
+                                                        <abbr
+                                                            title="Phone">Phone:</abbr> <?php foreach ($res as $x) {
+                                                            echo $x['phone_no'];
+
+                                                        } ?>
+                                                    </address>
+                                                </div>
+                                            </a>
+
+
+                                            <div class="clearfix"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-8">
-                        <h3><strong><?php echo $x['fname'];
-                            echo "</t> </t>";
-                           echo $x['lname'] ;
-                            ?> </strong></h3>
-                        <p><i class="fa fa-envelope"></i> <?php foreach ($res as $x ) {
-                           echo $x['email'] ;
-                          
-                        } ?></p>
-                        <address>
-                            <strong>User Details</strong><br>
-                            ID: <?php foreach ($res as $x ) {
-                            echo $x['idnumber'];
-                           
-                          
-                        } ?> <br>
-                           
-                            <abbr title="Phone">Phone:</abbr> <?php foreach ($res as $x ) {
-                           echo $x['phone_no'] ;
-                          
-                        } ?>
-                        </address>
-                    </div>
-                    </a>
-                    
-                   
-                    <div class="clearfix"></div>
-                        </a>
                 </div>
             </div>
-             </div>
-              </div>
-               </div>
-                </div>
-                 </div>
-                  </div>
-                   </div>
-                   
-                    <div class="clearfix"></div>          
+        </div>
 
-                <div class="footer">
-                    <div class="pull-right">
-                        BigFoot <strong>Techprenuers</strong>
-                    </div>
-                    <div>
-                        <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
-                    </div>
-                </div>
-           
+        <div class="clearfix"></div>
 
-     
-       
-       
-
-    <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Flot -->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
-    <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <!-- GITTER -->
-    <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-    <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
-
-    <!-- ChartJS-->
-    <script src="js/plugins/chartJs/Chart.min.js"></script>
-
-    <!-- Toastr -->
-    <script src="js/plugins/toastr/toastr.min.js"></script>
+        <div class="footer">
+            <div class="pull-right">
+                BigFoot <strong>Techprenuers</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
+            </div>
+        </div>
 
 
-    <script>
-        $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Rongai police Management', 'Welcome  ');
+        <!-- Mainly scripts -->
+        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-            }, 1300);
+        <!-- Flot -->
+        <script src="js/plugins/flot/jquery.flot.js"></script>
+        <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+        <script src="js/plugins/flot/jquery.flot.spline.js"></script>
+        <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+        <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+
+        <!-- Peity -->
+        <script src="js/plugins/peity/jquery.peity.min.js"></script>
+        <script src="js/demo/peity-demo.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js"></script>
+        <script src="js/plugins/pace/pace.min.js"></script>
+
+        <!-- jQuery UI -->
+        <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+        <!-- GITTER -->
+        <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
+
+        <!-- Sparkline -->
+        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Sparkline demo data  -->
+        <script src="js/demo/sparkline-demo.js"></script>
+
+        <!-- ChartJS-->
+        <script src="js/plugins/chartJs/Chart.min.js"></script>
+
+        <!-- Toastr -->
+        <script src="js/plugins/toastr/toastr.min.js"></script>
 
 
-            
-            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-                data1, data2
-            ],
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.success('Rongai police Management', 'Welcome  ');
+
+                }, 1300);
+
+
+                $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                        data1, data2
+                    ],
                     {
                         series: {
                             lines: {
@@ -348,28 +218,24 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                             color: '#d5d5d5'
                         },
                         colors: ["#1ab394", "#1C84C6"],
-                        xaxis:{
-                        },
+                        xaxis: {},
                         yaxis: {
                             ticks: 4
                         },
                         tooltip: false
                     }
-            );
+                );
 
-            
 
-           
+                var ctx = document.getElementById("polarChart").getContext("2d");
+                var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
 
-           
+            });
+        </script>
 
-            
-            var ctx = document.getElementById("polarChart").getContext("2d");
-            var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+        <
 
-        });
-    </script>
-        
+
 </body>
 
 </html>

@@ -5,19 +5,17 @@ session_start();
 $error = false;
 if ($_POST) {
 
-    if($_SESSION['login']==true){
-      header("Location:logout.php");
-
+    if (@$_SESSION['login'] == true) {
+        header("Location: logout.php");
     }
-   
+
 
     $post = true;
     //Reads user inputs from forms
     $username = $db->escape_string($_POST['user_name']);
     $password = $db->escape_string($_POST['Password']);
     $admin = "Administrator";
-    $usr="Public";
-
+    $usr = "Public";
 
 
     $password = sha1($password);
@@ -33,12 +31,11 @@ if ($_POST) {
 
             header("Location: police.php");
 
-        } 
-        else {
+        } else {
             header("Location: public.php");
-           
-            $_SESSION['user']=true;
-            $_SESSION['user']=$usr;
+
+            $_SESSION['user'] = true;
+            $_SESSION['user'] = $usr;
 
         }
     } else {
