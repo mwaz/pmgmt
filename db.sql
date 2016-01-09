@@ -26,9 +26,17 @@ CREATE TABLE `users` (
 );
 
 
-CREATE TABLE `criminals` (
+CREATE TABLE `suspects` (
   `sus_id`       INT(4)       NOT NULL AUTO_INCREMENT,
-  `sus_name`     VARCHAR(255) NOT NULL,
+  `sus_level`     VARCHAR(255) NOT NULL,
+  `sus_fname`     VARCHAR(255) NOT NULL,
+  `sus_lname`     VARCHAR(255) NOT NULL,
+  `sus_phone`     VARCHAR(255) NOT NULL,
+  `sus_case_no`     VARCHAR(255) NOT NULL,
+  `sus_category`     VARCHAR(255) NOT NULL,
+  `sus_dob`     VARCHAR(255) NOT NULL,
+  `sus_id_number`     VARCHAR(255) NOT NULL,
+  `sus_gender`     VARCHAR(255) NOT NULL,
   `arrest_point` VARCHAR(100) NOT NULL,
   `arrest_time`  DATETIME     NOT NULL,
   `bail`         INT(11)      NOT NULL,
@@ -58,8 +66,11 @@ CREATE TABLE `cells` (
 CREATE TABLE `claims` (
   `claim_id`      INT(4)       NOT NULL AUTO_INCREMENT,
   `claim_name`    VARCHAR(255) NOT NULL,
-  `claim_details` VARCHAR(300),
-  `userid`        VARCHAR(255) NOT NULL,
-  `c_email`       VARCHAR(255) NOT NULL,
+  `claim_desc` VARCHAR(300) NOT NULL,
+   `claim_location` VARCHAR(300) NOT NULL,
+  `userID`        VARCHAR(255) NOT NULL,
+  `claim_email`    VARCHAR(255) NOT NULL,
+  `claim_report_date` TIMESTAMP  DEFAULT NOW(),
+  
   PRIMARY KEY (`claim_id`)
 );

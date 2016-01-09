@@ -324,7 +324,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 <!-- Sparkline demo data  -->
 <script src="js/demo/sparkline-demo.js"></script>
 
-<!-- ChartJS-->
+<!-- datepicker-->
 <script src="js/bootstrap-date-picker.js"></script>
 
 <!-- Toastr -->

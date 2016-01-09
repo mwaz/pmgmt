@@ -7,13 +7,13 @@ $msg;
 init_db();
 checkUser();
 
-$cases = decode_result(exec_sql("SELECT * FROM `cases`"));
+$claims = decode_result(exec_sql("SELECT * FROM `claims`"));
 
 
-$no_cases = false;
+$no_claims = false;
 
-if (count($cases) < 1) {
-    $no_cases = true;
+if (count($claims) < 1) {
+    $no_claims = true;
 
 }
 
@@ -56,19 +56,19 @@ if (count($cases) < 1) {
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                 <?php
-                                if ($no_cases) {
-                                    echo "There are no cases";
+                                if ($no_claims) {
+                                    echo "There are no Abstract claims pending";
                                     goto x;
                                 }
                                 ?>
                                 <tr>
 
 
-                                    <th data-toggle="true">Case No</th>
-                                    <th data-hide="phone">Date</th>
-                                    <th data-hide="all"> Description</th>
-                                    <th data-hide="phone">Reporter</th>
-                                    <th data-hide="phone"> Case Heading</th>
+                                    <th data-toggle="true">Claim No</th>
+                                    <th data-hide="phone">Claim Name</th>
+                                    <th data-hide="all"> Loss Description</th>
+                                    <th data-hide="phone">Claim Victim</th>
+                                    <th data-hide="phone"> Report date</th>
                                     <th data-hide="phone">Status</th>
                                     <th class="text-right" data-sort-ignore="true">Action</th>
 
@@ -76,29 +76,29 @@ if (count($cases) < 1) {
                                 </thead>
                                 <tbody>
                                 <?php
-                                foreach ($cases as $x) {
+                                foreach ($claims as $x) {
 
                                 $user = decode_result(exec_sql("SELECT  `fname` ,`lname` FROM  `users`"));
 
                                 ?>
 
                                 <tr>
-                                    <td> <?php echo $x['case_id'] ?> </td>
+                                    <td> <?php echo $x['claim_id'] ?> </td>
 
-                                    <td><?php echo $x['opened'] ?> </td>
+                                    <td><?php echo $x['claim_name'] ?> </td>
 
-                                    <td><?php echo $x['case_desc'] ?> </td>
+                                    <td><?php echo $x['claim_desc'] ?> </td>
 
                                     <td>
                                         <?php echo $user[0]['fname'] . "\t" . $user[0]['lname'] ?>
                                     </td>
 
                                     <td>
-                                        <?php echo $x['case_name'] ?>
+                                        <?php echo $x['claim_report_date'] ?>
                                     </td>
                                     
                                     <td>
-                                        <span class="label label-primary">Pending Case </span>
+                                        <span class="label label-primary">Pending Claim </span>
                                     </td>
 
                                     <td class="text-right">

@@ -12,15 +12,18 @@ $db=init_db();
 if($_POST){
 
 
-$email=$db->escape_string($_POST['c_email']);
-$claim=$db->escape_string($_POST['claim_details']);
+$claim_name=$db->escape_string($_POST['claim_name']);
+$claim_desc=$db->escape_string($_POST['claim_desc']);
+$claim_location=$db->escape_string($_POST['claim_location']);
+$claim_email=$db->escape_string($_POST['claim_email']);
+
+$user_id = getUserId();
 
 
 
 
 
-
-$sql= "INSERT INTO `claims`(`claim_name`,`claim_details`,`userid`,`c_email`) VALUES('$val','$claim','$_SESSION[login]','$email')  " ;
+$sql= "INSERT INTO `claims`(`claim_name`,`claim_desc`,`claim_location`, `userID`,`claim_email`) VALUES('$claim_name','$claim_desc','$claim_location','$user_id','$claim_email')  " ;
 
 
 
@@ -121,58 +124,77 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
       
 
         <form action="abstract.php" method="post">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">First Name</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input type="text" class="form-control" name="Fname" placeholder="<?php foreach ($res as $x ) {
                             echo $x['fname'];
                            } ?>"  readonly="">
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">Other Names </label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input type="password" class="form-control" name="Oname" placeholder="<?php foreach ($res as $x ) {
                             echo $x['lname'];
                            } ?>"  readonly="">
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">Email</label>
 
-                <div class="input-group col-md-6">
-                    <input name="c_email" class="form-control" type="email" required="">
+                <div class="input-group col-md-12">
+                    <input name="claim_email" class="form-control" type="email" required="">
                 </div>
             </div>
 
-
-           <div class="form-group col-md-12">
-           <label for="InputName">Place of loss (max 30) </label>
-
-                <div class="input-group col-md-6">
-
-            <textarea cols="15" rows="5" name="claim_details" placeholder="Location Description " class="form-control input-lg m-b" required=""></textarea>
-            </div>
-            </div>
-
-
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">ID No.</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input name="idNumber" class="form-control" type="text" placeholder="<?php foreach ($res as $x ) {
                             echo $x['idnumber'];
                            } ?>" readonly="">
                 </div>
             </div>
 
+            <div class="form-group col-md-5">
+                <label for="InputName">Claim Name </label>
 
-            <div class="form-group col-md-12">
-                <div class="input-group col-md-3">
+                <div class="input-group col-md-12">
+                    <input name="claim_name" class="form-control" value="Abstract" type="text" readonly="">
+                </div>
+            </div>
+
+             <div class="form-group col-md-5">
+                <label for="InputName">Location </label>
+
+                <div class="input-group col-md-12">
+                    <input name="claim_location" class="form-control" type="text" required="">
+                </div>
+            </div>
+            
+
+
+
+
+           <div class="form-group col-md-12">
+           <label for="InputName">Description  of loss (max 30) </label>
+
+                <div class="input-group col-md-6">
+
+            <textarea cols="15" rows="5" name="claim_desc" placeholder="Place Text Here... " class="form-control input-lg m-b" required=""></textarea>
+            </div>
+            </div>
+
+
+            
+            <div class="form-group col-md-9">
+                <div class="input-group col-md-12">
                     <input type="submit" value="Submit Claim" class="btn btn-primary">
                 </div>
             </div>

@@ -59,7 +59,11 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+    <!--date picker stylesheets -->
+    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css"
+          rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/bootstrap-date-picker.css" rel="stylesheet">
 </head>
 
 <body>
@@ -93,40 +97,41 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
                                             <form action="pprofile.php" method="post">
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-3">
                                                     <label for="InputName">User Name </label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input type="text" class="form-control"
                                                                value="<?php foreach ($res as $x) {
                                                                    echo $x['username'];
                                                                } ?>" name="user" readonly="">
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-3">
 
                                                     <label for="InputName">First Name</label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input type="text" class="form-control" name="Fname"
                                                                required="">
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-4">
                                                     <label for="InputName">Other Names </label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input type="text" class="form-control" name="Oname"
                                                                required="">
                                                     </div>
                                                 </div>
+                                                <div class="clearfix" > </div>
 
 
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-6">
                                                     <label for="InputName">Email</label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input name="email" class="form-control" type="email"
                                                                value="<?php foreach ($res as $x) {
                                                                    echo $x['email'];
@@ -135,60 +140,76 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                     </div>
                                                 </div>
 
-
-                                                <div class="form-group col-md-12">
-                                                    <label for="InputName">File Number </label>
-
-                                                    <div class="input-group col-md-6">
-
-                                                        <input name="pf" class="form-control" type="text" required="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-md-12">
-                                                    <label for="InputName">Age </label>
-
-                                                    <div class="input-group col-md-6">
-                                                        <input type="text" class="form-control" name="age" required="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-4">
                                                     <label for="InputName">Phone Number</label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input name="phone" class="form-control" type="text"
                                                                required="">
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-12">
+
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="InputName">File Number </label>
+
+                                                    <div class="input-group col-md-12">
+
+                                                        <input name="pf" class="form-control" type="text" required="">
+                                                    </div>
+                                                </div>
+                                                
+
+                                                  <div class="form-group col-md-3">
+                                        <label>Date of Birth</label>
+
+                    <div class="input-group date" data-provide="datepicker"
+                                             data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                    <i class="fa fa-calendar">
+                    </i></span>
+                    <input type="text" name="date_from" class="form-control"
+                 placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
+                 </div>
+
+                    </div>
+
+                                                
+                                                <div class="form-group col-md-3">
                                                     <label for="InputName">ID No.</label>
 
-                                                    <div class="input-group col-md-6">
+                                                    <div class="input-group col-md-12">
                                                         <input name="idNumber" class="form-control" type="text"
                                                                value="<?php foreach ($res as $x) {
                                                                    echo $x['idnumber'];
                                                                } ?>" readonly="">
                                                     </div>
-
-
-                                                    <div class="radio radio-info radio-inline">
-                                                        <input type="radio" id="inlineRadio1" value="option1"
-                                                               name="radioInline" checked="">
-                                                        <label for="inlineRadio1"> Male </label>
-                                                        </br>
-
-                                                        <input type="radio" id="inlineRadio2" value="option2"
-                                                               name="radioInline">
-                                                        <label for="inlineRadio2"> Female </label>
                                                     </div>
 
+                                                    
 
-                                                </div>
-                                                <div class="col-md-6"><h4>Upload Picture</h4>
+
+
+                                                   <div class="form-group col-md-4">
+                                        <label for="InputName">Gender</label>
+
+                                        <select class="form-control col-md-12" name="gender">
+                                            <option value="m">Male</option>
+                                            <option value="f">Female</option>
+                                        </select>
+
+
+                                    </div>
+                                      <div class="clearfix"></div>
+
+
+                                                
+                                                <div class="col-md-12"><h4>Upload Picture</h4>
 
                                                     <input type="file" name="file to upload" id="file to upload">  </br>
-                                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                                    <div class="clearfix"></div>
+                                                    <button class="btn btn-lg btn-primary pull-right m-t-n-xs"
+
                                                             type="submit"><strong>Update Profile </strong></button>
 
 
@@ -306,104 +327,49 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                 </div>
             </div>
 
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
 
-            <!-- Mainly scripts -->
-            <script src="js/jquery-2.1.1.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-            <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- jQuery UI -->
+<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-            <!-- Flot -->
-            <script src="js/plugins/flot/jquery.flot.js"></script>
-            <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-            <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-            <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-            <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<!-- GITTER -->
+<script src="js/plugins/gritter/jquery.gritter.min.js"></script>
 
-            <!-- Peity -->
-            <script src="js/plugins/peity/jquery.peity.min.js"></script>
-            <script src="js/demo/peity-demo.js"></script>
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-            <!-- Custom and plugin javascript -->
-            <script src="js/inspinia.js"></script>
-            <script src="js/plugins/pace/pace.min.js"></script>
+<!-- Sparkline demo data  -->
+<script src="js/demo/sparkline-demo.js"></script>
 
-            <!-- jQuery UI -->
-            <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- datepicker-->
+<script src="js/bootstrap-date-picker.js"></script>
 
-            <!-- GITTER -->
-            <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-            <!-- Sparkline -->
-            <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-            <!-- Sparkline demo data  -->
-            <script src="js/demo/sparkline-demo.js"></script>
-
-            <!-- ChartJS-->
-            <script src="js/plugins/chartJs/Chart.min.js"></script>
-
-            <!-- Toastr -->
-            <script src="js/plugins/toastr/toastr.min.js"></script>
+<!-- Toastr -->
+<script src="js/plugins/toastr/toastr.min.js"></script>
 
 
-            <script>
-                $(document).ready(function () {
-                    setTimeout(function () {
-                        toastr.options = {
-                            closeButton: true,
-                            progressBar: true,
-                            showMethod: 'slideDown',
-                            timeOut: 4000
-                        };
-                        toastr.success('Rongai police Management', 'Welcome  ');
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Rongai police Management', 'Welcome  ');
 
-                    }, 1300);
+        }, 1300);
+    });
+</script>
 
-
-                    $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-                            data1, data2
-                        ],
-                        {
-                            series: {
-                                lines: {
-                                    show: false,
-                                    fill: true
-                                },
-                                splines: {
-                                    show: true,
-                                    tension: 0.4,
-                                    lineWidth: 1,
-                                    fill: 0.4
-                                },
-                                points: {
-                                    radius: 0,
-                                    show: true
-                                },
-                                shadowSize: 2
-                            },
-                            grid: {
-                                hoverable: true,
-                                clickable: true,
-                                tickColor: "#d5d5d5",
-                                borderWidth: 1,
-                                color: '#d5d5d5'
-                            },
-                            colors: ["#1ab394", "#1C84C6"],
-                            xaxis: {},
-                            yaxis: {
-                                ticks: 4
-                            },
-                            tooltip: false
-                        }
-                    );
-
-
-                    var ctx = document.getElementById("polarChart").getContext("2d");
-                    var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
-
-                });
-            </script>
 
 </body>
 
