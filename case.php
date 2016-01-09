@@ -108,10 +108,10 @@ if ($qry==true){
       
 
         <form action="case.php" method="post">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-4">
                 <label for="InputName">First Name</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input type="text" class="form-control" value="<?php foreach ($res as $x) {
 
                         echo $x['fname'];
@@ -119,10 +119,10 @@ if ($qry==true){
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">Other Names </label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input type="text" class="form-control"  value="<?php foreach ($res as $x ) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
                         echo $x['lname'];
@@ -130,18 +130,29 @@ if ($qry==true){
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-4">
                 <label for="InputName">Location/Locality</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input name="location" class="form-control" type="text" >
                 </div>
             </div>
-             <div class="form-group col-md-12">
+             <div class="form-group col-md-5">
                 <label for="InputName">Case Heading</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input name="case_name" class="form-control" type="text" >
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-4">
+                <label for="InputName">ID No.</label>
+
+                <div class="input-group col-md-12">
+                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
+                            echo $x['idnumber'];
+                           } ?>" required="">
                 </div>
             </div>
 
@@ -156,15 +167,6 @@ if ($qry==true){
             </div>
 
 
-            <div class="form-group col-md-12">
-                <label for="InputName">ID No.</label>
-
-                <div class="input-group col-md-6">
-                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
-                            echo $x['idnumber'];
-                           } ?>" readonly="">
-                </div>
-            </div>
 
 
             <div class="form-group col-md-12">

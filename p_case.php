@@ -1,5 +1,6 @@
 <?php
 
+
 include 'utils.php';
 include 'db.php';
 $msg;
@@ -10,14 +11,15 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
 if($_POST)
 {
+     $user_id = getUserId();
 
 $name=$db->escape_string($_POST['case_name']);
 $idNumber=$db->escape_string($_POST['idNumber']);
 $location= $db->escape_string($_POST['location']);
 $case =$db-> escape_string($_POST['case']);
 
-$_SESSION['case']=$idNumber;
-$qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`)   VALUES('$location','$name','$case')"; 
+
+$qry="INSERT INTO `cases`(`location`,`case_name`,`case_desc`,`userID`)   VALUES('$location','$name','$case','$user_id')"; 
 
 
 
@@ -52,6 +54,8 @@ if ($qry==true){
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -67,7 +71,6 @@ if ($qry==true){
 <body>
     <div id="wrapper">
         <?php include 'menu2.html' ?>
-
        <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">
@@ -105,34 +108,51 @@ if ($qry==true){
       
 
         <form action="p_case.php" method="post">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-4">
                 <label for="InputName">First Name</label>
 
-                <div class="input-group col-md-6">
-                    <input type="text" class="form-control"  name="Fname" required =" ">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control" value="<?php foreach ($res as $x) {
+
+                        echo $x['fname'];
+                    } ?>" name="Fname">
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-5">
                 <label for="InputName">Other Names </label>
 
-                <div class="input-group col-md-6">
-                    <input type="text" class="form-control" name="Oname" required="">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control"  value="<?php foreach ($res as $x ) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+
+                        echo $x['lname'];
+                    } ?>"name="Oname">
                 </div>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-4">
                 <label for="InputName">Location/Locality</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input name="location" class="form-control" type="text" >
                 </div>
             </div>
-             <div class="form-group col-md-12">
+             <div class="form-group col-md-5">
                 <label for="InputName">Case Heading</label>
 
-                <div class="input-group col-md-6">
+                <div class="input-group col-md-12">
                     <input name="case_name" class="form-control" type="text" >
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-4">
+                <label for="InputName">ID No.</label>
+
+                <div class="input-group col-md-12">
+                    <input name="idNumber" class="form-control" type="text" value="<?php foreach ($res as $x ) {
+                            echo $x['idnumber'];
+                           } ?>" required="">
                 </div>
             </div>
 
@@ -147,13 +167,6 @@ if ($qry==true){
             </div>
 
 
-            <div class="form-group col-md-12">
-                <label for="InputName">ID No.</label>
-
-                <div class="input-group col-md-6">
-                    <input name="idNumber" class="form-control" type="text"  required="">
-                </div>
-            </div>
 
 
             <div class="form-group col-md-12">

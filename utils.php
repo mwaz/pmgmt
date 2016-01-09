@@ -37,6 +37,7 @@ function get_spec_key_values($array, $key)
 
     foreach($array as $x)
     {
+        
         $new_arr[] = $x[$key];
     }
     return $new_arr;

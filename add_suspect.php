@@ -9,6 +9,34 @@ checkAdmin();
 
 $db=init_db(); 
 
+
+if($_POST){
+    $sus_level = $db->escape_string($_POST['suspect_level']);
+    $Fname = $db->escape_string($_POST['Fname']);
+    $Lname = $db->escape_string($_POST['Oname']);
+    $crime_description = $db->escape_string($_POST['crime_description']);
+    $phone = $db->escape_string($_POST['phone']);
+    $case_number = $db->escape_string($_POST['case_number']);
+    $sus_category = $db->escape_string($_POST['suspect_category']);
+    $sus_dob = $db->escape_string($_POST['dob']);
+    $sus_id_number = $db->escape_string($_POST['idNumber']);
+    $gender = $db->escape_string($_POST['gender']);
+    $arrest_point = $db->escape_string($_POST['sus_arrest_point']);
+    $arrest_time = $db->escape_string($_POST['arrest_date']);
+
+
+
+
+
+$database_insert="INSERT INTO `suspects`( `sus_level`,`sus_fname`,`sus_lname`,`sus_phone`,`sus_case_no`,`sus_category`,`sus_dob`,`sus_id_number`, `sus_gender`,`arrest_point`,`arrest_time`,`crime_desc` ) 
+VALUES('$sus_level','$Fname','$Lname','$phone','$case_number','$sus_category','$sus_dob','$sus_id_number','$gender','$arrest_point','$arrest_time','$crime_description' )";
+
+
+
+exec_sql($database_insert);
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +79,7 @@ $db=init_db();
 
                             <div class="col-lg-12">
 
-                                <h3 class="font-bold">Update Profile </h3>
+                                
 
                                 <?php
                                 if (isset($msg)) {
@@ -64,18 +92,18 @@ $db=init_db();
                                     <div class="panel panel-primary">
 
                                         <div class="panel panel-heading">
-                                            Profile Update
+                                            Add Suspect
                                         </div>
 
                                         <div class="panel-body">
 
 
-                                            <form action="pprofile.php" method="post">
+                                            <form action="add_suspect.php" method="post">
                                                 
                                                 <div class="form-group col-md-3">
                                         <label for="InputName">Suspect Level</label>
 
-                                        <select class="form-control col-md-12" name="gender">
+                                        <select class="form-control col-md-12" name="suspect_level">
                                             <option value="Beginner">Beginner</option>
                                             <option value="Intermediate">Intermediate</option>
                                              <option value="Wanted">Wanted</option>
@@ -109,7 +137,7 @@ $db=init_db();
                                                     <label for="InputName">Phone Number</label>
 
                                                     <div class="input-group col-md-12">
-                                                        <input name="phone" class="form-control" type="text"
+                                                        <input name="phone" class="form-control" type="text" pattern="[0-9]"  title="Must not be characters"
                                                                required="">
                                                     </div>
                                                 </div>
@@ -120,14 +148,14 @@ $db=init_db();
 
                                                     <div class="input-group col-md-12">
 
-                                                        <input name="pf" class="form-control" type="text" required="">
+                                                        <input name="case_number" class="form-control" type="text"  pattern="[0-9]"  title="Must not be characters" required="">
                                                     </div>
                                                 </div>
 
                                                    <div class="form-group col-md-2">
                                         <label for="InputName">Category</label>
 
-                                        <select class="form-control col-md-12" name="gender">
+                                        <select class="form-control col-md-12" name="suspect_category">
                                             <option value="Adult">Adult</option>
                                             <option value="Child">Child</option>
                                         </select>
@@ -144,25 +172,22 @@ $db=init_db();
                     <span class="input-group-addon">
                     <i class="fa fa-calendar">
                     </i></span>
-    <input type="text" name="date_from" class="form-control" placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
+    <input type="text" name="dob" class="form-control" placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
                  </div>
 
                      </div>
 
                                                 
-                           <div class="form-group col-md-3">
+                <div class="form-group col-md-3">
                          <label for="InputName">ID No.</label>
 
-                    <div class="input-group col-md-12">
-        <input name="idNumber" class="form-control" type="text" required="">
-                                                    </div>
-                                                    </div>
+                        <div class="input-group col-md-12">
+                            <input name="idNumber" class="form-control" type="text" required="">
+                        </div>
+                </div>
 
                                                     
-
-
-
-                                                   <div class="form-group col-md-4">
+                         <div class="form-group col-md-4">
                                         <label for="InputName">Gender</label>
 
                                         <select class="form-control col-md-12" name="gender">
@@ -170,9 +195,40 @@ $db=init_db();
                                             <option value="Female">Female</option>
                                         </select>
 
-
-                                    </div>
+                        </div>
                                       <div class="clearfix"></div>
+                        
+                        <div class="form-group col-md-3">
+                         <label for="InputName">Arrest Point</label>
+
+                       <div class="input-group col-md-12">
+                        <input name="sus_arrest_point" class="form-control" type="text"  pattern="[a-z]"  title="Must be Characters" required="" >
+                       </div>
+               </div>
+
+               <div class="form-group col-md-3">
+                <label>Arrest Date</label>
+                    <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                    <span class="input-group-addon">
+                    <i class="fa fa-calendar">
+                    </i></span>
+    <input type="text" name="arrest_date" class="form-control" placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
+                 </div>
+                 </div>
+
+
+                         <div class="clearfix"></div>
+
+                         <div class="form-group col-md-6">
+           <label for="InputName">Crime Description ( 200 words max)</label>
+
+                <div class="input-group col-md-12">
+
+            <textarea cols="15" rows="5" name="crime_description"  class="form-control input-lg m-b" required=""></textarea>
+            </div>
+            </div>
+              <div class="clearfix"></div>
+
 
 
                                                 
@@ -182,7 +238,7 @@ $db=init_db();
                         <div class="clearfix"></div>
                      <button class="btn btn-lg btn-primary pull-right m-t-n-xs"
 
-                                        type="submit"><strong>Submit Details </strong></button>
+                                        type="submit"><strong>Add Suspect </strong></button>
 
 
                                                 </div>
@@ -200,6 +256,8 @@ $db=init_db();
                     </div>
 
                     </div>
+                     </div>
+                     <div class="clearfix"> clear</div>
 
                     <div class="footer">
                         <div class="pull-right">
@@ -210,6 +268,31 @@ $db=init_db();
                         </div>
                     </div>
                     </div>
-                    </div>
+                   
+
+
+ <!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- FooTable -->
+<script src="js/plugins/footable/footable.all.min.js"></script>
+<script src="js/bootstrap-date-picker.js"></script>
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+
+        $('.footable').footable();
+
+    });
+
+</script>
                 </body>
                 </html>

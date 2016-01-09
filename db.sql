@@ -32,14 +32,16 @@ CREATE TABLE `suspects` (
   `sus_fname`     VARCHAR(255) NOT NULL,
   `sus_lname`     VARCHAR(255) NOT NULL,
   `sus_phone`     VARCHAR(255) NOT NULL,
-  `sus_case_no`     VARCHAR(255) NOT NULL,
-  `sus_category`     VARCHAR(255) NOT NULL,
-  `sus_dob`     VARCHAR(255) NOT NULL,
-  `sus_id_number`     VARCHAR(255) NOT NULL,
-  `sus_gender`     VARCHAR(255) NOT NULL,
-  `arrest_point` VARCHAR(100) NOT NULL,
-  `arrest_time`  DATETIME     NOT NULL,
-  `bail`         INT(11)      NOT NULL,
+  `sus_case_no`   VARCHAR(255) NOT NULL,
+  `sus_category`  VARCHAR(255) NOT NULL,
+  `sus_dob`        DATETIME     NOT NULL,
+  `sus_id_number` VARCHAR(255) NOT NULL,
+  `sus_gender`    VARCHAR(255) NOT NULL,
+  `arrest_point`  VARCHAR(100) NOT NULL,
+  `crime_desc`    VARCHAR (255) NOT NULL, 
+  `arrest_time`   DATETIME     NOT NULL,
+  `bail`          VARCHAR(255)     NOT NULL,
+  `amount`         INT(11)      NOT NULL,
   PRIMARY KEY (`sus_id`)
 );
 
@@ -48,13 +50,16 @@ CREATE TABLE `cases` (
   `case_name` VARCHAR(255) NOT NULL,
   `location`  VARCHAR(255) NOT NULL,
   `case_desc` VARCHAR(255) NOT NULL,
-  `opened`    DATETIME     NOT NULL,
+  `opened`    TIMESTAMP              DEFAULT NOW(),
   `closed`    DATETIME     NOT NULL,
   `sus_id`    INT(4)       NOT NULL,
   `UserID`    INT(10)      NOT NULL,
+  `fname`     VARCHAR(255) NOT NULL,
+  `lname`     VARCHAR(255) NOT NULL,  
   PRIMARY KEY (`case_id`)
 
 );
+
 CREATE TABLE `cells` (
   `cell_id`       INT(4)       NOT NULL AUTO_INCREMENT,
   `cell_name`     VARCHAR(255) NOT NULL,

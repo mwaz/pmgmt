@@ -7,13 +7,14 @@ $msg;
 init_db();
 checkUser();
 
-$claims = decode_result(exec_sql("SELECT * FROM `claims`"));
+$suspects = decode_result(exec_sql("SELECT * FROM `suspects`"));
 
 
-$no_claims = false;
 
-if (count($claims) < 1) {
-    $no_claims = true;
+$no_suspects = false;
+
+if (count($no_suspects) < 1) {
+    $no_suspects = true;
 
 }
 
@@ -56,55 +57,60 @@ if (count($claims) < 1) {
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                 <?php
-                                if ($no_claims) {
-                                    echo "There are no Abstract claims pending";
+                                if ($no_suspects) {
+                                    echo "There are no cases";
                                     goto x;
                                 }
                                 ?>
                                 <tr>
 
 
-                                    <th data-toggle="true">Claim No</th>
-                                    <th data-hide="phone">Claim Name</th>
-                                    <th data-hide="all"> Loss Description</th>
-                                    <th data-hide="phone">Claim Victim</th>
-                                    <th data-hide="phone"> Report date</th>
-                                    <th data-hide="phone">Status</th>
+                                    <th data-toggle="true">Name</th>
+                                    <th data-hide="phone">Case Number</th>
+                                    
+                                    <th data-hide="phone">Gender</th>
+                                    <th data-hide="phone"> ID Number</th>
+                                    <th data-hide="all"> Crime Description </th>
+                                    <th data-hide="phone">Suspect Level</th>
+                                     <th data-hide="phone">Arrest Point</th>
+                                
                                     <th class="text-right" data-sort-ignore="true">Action</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                foreach ($claims as $x) {
-
-                                $user = decode_result(exec_sql("SELECT  `fname` ,`lname` FROM  `users`"));
+                                foreach ($suspects as $x) {
 
                                 ?>
 
                                 <tr>
-                                    <td> <?php echo $x['claim_id'] ?> </td>
+                                    <td>  <?php echo $x['sus_fname'] . "\t" . $x['sus_lname'] ?> </td>
 
-                                    <td><?php echo $x['claim_name'] ?> </td>
+                                    <td><?php echo $x['sus_case_no'] ?> </td>
 
-                                    <td><?php echo $x['claim_desc'] ?> </td>
+                                    <td><?php echo $x['sus_gender'] ?> </td>
 
                                     <td>
-                                        <?php echo $user[0]['fname'] . "\t" . $user[0]['lname'] ?>
+                                        <?php echo $x['sus_id_number']  ?>
                                     </td>
 
                                     <td>
-                                        <?php echo $x['claim_report_date'] ?>
+                                        <?php echo $x['crime_desc'] ?>
                                     </td>
                                     
                                     <td>
-                                        <span class="label label-primary">Pending Claim </span>
+                                        <span class="label label-primary"><?php  echo $x['sus_level']?> </span>
                                     </td>
+                                     <td>
+                                        <?php echo $x['arrest_point']  ?>
+                                    </td>
+
 
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
+                                            <button class="btn-white btn btn-xs">Approve</button>
+                                            <button class="btn-white btn btn-xs">Cancel</button>
                                         </div>
                                     </td>
                                      <?php
@@ -114,7 +120,7 @@ if (count($claims) < 1) {
 
                                 </tr>
 
-
+                                
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -173,4 +179,5 @@ if (count($claims) < 1) {
 </body>
 
 
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/ecommerce_product_list.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:53 GMT -->
 </html>

@@ -10,6 +10,7 @@ checkUser();
 $cases = decode_result(exec_sql("SELECT * FROM `cases`"));
 
 
+
 $no_cases = false;
 
 if (count($cases) < 1) {
@@ -103,8 +104,8 @@ if (count($cases) < 1) {
 
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
+                                            <button class="btn-white btn btn-xs">Approve</button>
+                                            <button class="btn-white btn btn-xs">Cancel</button>
                                         </div>
                                     </td>
                                      <?php
@@ -114,7 +115,7 @@ if (count($cases) < 1) {
 
                                 </tr>
 
-
+                                
                                 </tbody>
                                 <tfoot>
                                 <tr>
