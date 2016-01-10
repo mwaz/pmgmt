@@ -137,7 +137,7 @@ exec_sql($database_insert);
                                                     <label for="InputName">Phone Number</label>
 
                                                     <div class="input-group col-md-12">
-                                                        <input name="phone" class="form-control" type="text" pattern="[0-9]"  title="Must not be characters"
+                                                        <input name="phone" class="form-control" type="text" 
                                                                required="">
                                                     </div>
                                                 </div>
@@ -148,7 +148,7 @@ exec_sql($database_insert);
 
                                                     <div class="input-group col-md-12">
 
-                                                        <input name="case_number" class="form-control" type="text"  pattern="[0-9]"  title="Must not be characters" required="">
+                                                        <input name="case_number" class="form-control" type="text"   required="">
                                                     </div>
                                                 </div>
 
@@ -202,7 +202,7 @@ exec_sql($database_insert);
                          <label for="InputName">Arrest Point</label>
 
                        <div class="input-group col-md-12">
-                        <input name="sus_arrest_point" class="form-control" type="text"  pattern="[a-z]"  title="Must be Characters" required="" >
+                        <input name="sus_arrest_point" class="form-control" type="text"    title="Must be Characters" required="" >
                        </div>
                </div>
 

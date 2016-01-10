@@ -6,8 +6,8 @@ include 'db.php';
 $msg;
 init_db();
 checkUser();
+$wanted_suspects = decode_result(exec_sql("SELECT * FROM `suspects` WHERE `sus_level`='wanted'"));
 
-$suspects = decode_result(exec_sql("SELECT * FROM `suspects`"));
 
 
 
@@ -15,8 +15,8 @@ $no_suspects = false;
 
 if (count($no_suspects) < 1) {
     $no_suspects = true;
-
 }
+
 
 
 ?>
@@ -80,7 +80,7 @@ if (count($no_suspects) < 1) {
                                 </thead>
                                 <tbody>
                                 <?php
-                                foreach ($suspects as $x) {
+                                foreach ($wanted_suspects as $x) {
 
                                 ?>
 

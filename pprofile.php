@@ -14,7 +14,7 @@ if ($_POST) {
     $Oname = $db->escape_string($_POST['Oname']);
     $email = $db->escape_string($_POST['email']);
     $pf = $db->escape_string($_POST['pf']);
-    $age = $db->escape_string($_POST['age']);
+    $dob = $db->escape_string($_POST['dob']);
     $phone = $db->escape_string($_POST['phone']);
     $idNumber = $db->escape_string($_POST['idNumber']);
   
@@ -25,7 +25,7 @@ if ($_SESSION['isAdmin'] == false) {
         $msg ="Please log in as the Police to update profile";
 }
 else {
-$update_query= "UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email',`pf_no`='$pf',`age`='$age',`phone_no`='$phone' WHERE `userID`='$userid'";
+$update_query= "UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email',`pf_no`='$pf',`dob`='$dob',`phone_no`='$phone' WHERE `userID`='$userid'";
 exec_sql($update_query);
 $msg="Successfully updated profile";
 }
@@ -168,7 +168,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                     <span class="input-group-addon">
                     <i class="fa fa-calendar">
                     </i></span>
-                    <input type="text" name="date_from" class="form-control"
+                    <input type="text" name="dob" class="form-control"
                  placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
                  </div>
 

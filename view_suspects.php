@@ -73,6 +73,7 @@ if (count($no_suspects) < 1) {
                                     <th data-hide="all"> Crime Description </th>
                                     <th data-hide="phone">Suspect Level</th>
                                      <th data-hide="phone">Arrest Point</th>
+                                     <th data-hide="phone">Arrest Date</th>
                                 
                                     <th class="text-right" data-sort-ignore="true">Action</th>
 
@@ -106,11 +107,15 @@ if (count($no_suspects) < 1) {
                                         <?php echo $x['arrest_point']  ?>
                                     </td>
 
+                                    <td>
+                                        <?php echo $x['arrest_time']  ?>
+                                    </td>
+
 
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">Approve</button>
-                                            <button class="btn-white btn btn-xs">Cancel</button>
+                                            <button class="btn-white btn btn-xs">Bail Out </button>
+                                            <button class="btn-white btn btn-xs">Release</button>
                                         </div>
                                     </td>
                                      <?php

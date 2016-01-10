@@ -18,7 +18,7 @@ CREATE TABLE `users` (
   `profile_image` VARCHAR(200) NOT NULL,
   `pf_no`         VARCHAR(60)  NOT NULL,
   `gender`        VARCHAR(20)  NOT NULL,
-  `age`           INT(100)     NOT NULL,
+  `dob`           DATETIME     NOT NULL,
   `phone_no`      VARCHAR(30)  NOT NULL,
   `timestamp`     TIMESTAMP             DEFAULT NOW(),
 
