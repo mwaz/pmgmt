@@ -98,14 +98,13 @@ if (count($claims) < 1) {
                                     </td>
                                     
                                     <td>
-                                        <span class="label label-primary">Pending Claim </span>
+                                        <span class="badge badge-info">Pending Claim </span>
                                     </td>
 
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
-                                        </div>
+                                         <button  class="btn-white btn btn-xs" >Approve  </button>
+                                            <button  class="btn-white btn btn-xs"> Reject </button>                                      </div>
                                     </td>
                                      <?php
                                     }

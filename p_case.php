@@ -264,8 +264,15 @@ if ($qry==true){
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Rongai police Management', 'Welcome  ');
+                <?php
+            if($qry==true)
+                  {
+                 ?>
+                 toastr.success('Thankyou', 'Claim Sent Successfully ');
 
+            <?php
+        }
+        ?>
             }, 1300);
 
 

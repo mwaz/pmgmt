@@ -99,7 +99,7 @@ if (count($cases) < 1) {
                                     </td>
                                     
                                     <td>
-                                        <span class="label label-primary">Pending Case </span>
+                                        <span class="badge badge-success">Pending Case </span>
                                     </td>
 
                                     <td class="text-right">

@@ -79,4 +79,10 @@ function getUserId()
     return  $user_id;
 }
 
+//'key' => env('APP_KEY','swaaNbtUIbobTC63GCCscVoiwMOGloNL'),
+
+   // 'cipher' => 'AES-256-CBC',
+
 ?>
+
+

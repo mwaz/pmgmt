@@ -2,6 +2,7 @@
 require 'db.php';
 $db = init_db();
 session_start();
+
 $error = false;
 if ($_POST) {
 

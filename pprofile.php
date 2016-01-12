@@ -364,7 +364,16 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                 showMethod: 'slideDown',
                 timeOut: 4000
             };
-            toastr.success('Rongai police Management', 'Welcome  ');
+            <?php
+            if($update_query==true)
+                  {
+                 ?>
+                 toastr.success('Thankyou', 'Profile Update Success  ');
+
+            <?php
+        }
+        ?>
+            //toastr.success('Thankyou', 'Profile Update Success  ');
 
         }, 1300);
     });

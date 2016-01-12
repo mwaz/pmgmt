@@ -4,10 +4,12 @@ include 'utils.php';
 include 'db.php';
 
 $msg;
+
 init_db();
 checkUser();
 
 $suspects = decode_result(exec_sql("SELECT * FROM `suspects`"));
+
 
 
 
@@ -20,6 +22,7 @@ if (count($no_suspects) < 1) {
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -100,8 +103,12 @@ if (count($no_suspects) < 1) {
                                         <?php echo $x['crime_desc'] ?>
                                     </td>
                                     
-                                    <td>
-                                        <span class="label label-primary"><?php  echo $x['sus_level']?> </span>
+                                    <td> 
+                                    
+
+                                        <span class="badge badge-warning"><?php  echo $x['sus_level'] ?> </span>
+
+
                                     </td>
                                      <td>
                                         <?php echo $x['arrest_point']  ?>
@@ -119,9 +126,7 @@ if (count($no_suspects) < 1) {
                                         </div>
                                     </td>
                                      <?php
-                                    }
-
-                                    ?>
+                                      }?>
 
                                 </tr>
 
@@ -182,7 +187,11 @@ if (count($no_suspects) < 1) {
 </script>
 
 </body>
+                          <!--   <p><span class="badge badge-primary">Beginner</span></p>
+                           
+                            
+                            <p><span class="badge badge-warning">intermediate</span></p>
+                            <p><span class="badge badge-danger">Wanted</span></p>
+ -->
 
-
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/ecommerce_product_list.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:53 GMT -->
 </html>

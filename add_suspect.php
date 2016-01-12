@@ -191,7 +191,7 @@ exec_sql($database_insert);
                                         <label for="InputName">Gender</label>
 
                                         <select class="form-control col-md-12" name="gender">
-                                            <option value="Male">Male</option>
+                                            <option value="Male"> Male  </option>
                                             <option value="Female">Female</option>
                                         </select>
 

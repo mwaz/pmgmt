@@ -100,7 +100,7 @@ if (count($no_suspects) < 1) {
                                     </td>
                                     
                                     <td>
-                                        <span class="label label-primary"><?php  echo $x['sus_level']?> </span>
+                                        <span class="badge badge-danger"><?php  echo $x['sus_level']?> </span>
                                     </td>
                                      <td>
                                         <?php echo $x['arrest_point']  ?>
