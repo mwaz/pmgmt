@@ -66,7 +66,7 @@ if (count($cases) < 1) {
 
 
                                     <th data-toggle="true">Case No</th>
-                                    <th data-hide="phone">Date</th>
+                                    <th data-hide="phone">Reported Date</th>
                                     <th data-hide="all"> Description</th>
                                     <th data-hide="phone">Reporter</th>
                                     <th data-hide="phone"> Case Heading</th>
@@ -86,7 +86,7 @@ if (count($cases) < 1) {
                                 <tr>
                                     <td> <?php echo $x['case_id'] ?> </td>
 
-                                    <td><?php echo $x['opened'] ?> </td>
+                                    <td><?php $y= $x['opened'] ;echo date('d M Y',strtotime($y))  ?> </td>
 
                                     <td><?php echo $x['case_desc'] ?> </td>
 

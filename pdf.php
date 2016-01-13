@@ -78,8 +78,12 @@ $pdf->Ln(10);
 $pdf->Cell(35,5,"DATE OF LOSS :",0,'L',FALSE);
 
 foreach ($res as $x) {
+	
 	 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(64,5,$x['claim_report_date'],0,'R',FALSE);	
+
+	
+$pdf->Cell(64,5,$x['claim_report_date'],0,'R',FALSE);
+
 }
 
  $pdf->SetFont('Arial','',12);

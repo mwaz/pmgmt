@@ -74,6 +74,7 @@ if (count($no_suspects) < 1) {
                                     <th data-hide="phone">Gender</th>
                                     <th data-hide="phone"> ID Number</th>
                                     <th data-hide="all"> Crime Description </th>
+                                   
                                     <th data-hide="phone">Suspect Level</th>
                                      <th data-hide="phone">Arrest Point</th>
                                      <th data-hide="phone">Arrest Date</th>
@@ -102,6 +103,7 @@ if (count($no_suspects) < 1) {
                                     <td>
                                         <?php echo $x['crime_desc'] ?>
                                     </td>
+                                   
                                     
                                     <td> 
                                     
@@ -115,7 +117,7 @@ if (count($no_suspects) < 1) {
                                     </td>
 
                                     <td>
-                                        <?php echo $x['arrest_time']  ?>
+                                        <?php $y=$x['arrest_time']; echo date('d M Y',strtotime($y))  ?>
                                     </td>
 
 
