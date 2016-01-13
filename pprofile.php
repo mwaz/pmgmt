@@ -3,9 +3,15 @@
 include 'utils.php';
 include 'db.php';
 
+
+
+
+
+
 $msg;
 init_db();
 checkUser();
+
 
 $db = init_db();
 if ($_POST) {
@@ -19,6 +25,7 @@ if ($_POST) {
     $idNumber = $db->escape_string($_POST['idNumber']);
   
     $userid = getUserId();
+
         //check if email exists in our database
 
 if ($_SESSION['isAdmin'] == false) {
@@ -203,17 +210,23 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                     <div class="clearfix"></div>
                                        <div class="col-md-12">
 
-                                                <h4>Upload Picture</h4>
+                                              
+                                                    
 
-                                                    <input type="file" name="file" id="file to upload">  </br>
-                                                   
-                                                    <button class="btn btn-lg btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
-
-
+                                          <!--   <input type="file" name="file" > </br> -->
+                                
+                                                      <div class="clearfix"></div>
+                                                    
+                                                
+                                                  
+                                                  
                                                 </div>
 
 
                                             </form>
+                                            <h4>Upload Picture</h4>
+                                                     <?php include 'img_upload.php';?>
+
                                         </div>
                                     </div>
 
@@ -324,34 +337,11 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                 </div>
             </div>
 
-<!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- jQuery UI -->
-<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- GITTER -->
-<script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-<!-- Sparkline -->
-<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Sparkline demo data  -->
-<script src="js/demo/sparkline-demo.js"></script>
-
-<!-- datepicker-->
-<script src="js/bootstrap-date-picker.js"></script>
-
+<?php require 'scripts.html'; ?>
 <!-- Toastr -->
 <script src="js/plugins/toastr/toastr.min.js"></script>
-
-
 <script>
     $(document).ready(function () {
         setTimeout(function () {
