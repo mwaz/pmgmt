@@ -200,17 +200,14 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
                                     </div>
-                                      <div class="clearfix"></div>
+                                    <div class="clearfix"></div>
+                                       <div class="col-md-12">
 
+                                                <h4>Upload Picture</h4>
 
-                                                
-                                                <div class="col-md-12"><h4>Upload Picture</h4>
-
-                                                    <input type="file" name="file to upload" id="file to upload">  </br>
-                                                    <div class="clearfix"></div>
-                                                    <button class="btn btn-lg btn-primary pull-right m-t-n-xs"
-
-                                                            type="submit"><strong>Update Profile </strong></button>
+                                                    <input type="file" name="file" id="file to upload">  </br>
+                                                   
+                                                    <button class="btn btn-lg btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
 
 
                                                 </div>
@@ -226,7 +223,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
                     </div>
-
+     
 
                     <div class="left-box text-left animated fadeInRightBig">
 

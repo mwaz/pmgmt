@@ -308,16 +308,6 @@ if ($qry==true){
                     }
             );
 
-            
-
-           
-
-           
-
-            
-            var ctx = document.getElementById("polarChart").getContext("2d");
-            var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
-
         });
     </script>
         
