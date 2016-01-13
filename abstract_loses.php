@@ -29,7 +29,7 @@ if (count($claims) < 1) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rongai Police | Cases Reported </title>
+    <title>Rongai Police |  Police Abstracts</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -78,7 +78,7 @@ if (count($claims) < 1) {
                                 <?php
                                 foreach ($claims as $x) {
 
-                                $user = decode_result(exec_sql("SELECT  `fname` ,`lname` FROM  `users`"));
+                                $user = decode_result(exec_sql("SELECT  * FROM  `users` WHERE  `UserID` = ".$x['userID']));
 
                                 ?>
 

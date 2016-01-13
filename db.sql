@@ -60,6 +60,23 @@ CREATE TABLE `cases` (
 
 );
 
+DROP TABLE IF EXISTS `police_cases`;
+CREATE TABLE `police_cases` (
+  `pcase_id`   INT(4)       NOT NULL AUTO_INCREMENT,
+  `case_name` VARCHAR(255) NOT NULL,
+  `location`  VARCHAR(255) NOT NULL,
+  `case_desc` VARCHAR(255) NOT NULL,
+  `opened`    TIMESTAMP              DEFAULT NOW(),
+  `closed`    DATETIME     NOT NULL,
+  `sus_id`    INT(4)       NOT NULL,
+  `UserID`    INT(10)      NOT NULL,
+  `fname`     VARCHAR(255) NOT NULL,
+  `lname`     VARCHAR(255) NOT NULL, 
+  `idnumber`    VARCHAR(255) NOT NULL,  
+  PRIMARY KEY (`pcase_id`)
+
+);
+
 CREATE TABLE `cells` (
   `cell_id`       INT(4)       NOT NULL AUTO_INCREMENT,
   `cell_name`     VARCHAR(255) NOT NULL,

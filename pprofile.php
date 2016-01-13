@@ -2,12 +2,6 @@
 
 include 'utils.php';
 include 'db.php';
-
-
-
-
-
-
 $msg;
 init_db();
 checkUser();

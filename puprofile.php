@@ -3,36 +3,24 @@ include 'utils.php';
 include 'db.php';
 init_db();
 checkUser();
+$qry=false;
 $db = init_db();
 if ($_POST) {
 
     $Fname = $db->escape_string($_POST['Fname']);
     $Oname = $db->escape_string($_POST['Oname']);
     $email = $db->escape_string($_POST['email']);
-    $pf = $db->escape_string($_POST['pf']);
-    $age = $db->escape_string($_POST['age']);
+     $phone = $db->escape_string($_POST['phone']);
     $phone = $db->escape_string($_POST['phone']);
     $idNumber = $db->escape_string($_POST['idNumber']);
 
+ $qry = "UPDATE `users` set `phone_no`='$phone', `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
 
-    if (email_exists($email)) {
-
-        $msg = "Cannot insert Email  in the database";
-    } elseif ($qry && $sql == true) {
+if ($qry== true) {
         $msg = "Successfully Updated profile";
+ }
 
-
-    } elseif ($_SESSION['isAdmin'] == true) {
-        $sql = "INSERT INTO `users`(`pf_no`,`age`,`phone_no`) VALUES('$pf','$age','$phone') ";
-
-        $qry = "UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[usr]'";
-
-
-    }
-
-
-    exec_sql($qry);
-    exec_sql($sql);
+exec_sql($qry);
 
 
 }
@@ -92,37 +80,32 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                         <label for="InputName">First Name</label>
 
                                         <div class="input-group col-md-12">
-                                            <input type="text" class="form-control" name="Fname"
-                                                   required="">
+                                            <input type="text" class="form-control" name="Fname" 
+                                                 value="<?php foreach ($res as $x ) {
+                                                   echo $x['fname'];
+                                                 }?>"  required="">
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group col-md-3">
                                         <label for="InputName">Other Names </label>
 
                                         <div class="input-group col-md-12">
-                                            <input type="password" class="form-control" name="Oname"
-                                                   required="">
+                                            <input type="text" class="form-control" name="Oname"
+                                                   value="<?php foreach ($res as $x ) {
+                                                   echo $x['lname'];
+                                                 }?>"required="">
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <div class="form-group col-md-5">
+                                   
+                                    <div class="form-group col-md-4">
                                         <label for="InputName">Email</label>
 
                                         <div class="input-group col-md-12">
                                             <input name="email" class="form-control" type="email"
-                                                   required="">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group col-md-3">
-                                        <label for="InputName">PF Number </label>
-
-                                        <div class="input-group col-md-12">
-
-                                            <input name="pf" class="form-control" type="text"
-                                                   required>
+                                                value="<?php foreach ($res as $x ) {
+                                                   echo $x['email'];
+                                                 }?>"   required="">
                                         </div>
                                     </div>
 
@@ -137,12 +120,12 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                             <i class="fa fa-calendar">
                             </i></span>
                                             <input type="text" name="date_from" class="form-control"
-                                                   placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>">
+                                                   placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>" required>
                                         </div>
 
                                     </div>
 
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group col-md-3">
                                         <label for="InputName">Phone Number</label>
 
                                         <div class="input-group col-md-12">
@@ -151,21 +134,21 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group col-md-4">
                                         <label for="InputName">ID No.</label>
 
                                         <div class="input-group col-md-12">
                                             <input name="idNumber" class="form-control" type="text"
-                                                   placeholder="<?php
+                                                   value="<?php
                                                    foreach ($res as $x) {
                                                        echo $x ['idnumber'];
                                                    }
                                                    ?>"
-                                                   readonly="">
+                                                   required>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group col-md-3">
                                         <label for="InputName">Gender</label>
 
                                         <select class="form-control col-md-12" name="gender">
@@ -219,12 +202,13 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
                                                             <div class="m-t-xs font-bold"><?php
                                                                 foreach ($res as $x) {
-                                                                    if ($_SESSION ['isAdmin'] == true) {
-                                                                        echo "Police Officer";
-                                                                        break;
-                                                                    } else {
-                                                                        echo "Public User";
-                                                                    }
+                                                                     if ($_SESSION['user'] == true) {
+                                                                    echo "Public User";
+                                                                    break;
+                                                                } else {
+                                                                    echo "Police Officer";
+
+                                                                }
                                                                 }
                                                                 ?>
                                                             </div>
@@ -280,10 +264,11 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
         </div>
-        <div> nkt</div>
+      
 
 
-        <div class="clearfix"></div>
+        <div class="clearfix"> Clear</div>
+        <div class="clearfix"> Clear</div>
 
 
         <div class="footer">
