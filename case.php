@@ -70,7 +70,7 @@ if ($qry==true){
 
 <body>
     <div id="wrapper">
-        <?php include 'menu.html' ?>
+        <?php include 'menu.php' ?>
        <div class="row">
             <div class="col-lg-12">
                <div class="wrapper wrapper-content">

@@ -57,7 +57,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 <body>
 <div id="wrapper">
-   <?php include 'menu.html' ?>
+   <?php include 'menu.php' ?>
 
         <div class="row">
             <div class="col-lg-12">

@@ -1,3 +1,4 @@
+
 <?php
  include 'utils.php';
 include 'db.php';
@@ -70,7 +71,7 @@ exec_sql($database_insert);
 
 <body>
 <div id="wrapper">
-    <?php include 'menu2.html' ?>
+    <?php include 'menu2.php' ?>
 
             <div class="row">
                 <div class="col-lg-12">

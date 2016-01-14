@@ -1,10 +1,11 @@
 <?php
 
-include 'utils.php';
-include 'db.php';
+require 'utils.php';
+require 'db.php';
+
 
 $msg;
-init_db();
+
 checkUser();
 $userid = getUserId();
 
@@ -72,7 +73,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 <body>
 <div id="wrapper">
-    <?php include 'menu2.html' ?>
+    <?php include 'menu2.php' ?>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -227,8 +228,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                             </form>
                                             <h4>Upload Picture</h4>
                                                      <?php include 'img_upload.php';
-                                                     $uploads="UPDATE `users` set `profile_image`='$image'  WHERE `userID`='$userid'";
-                                                         exec_sql($uploads);
+                                                    
 
                                                          $msg=" updated profile picture";
 

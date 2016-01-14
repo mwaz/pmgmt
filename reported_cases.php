@@ -91,7 +91,7 @@ if ($_POST['approved']) {
 </head>
 <body>
 <div id="wrapper">
-    <?php include 'menu2.html'?>
+    <?php include 'menu2.php'?>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
