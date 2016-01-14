@@ -103,15 +103,35 @@ if (count($no_suspects) < 1) {
                                     <td>
                                         <?php echo $x['crime_desc'] ?>
                                     </td>
-                                   
-                                    
+
                                     <td> 
+     <?php $Y =$x['sus_level']; switch($Y){
+
+
+
+        case 'Beginner' :
+                echo "<p><span class=\"badge badge-primary\">Beginner</span></p>";
+                break;
+
+        case 'Intermediate' :
+                echo  "<p><span class=\"badge badge-warning\">intermediate</span></p>";
+                   break;
+        case 'Wanted' :
+                echo "<p><span class=\"badge badge-danger\">Wanted</span></p>";
+                 break;
+            }
+        
+
+?>
+                                   
+                  </td>                  
+                                    <!-- <td> 
                                     
 
                                         <span class="badge badge-warning"><?php  echo $x['sus_level'] ?> </span>
 
 
-                                    </td>
+                                    </td> -->
                                      <td>
                                         <?php echo $x['arrest_point']  ?>
                                     </td>
@@ -197,3 +217,6 @@ if (count($no_suspects) < 1) {
  -->
 
 </html>
+
+
+ 

@@ -2,9 +2,11 @@
 
 include 'utils.php';
 include 'db.php';
+
 $msg;
 init_db();
 checkUser();
+$userid = getUserId();
 
 
 $db = init_db();
@@ -18,8 +20,7 @@ if ($_POST) {
     $phone = $db->escape_string($_POST['phone']);
     $idNumber = $db->escape_string($_POST['idNumber']);
   
-    $userid = getUserId();
-
+    
         //check if email exists in our database
 
 if ($_SESSION['isAdmin'] == false) {
@@ -29,6 +30,8 @@ else {
 $update_query= "UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email',`pf_no`='$pf',`dob`='$dob',`phone_no`='$phone' WHERE `userID`='$userid'";
 exec_sql($update_query);
 $msg="Successfully updated profile";
+
+
 }
 }
 $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
@@ -212,14 +215,26 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                       <div class="clearfix"></div>
                                                     
                                                 
-                                                  
+                                                   <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                                type="submit">
+                                            <strong>Update Profile </strong>
+                                        </button>
+
                                                   
                                                 </div>
 
 
                                             </form>
                                             <h4>Upload Picture</h4>
-                                                     <?php include 'img_upload.php';?>
+                                                     <?php include 'img_upload.php';
+                                                     $uploads="UPDATE `users` set `profile_image`='$x'  WHERE `userID`='$userid'";
+                                                         exec_sql($uploads);
+                                                       
+                                                         $msg=" updated profile picture";
+
+
+                                                     ?>
+                                                      
 
                                         </div>
                                     </div>

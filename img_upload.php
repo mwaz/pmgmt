@@ -1,18 +1,21 @@
 
 <?php
-
-
-@$name= $_FILES['file']['name'];
+//include 'dummyfxns.php';
+$name= $_FILES['file']['name'];
 //$size=$_FILES['file']['size'];
 
-@$type= $_FILES['file']['type'];
-@$tmp_name= $_FILES['file']['tmp_name'];
+$type= $_FILES['file']['type'];
+$tmp_name= $_FILES['file']['tmp_name'];
 
-$msg;  //message output variable
 
+if(isset($name)){
+	
 $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 
-if(@$_POST['submit']){
+
+//name();
+	
+
 	if(!empty($name) ) 
 	{
 
@@ -45,11 +48,10 @@ if(@$_POST['submit']){
                //end of issset name 
                
         
-             
+             **/
 
 
-
-
+}
 ?>
 
 <form method="POST"  action="img_upload.php" enctype="multipart/form-data" >
