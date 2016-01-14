@@ -4,11 +4,14 @@ include 'utils.php';
 include 'db.php';
 
 $msg;
+@$claim_var=$_POST['claimid'];
+
+
 init_db();
 checkUser();
 
-$claims = decode_result(exec_sql("SELECT * FROM `claims`"));
 
+$claims= decode_result(exec_sql("SELECT * FROM `claims`"));
 
 $no_claims = false;
 
@@ -18,7 +21,31 @@ if (count($claims) < 1) {
 }
 
 
+
+
+
+
 ?>
+<?php
+//logic to approve or reject  claims in the table and change the case status
+   if (isset($_POST['approve'])) {
+
+    $approve_qry="UPDATE `claims`  set `claim_status` ='1' WHERE `claim_id` = '$claim_var'";
+     header("refresh:0.0000000000001;");
+    exec_sql($approve_qry);
+    
+
+}
+ if(isset($_POST['reject'])){
+     $reject_qry="UPDATE `claims`  set `claim_status` ='2' WHERE `claim_id` = '$claim_var'";
+    exec_sql($reject_qry);
+   header("refresh:0.0000000000001;");
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -44,13 +71,14 @@ if (count($claims) < 1) {
 </head>
 <body>
 <div id="wrapper">
-    <?php include 'menu2.php'?>
+    <?php include 'menu2.php';?>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-content">
+                        <h2>Abstract Reported Claims</h2>
 
 
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
@@ -81,6 +109,7 @@ if (count($claims) < 1) {
                                 $user = decode_result(exec_sql("SELECT  * FROM  `users` WHERE  `UserID` = ".$x['userID']));
 
                                 ?>
+                                 <form method="POST" action="abstract_loses.php">
 
                                 <tr>
                                     <td> <?php echo $x['claim_id'] ?> </td>
@@ -98,14 +127,38 @@ if (count($claims) < 1) {
                                     </td>
                                     
                                     <td>
-                                        <span class="badge badge-info">Pending Claim </span>
+                                                                         
+     <?php $Y =$x['claim_status']; switch($Y){
+
+
+
+        case 0 :
+                echo "<p><span class=\"badge badge-primary\">Pending Claim</span></p>";
+                break;
+
+        case 1 :
+                echo  "<p><span class=\"badge badge-warning\">Accepted claim</span></p>";
+                   break;
+        case 2:
+                echo "<p><span class=\"badge badge-danger\">Rejected claim</span></p>";
+                 break;
+            }
+        
+
+?>
+                                   
                                     </td>
 
                                     <td class="text-right">
                                         <div class="btn-group">
-                                         <button  class="btn-white btn btn-xs" >Approve  </button>
-                                            <button  class="btn-white btn btn-xs"> Reject </button>                                      </div>
-                                    </td>
+                                         <input type="hidden" name="claimid" value="<?php echo $x['claim_id'];?>" >
+
+                                        
+                                            <input type="submit" name="approve" class="btn-white btn btn-xs" value="approve" >
+                                            <input type="submit" name="reject" class="btn-white btn btn-xs" value="reject" >
+                                         
+
+                                            </form> </td>
                                      <?php
                                     }
 

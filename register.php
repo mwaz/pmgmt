@@ -22,6 +22,7 @@ if ($_POST) {
     $idNumber = $db->escape_string($_POST['idNumber']);
     $Pass = $db->escape_string($_POST['Pass']);
     $passwordConfirm = $db->escape_string($_POST['passwordConfirm']);
+    $pname='default.png';
 
 
     //checking if user exists
@@ -62,8 +63,8 @@ if ($_POST) {
     {      //hash the passwords
         $Pass = sha1($Pass);
         //sQL QUERRY
-        $sql = "INSERT INTO `users`(`Fname`,`Lname`,`Username`,`email`,`idNumber`,`Password`,`rank`)
-                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 1)";
+        $sql = "INSERT INTO `users`(`Fname`,`Lname`,`Username`,`email`,`idNumber`,`Password`,`profile_image`,`rank`)
+                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass','$pname', 1)";
 
 
 

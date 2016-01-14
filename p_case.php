@@ -149,6 +149,21 @@ if ($qry==true){
                     <input name="idNumber" class="form-control" type="text"  required="">
                 </div>
             </div>
+             <div class="form-group col-md-4">
+                <label for="InputName">Case Category</label>
+                   <select class="form-control col-md-12" name="suspect_category">
+                          <option value="Adult">Roberry</option>
+                            <option value="Adult">Rape</option>
+                           <option value="Adult">Family Conflicts</option>
+                         <option value="Adult">Traffic</option>
+                          
+                          <option value="Child">Violence</option>
+                          <option value="Adult">Roberry with Violence</option>
+                           <option value="Adult">Other Type</option>
+                 </select>
+            </div>
+
+
 
 
            <div class="form-group col-md-12">

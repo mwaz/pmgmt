@@ -92,9 +92,10 @@ CREATE TABLE `cells` (
 CREATE TABLE `claims` (
   `claim_id`      INT(4)       NOT NULL AUTO_INCREMENT,
   `claim_name`    VARCHAR(255) NOT NULL,
-  `claim_desc` VARCHAR(300) NOT NULL,
+  `claim_desc`    VARCHAR(300) NOT NULL,
    `claim_location` VARCHAR(300) NOT NULL,
-  `userID`        VARCHAR(255) NOT NULL,
+  `userID`         VARCHAR(255) NOT NULL,
+  `claim_status`   INT(1)       NOT NULL,
   `claim_email`    VARCHAR(255) NOT NULL,
   `claim_report_date` TIMESTAMP  DEFAULT NOW(),
   

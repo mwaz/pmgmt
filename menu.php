@@ -14,7 +14,7 @@ $profile=readProfile($_SESSION['login']);
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs">
                             <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
-                             </span> <span class="text-muted text-xs block">Dummy User <b
+                             </span> <span class="text-muted text-xs block">Public User<b
                                     class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="#">Profile</a></li>
@@ -44,7 +44,7 @@ $profile=readProfile($_SESSION['login']);
                 <ul class="nav nav-second-level collapse">
                     <li><a href="abstract.php">Abstract Application </a></li>
                     <li><a href="case.php">Report A Case </a></li>
-                    <li><a href="#">Abstract Download </a></li>
+                    <li><a href="downloads.php">Abstract Download </a></li>
 
 
                 </ul>
@@ -96,7 +96,5 @@ $profile=readProfile($_SESSION['login']);
             </ul>
         </div>
 
-        <div class="col-sm-3">
-
-        </div>
+        
     </div>

@@ -45,7 +45,7 @@ if (count($no_suspects) < 1) {
 </head>
 <body>
 <div id="wrapper">
-    <?php include 'menu2.php'?>
+    <?php include 'menu2.php';?>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
@@ -56,6 +56,9 @@ if (count($no_suspects) < 1) {
 
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
+
+
+                                <h2>Wanted Criminals</h2>
                                 <?php
                                 if ($no_suspects) {
                                     echo "There are no cases";

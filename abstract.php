@@ -288,7 +288,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Rongai police Management', 'Welcome  ');
+                toastr.success('Abstract Claim sent', 'Thankyou  ');
 
             }, 1300);
 

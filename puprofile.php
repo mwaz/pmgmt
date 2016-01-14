@@ -60,19 +60,22 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
    <?php include 'menu.php' ?>
 
         <div class="row">
+
             <div class="col-lg-12">
+
                 <div class="wrapper wrapper-content">
+                <?php if (isset ($msg)) {
+                                echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
+                                unset ($msg);
+                            }
+                            ?>
 
 
                     <div class="left-box text-left animated fadeInRightBig">
                         <div class="panel panel-primary">
 
                             <div class="panel panel-heading">Profile Update</div>
-                            <?php if (isset ($msg)) {
-                                echo "<div class=\"alert alert-danger\">" . $msg . "</div>";
-                                unset ($msg);
-                            }
-                            ?>
+                           
 
                             <div class="panel-body">
                                 <form action="" method="post">
@@ -189,115 +192,107 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                     </div>
                     <!-- End of panel primary animated box and panel body divs' -->
 
-
                     <div class="left-box text-left animated fadeInRightBig">
 
                         <div class="col-lg-12">
                             </br>
 
                             <fieldset>
+
                                 <legend> View Profile</legend>
-                                <div class="panel panel-primary">
-
-                                    <div class="panel panel-heading">Profile View</div>
-
-                                    <div class="panel-body">
 
 
-                                        <div class="col-lg-6">
-                                            <div class="contact-box">
-                                                <a href="#">
-                                                    <div class="col-sm-4">
-                                                        <div class="text-center">
-                                                            <img alt="image" class="img-circle m-t-xs img-responsive"
-                                                                 src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
+                                <div>
 
-                                                            <div class="m-t-xs font-bold"><?php
-                                                                foreach ($res as $x) {
-                                                                     if ($_SESSION['user'] == true) {
-                                                                    echo "Public User";
-                                                                    break;
-                                                                } else {
-                                                                    echo "Police Officer";
 
-                                                                }
-                                                                }
-                                                                ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <h3>
-                                                            <strong><?php
-                                                                echo $x ['fname'];
-                                                                echo "</t> </t>";
-                                                                echo $x ['lname'];
-                                                                ?> </strong>
-                                                        </h3>
+                                    <div class="panel panel-primary">
 
-                                                        <p>
-                                                            <i class="fa fa-envelope"></i> <?php
-                                                            foreach ($res as $x) {
-                                                                echo $x ['email'];
-                                                            }
-                                                            ?></p>
-                                                        <address>
-                                                            <strong>User Details</strong><br> ID:
-                                                            <?php
-                                                            foreach ($res as $x) {
-                                                                echo $x ['idnumber'];
-                                                            }
-                                                            ?> <br> <abbr title="Phone">Phone:</abbr>
-                                                            <?php foreach ($res as $x) {
-                                                                echo $x ['phone_no'];
-                                                            }
-                                                            ?>
-                                                        </address>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                        <div class="panel panel-heading">
+                                            Profile View
                                         </div>
 
-                                        <!--end of contact box and the col lg 6 class -->
+                                        <div class="panel-body">
+
+
+                                            <div class="col-lg-6">
+                                                <div class="contact-box">
+                                                    <a href="#">
+                                                        <div class="col-sm-4">
+                                                            <div class="text-center">
+                                                                <img alt="image"
+                                                                     class="img-circle m-t-xs img-responsive" 
+                                                                     src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
+                                                                <div
+                                                                    class="m-t-xs font-bold"><?php foreach ($res as $x) {
+                                                                        if ($_SESSION['user'] == true) {
+                                                                            echo "Public User";
+                                                                            
+                                                                            break;
+                                                                        } else {
+                                                                            echo "Police Officer";
+                                                                            
+
+                                                                        }
+
+                                                                    } ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <h3><strong><?php echo $x['fname'];
+                                                                    echo "</t> </t>";
+                                                                    echo $x['lname'];
+                                                                    ?> </strong></h3>
+
+                                                            <p>
+                                                                <i class="fa fa-envelope"></i> <?php foreach ($res as $x) {
+                                                                    echo $x['email'];
+
+                                                                } ?></p>
+                                                            <address>
+                                                                <strong>User Details</strong><br>
+                                                                ID: <?php foreach ($res as $x) {
+                                                                    echo $x['idnumber'];
+
+
+                                                                } ?> <br>
+
+                                                                <abbr
+                                                                    title="Phone">Phone:</abbr> <?php foreach ($res as $x) {
+                                                                    echo $x['phone_no'];
+
+                                                                } ?>
+                                                            </address>
+                                                        </div>
+                                                    </a>
+
+
+                                                    <div class="clearfix"></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- end of panel body div and pannel primary-->
-                            </fieldset>
-
-                            <div class="clearfix"></div>
 
                         </div>
-                        <!--Animated fade in div closed -->
-                        <!-- col large 12 div closed -->
+                    </div>
+
+
+                    <div class="clearfix"> </div>
+
+                    <div class="footer">
+                        <div class="pull-right">
+                            BigFoot <strong>Techprenuers</strong>
+                        </div>
+                        <div>
+                            <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
+                        </div>
                     </div>
 
                 </div>
             </div>
 
 
-        </div>
-      
-
-
-        <div class="clearfix"> Clear</div>
-        <div class="clearfix"> Clear</div>
-
-
-        <div class="footer">
-            <div class="pull-right">
-                BigFoot <strong>Techprenuers</strong>
-            </div>
-
-            <div>
-                <strong>Copyright</strong> BigFoot Innovations &copy; 2016-2017
-            </div>
-        </div>
-
-    </div>
-    <!--grey background class closing div -->
-
-</div>
-<!--  div id wrapper class -->
 </body>
 
 <?php require 'scripts.html'; ?>
