@@ -227,9 +227,9 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                             </form>
                                             <h4>Upload Picture</h4>
                                                      <?php include 'img_upload.php';
-                                                     $uploads="UPDATE `users` set `profile_image`='$x'  WHERE `userID`='$userid'";
+                                                     $uploads="UPDATE `users` set `profile_image`='$image'  WHERE `userID`='$userid'";
                                                          exec_sql($uploads);
-                                                       
+
                                                          $msg=" updated profile picture";
 
 

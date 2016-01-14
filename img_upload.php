@@ -11,17 +11,15 @@ $tmp_name= $_FILES['file']['tmp_name'];
 if(isset($name)){
 	
 $extension= strtolower(substr($name, strpos($name, '.')+ 1));
-
-
-//name();
-	
-
 	if(!empty($name) ) 
 	{
 
 		if (($extension=='jpg'||$extension=='png' || $extension=="jpeg") && $type=='image/jpeg' || $type=='image/png') {
      
      	           $location='uploads/';
+
+     	           $img_query="UPDATE  `users` set `profile_image`='$name'" ;
+     	           exec_sql($img_query);		
 
 			           if(move_uploaded_file($tmp_name, $location.$name))
 			             {
@@ -45,13 +43,10 @@ $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 			     	   echo "please choose a file";
                }
                }
-               //end of issset name 
-               
-        
-             **/
+               //end of issset name
 
 
-}
+
 ?>
 
 <form method="POST"  action="img_upload.php" enctype="multipart/form-data" >

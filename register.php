@@ -63,7 +63,7 @@ if ($_POST) {
         $Pass = sha1($Pass);
         //sQL QUERRY
         $sql = "INSERT INTO `users`(`Fname`,`Lname`,`Username`,`email`,`idNumber`,`Password`,`rank`)
-                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 0)";
+                VALUES('$Fname','$Lname','$User','$email','$idNumber','$Pass', 1)";
 
 
 

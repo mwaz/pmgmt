@@ -7,6 +7,7 @@ $msg;
 init_db();
 checkUser();
 
+
 $cases = decode_result(exec_sql("SELECT * FROM `cases`"));
 $police_cases =  decode_result(exec_sql("SELECT * FROM `police_cases`"));
 
@@ -18,7 +19,53 @@ if ((count($cases) || count($police_cases)) < 1) {
 }
 
 
+
+//logic to approve or reject  cases in the table and change the case status
+
+
 ?>
+<?
+
+
+foreach ($police_cases as $y ) {
+    if ($_POST['approve']) {
+
+    # code...
+
+    $approve_qry="UPDATE `police_cases`  set `case_status` ='1' WHERE `case_id` =".$y['case_id'];
+    exec_sql($approve_qry);
+    header("location:reported_cases.php");
+
+}
+ if($_POST['reject']){
+     $reject_qry="UPDATE `police_cases`  set `case_status` ='2' ";
+    exec_sql($reject_qry);
+    header("location:reported_cases.php");
+
+}
+}
+?>
+<?php
+
+if ($_POST['approved']) {
+
+    $approve_qry="UPDATE `cases`  set `case_status` ='1' ";
+    exec_sql($approve_qry);
+    header("location:reported_cases.php");
+
+}
+ if($_POST['rejected']){
+     $reject_qry="UPDATE `cases`  set `case_status` ='2' ";
+    exec_sql($reject_qry);
+    header("location:reported_cases.php");
+
+}
+
+
+
+?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -48,19 +95,21 @@ if ((count($cases) || count($police_cases)) < 1) {
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox">
-                        <div class="ibox-content">
-
-
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                                <thead>
-                                <?php
+             <?php
                                 if ($no_cases) {
                                     echo "There are no cases";
                                     goto x;
                                 }
                                 ?>
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+
+
+
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                
 
                                 <div class="panel panel-heading">
                                             <h2><strong>User Reported cases </strong> </h2>
@@ -78,6 +127,12 @@ if ((count($cases) || count($police_cases)) < 1) {
 
                                 </tr>
                                 </thead>
+                                 <?php
+                                if ($no_cases) {
+                                    echo "There are no cases";
+                                    goto x;
+                                }
+                                ?>
                                 <tbody>
                                 <?php
                                 foreach ($cases as $x) {
@@ -103,14 +158,42 @@ if ((count($cases) || count($police_cases)) < 1) {
                                     </td>
                                     
                                     <td>
-                                        <span class="badge badge-success">Pending Case </span>
+                                        
+     <?php $Y =$x['case_status']; switch($Y){
+
+
+
+        case 0 :
+                echo "<p><span class=\"badge badge-primary\">Pending Case</span></p>";
+                break;
+
+        case 1 :
+                echo  "<p><span class=\"badge badge-warning\">Accepted case</span></p>";
+                   break;
+        case 2:
+                echo "<p><span class=\"badge badge-danger\">Rejected case</span></p>";
+                 break;
+            }
+        
+
+?>
+                                   
+                                   
                                     </td>
 
                                     <td class="text-right">
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">Approve</button>
-                                            <button class="btn-white btn btn-xs">Cancel</button>
-                                        </div>
+                                    <div class="btn-group">
+                                       <form method="POST" action="reported_cases.php">
+                                        
+                                            <input type="submit" name="approved" class="btn-white btn btn-xs" value="approve" >
+                                            <input type="submit" name="rejected" class="btn-white btn btn-xs" value="reject" >
+                                         
+
+                                            </form>
+                                         </div>
+                                
+                                        
+                                        
                                     </td>
                                      <?php
                                     }
@@ -136,13 +219,10 @@ if ((count($cases) || count($police_cases)) < 1) {
                             <!-- police generated cases -->
 
                              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                               
+
                                 <thead>
-                                <?php
-                                if ($no_cases) {
-                                    echo "There are no cases";
-                                    goto x;
-                                }
-                                ?>
+                                
 
                                  <div class="panel panel-heading">
                                           <h2> <strong> Police Reported cases </strong> </h2>
@@ -182,17 +262,41 @@ if ((count($cases) || count($police_cases)) < 1) {
                                     <td>
                                         <?php echo $x['case_name'] ?>
                                     </td>
-                                    
+
                                     <td>
-                                        <span class="badge badge-success">Pending Case </span>
-                                    </td>
+                                   <?php $Y =$x['case_status']; switch($Y){
+
+
+
+        case 0 :
+                echo "<p><span class=\"badge badge-primary\">Pending Case</span></p>";
+                break;
+
+        case 1 :
+                echo  "<p><span class=\"badge badge-warning\">Accepted case</span></p>";
+                   break;
+        case 2:
+                echo "<p><span class=\"badge badge-danger\">Rejected case</span></p>";
+                 break;
+            }
+        
+
+?>
+</td>
 
                                     <td class="text-right">
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">Approve</button>
-                                            <button class="btn-white btn btn-xs">Cancel</button>
+                                     <div class="btn-group">
+                                     <form method="POST" action="reported_cases.php">
+                                       
+
+                                            <input type="submit" name="approve" class="btn-white btn btn-xs" value="Approve" >
+                                            <input type="submit" name="reject" class="btn-white btn btn-xs" value="Reject" >
+                                            </form>
                                         </div>
                                     </td>
+                                      
+                                        
+                                   
                                      <?php
                                     }
 
@@ -256,5 +360,4 @@ if ((count($cases) || count($police_cases)) < 1) {
 </body>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/ecommerce_product_list.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 20 Dec 2015 09:23:53 GMT -->
 </html>
