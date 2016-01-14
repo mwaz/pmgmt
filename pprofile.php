@@ -1,11 +1,14 @@
 <?php
 
-include 'utils.php';
-include 'db.php';
+require 'utils.php';
+require 'db.php';
+
 
 $msg;
-init_db();
+
 checkUser();
+$userid = getUserId();
+
 
 $db = init_db();
 if ($_POST) {
@@ -18,7 +21,7 @@ if ($_POST) {
     $phone = $db->escape_string($_POST['phone']);
     $idNumber = $db->escape_string($_POST['idNumber']);
   
-    $userid = getUserId();
+    
         //check if email exists in our database
 
 if ($_SESSION['isAdmin'] == false) {
@@ -28,6 +31,8 @@ else {
 $update_query= "UPDATE `users` set `idnumber`='$idNumber',`fname`='$Fname',`lname`='$Oname',`email`='$email',`pf_no`='$pf',`dob`='$dob',`phone_no`='$phone' WHERE `userID`='$userid'";
 exec_sql($update_query);
 $msg="Successfully updated profile";
+
+
 }
 }
 $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
@@ -68,7 +73,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 <body>
 <div id="wrapper">
-    <?php include 'menu2.html' ?>
+    <?php include 'menu2.php' ?>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -203,17 +208,37 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                     <div class="clearfix"></div>
                                        <div class="col-md-12">
 
-                                                <h4>Upload Picture</h4>
+                                              
+                                                    
 
-                                                    <input type="file" name="file" id="file to upload">  </br>
-                                                   
-                                                    <button class="btn btn-lg btn-primary pull-right m-t-n-xs" type="submit"><strong>Update Profile </strong></button>
+                                          <!--   <input type="file" name="file" > </br> -->
+                                
+                                                      <div class="clearfix"></div>
+                                                    
+                                                
+                                                   <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                                type="submit">
+                                            <strong>Update Profile </strong>
+                                        </button>
 
-
+                                                  
                                                 </div>
 
 
                                             </form>
+                                            <h4>Upload Picture</h4>
+
+                                            <form method="POST"  action="img_upload.php" enctype="multipart/form-data" >
+
+                                          <input type="file" name="file" > </br></br>
+
+                                         <input  type="submit" name="submit" value="Update Image"> 
+                                               
+                                                        </form>
+                                        
+
+                                                
+
                                         </div>
                                     </div>
 
@@ -253,9 +278,8 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                         <div class="col-sm-4">
                                                             <div class="text-center">
                                                                 <img alt="image"
-                                                                     class="img-circle m-t-xs img-responsive"
-                                                                     src="img/a4.jpg">
-
+                                                                     class="img-circle m-t-xs img-responsive" 
+                                                                     src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
                                                                 <div
                                                                     class="m-t-xs font-bold"><?php foreach ($res as $x) {
                                                                         if ($_SESSION['isAdmin'] == true) {
@@ -324,34 +348,11 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                 </div>
             </div>
 
-<!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- jQuery UI -->
-<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- GITTER -->
-<script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-<!-- Sparkline -->
-<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Sparkline demo data  -->
-<script src="js/demo/sparkline-demo.js"></script>
-
-<!-- datepicker-->
-<script src="js/bootstrap-date-picker.js"></script>
-
+<?php require 'scripts.html'; ?>
 <!-- Toastr -->
 <script src="js/plugins/toastr/toastr.min.js"></script>
-
-
 <script>
     $(document).ready(function () {
         setTimeout(function () {

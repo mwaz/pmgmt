@@ -1,9 +1,15 @@
+<?php 
+
+$profile=readProfile($_SESSION['login']);
+
+?>
+
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                            <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs">
@@ -23,7 +29,7 @@
                 </div>
             </li>
             <li class="active">
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Profile</span> <span
+                <a href="#"><i class="fa fa-pencil"></i> <span class="nav-label">Profile</span> <span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="active"><a href="puprofile.php">Personal Profile </a></li>
@@ -38,7 +44,7 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="abstract.php">Abstract Application </a></li>
                     <li><a href="case.php">Report A Case </a></li>
-                    <li><a href="#">Downloads </a></li>
+                    <li><a href="#">Abstract Download </a></li>
 
 
                 </ul>

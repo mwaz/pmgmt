@@ -45,6 +45,8 @@ CREATE TABLE `suspects` (
   PRIMARY KEY (`sus_id`)
 );
 
+
+DROP TABLE IF EXISTS `cases`;
 CREATE TABLE `cases` (
   `case_id`   INT(4)       NOT NULL AUTO_INCREMENT,
   `case_name` VARCHAR(255) NOT NULL,
@@ -56,7 +58,26 @@ CREATE TABLE `cases` (
   `UserID`    INT(10)      NOT NULL,
   `fname`     VARCHAR(255) NOT NULL,
   `lname`     VARCHAR(255) NOT NULL,  
+  `case_status`  INT(1)    NOT NULL,   
   PRIMARY KEY (`case_id`)
+
+);
+
+DROP TABLE IF EXISTS `police_cases`;
+CREATE TABLE `police_cases` (
+  `pcase_id`   INT(4)       NOT NULL AUTO_INCREMENT,
+  `case_name` VARCHAR(255) NOT NULL,
+  `location`  VARCHAR(255) NOT NULL,
+  `case_desc` VARCHAR(255) NOT NULL,
+  `opened`    TIMESTAMP              DEFAULT NOW(),
+  `closed`    DATETIME     NOT NULL,
+  `sus_id`    INT(4)       NOT NULL,
+  `UserID`    INT(10)      NOT NULL,
+  `fname`     VARCHAR(255) NOT NULL,
+  `lname`     VARCHAR(255) NOT NULL, 
+  `idnumber`    VARCHAR(255) NOT NULL, 
+   `case_status`  INT(1)    NOT NULL,   
+  PRIMARY KEY (`pcase_id`)
 
 );
 

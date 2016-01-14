@@ -78,10 +78,14 @@ function getUserId()
     $user_id = decode_result(exec_sql("SELECT `userID` FROM `users` WHERE `username`='$username'"))[0]['userID'];
     return  $user_id;
 }
+  function readProfile($username)
+  {
+    
+    $profread= decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$username'"));
+    return $profread[0];
+    
+  }
 
-//'key' => env('APP_KEY','swaaNbtUIbobTC63GCCscVoiwMOGloNL'),
-
-   // 'cipher' => 'AES-256-CBC',
 
 ?>
 

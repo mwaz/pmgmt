@@ -1,10 +1,15 @@
+<?php 
+
+$profile=readProfile($_SESSION['login']);
+
+?>
 <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                             </span>
+        <li class="nav-header">
+            <div class="dropdown profile-element"> <span>
+    <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
+          </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
                              </span> <span class="text-muted text-xs block"> Police Officer <b class="caret"></b></span> </span> </a>
