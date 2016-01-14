@@ -227,14 +227,17 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
                                             </form>
                                             <h4>Upload Picture</h4>
-                                                     <?php include 'img_upload.php';
-                                                    
 
-                                                         $msg=" updated profile picture";
+                                            <form method="POST"  action="img_upload.php" enctype="multipart/form-data" >
 
+                                          <input type="file" name="file" > </br></br>
 
-                                                     ?>
-                                                      
+                                         <input  type="submit" name="submit" value="Update Image"> 
+                                               
+                                                        </form>
+                                        
+
+                                                
 
                                         </div>
                                     </div>
@@ -275,9 +278,8 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                         <div class="col-sm-4">
                                                             <div class="text-center">
                                                                 <img alt="image"
-                                                                     class="img-circle m-t-xs img-responsive"
-                                                                     src="img/a4.jpg">
-
+                                                                     class="img-circle m-t-xs img-responsive" 
+                                                                     src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
                                                                 <div
                                                                     class="m-t-xs font-bold"><?php foreach ($res as $x) {
                                                                         if ($_SESSION['isAdmin'] == true) {

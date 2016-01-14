@@ -1,19 +1,14 @@
 
 <?php
 include 'img_functions.php';
+
 @session_start();
-
-
-
 @$name= $_FILES['file']['name'];
 //$size=$_FILES['file']['size'];
-
 @$type= $_FILES['file']['type'];
 @$tmp_name= $_FILES['file']['tmp_name'];
-
-
 if(isset($_POST)){
-	
+
 $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 	if(!empty($name) ) 
 	{
@@ -21,10 +16,7 @@ $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 		if (($extension=='jpg'||$extension=='png' || $extension=="jpeg") && $type=='image/jpeg' || $type=='image/png') {
      
      	           $location='uploads/';
-
-     	           	
-
-			           if(move_uploaded_file($tmp_name, $location.$name))
+                 if(move_uploaded_file($tmp_name, $location.$name))
 			             {
 
 			             	updateDP($_SESSION['login'],$name);
@@ -54,11 +46,3 @@ $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 
 ?>
 
-<form method="POST"  action="img_upload.php" enctype="multipart/form-data" >
-
-  <input type="file" name="file" > </br></br>
-
- <input  type="submit" name="submit" value="Update Image"> 
-                                               
- </form>
-                                        

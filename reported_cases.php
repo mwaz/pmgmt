@@ -4,6 +4,10 @@ include 'utils.php';
 include 'db.php';
 
 $msg;
+@$case_var=$_POST['caseid'];
+@$pcase_var=$_POST['pcaseid'];
+
+var_dump($case_var);
 init_db();
 checkUser();
 
@@ -20,46 +24,6 @@ if ((count($cases) || count($police_cases)) < 1) {
 
 
 
-//logic to approve or reject  cases in the table and change the case status
-
-
-?>
-<?
-
-
-foreach ($police_cases as $y ) {
-    if ($_POST['approve']) {
-
-    # code...
-
-    $approve_qry="UPDATE `police_cases`  set `case_status` ='1' WHERE `case_id` =".$y['case_id'];
-    exec_sql($approve_qry);
-    header("location:reported_cases.php");
-
-}
- if($_POST['reject']){
-     $reject_qry="UPDATE `police_cases`  set `case_status` ='2' ";
-    exec_sql($reject_qry);
-    header("location:reported_cases.php");
-
-}
-}
-?>
-<?php
-
-if ($_POST['approved']) {
-
-    $approve_qry="UPDATE `cases`  set `case_status` ='1' ";
-    exec_sql($approve_qry);
-    header("location:reported_cases.php");
-
-}
- if($_POST['rejected']){
-     $reject_qry="UPDATE `cases`  set `case_status` ='2' ";
-    exec_sql($reject_qry);
-    header("location:reported_cases.php");
-
-}
 
 
 
@@ -91,7 +55,7 @@ if ($_POST['approved']) {
 </head>
 <body>
 <div id="wrapper">
-    <?php include 'menu2.php'?>
+    <?php include 'menu2.php';?>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
@@ -141,7 +105,7 @@ if ($_POST['approved']) {
 
 
                                 ?>
-
+                                  <form method="POST" action="reported_cases.php">
                                 <tr>
                                     <td> <?php echo $x['case_id'] ?> </td>
 
@@ -183,7 +147,9 @@ if ($_POST['approved']) {
 
                                     <td class="text-right">
                                     <div class="btn-group">
-                                       <form method="POST" action="reported_cases.php">
+                                
+                                       <input type="hidden" name="caseid" value="<?php echo $x['case_id'];?>" >
+
                                         
                                             <input type="submit" name="approved" class="btn-white btn btn-xs" value="approve" >
                                             <input type="submit" name="rejected" class="btn-white btn btn-xs" value="reject" >
@@ -247,6 +213,7 @@ if ($_POST['approved']) {
 
                                 
                                 ?>
+                                <form method="POST" action="reported_cases.php">
 
                                 <tr>
                                     <td> <?php echo $x['pcase_id'] ?> </td>
@@ -286,8 +253,8 @@ if ($_POST['approved']) {
 
                                     <td class="text-right">
                                      <div class="btn-group">
-                                     <form method="POST" action="reported_cases.php">
-                                       
+                                     
+                                         <input type="hidden" name="pcaseid" value="<?php echo $x['pcase_id'];?>" >
 
                                             <input type="submit" name="approve" class="btn-white btn btn-xs" value="Approve" >
                                             <input type="submit" name="reject" class="btn-white btn btn-xs" value="Reject" >
@@ -361,3 +328,36 @@ if ($_POST['approved']) {
 
 
 </html>
+<?php
+//logic to approve or reject  cases in the table and change the case status
+   if (isset($_POST['approve'])) {
+
+    $approve_qry="UPDATE `police_cases`  set `case_status` ='1' WHERE `pcase_id` = '$pcase_var'";
+    exec_sql($approve_qry);
+     header("location:reported_cases.php");
+
+}
+ if(isset($_POST['reject'])){
+     $reject_qry="UPDATE `police_cases`  set `case_status` ='2' WHERE `pcase_id` = '$pcase_var'";
+    exec_sql($reject_qry);
+    header("location:reported_cases.php");
+
+}
+
+if (isset($_POST['approved'])) {
+
+    $approve_qry="UPDATE `cases`  set `case_status` ='1' WHERE `case_id` = '$case_var'";
+    exec_sql($approve_qry);
+    header("location:reported_cases.php");
+
+}
+ if(isset($_POST['rejected'])){
+     $reject_qry="UPDATE `cases`  set `case_status` ='2'  WHERE `case_id` = '$case_var'";
+    exec_sql($reject_qry);
+    header("location:reported_cases.php");
+
+}
+
+
+
+?>
