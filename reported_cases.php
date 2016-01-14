@@ -7,7 +7,6 @@ $msg;
 @$case_var=$_POST['caseid'];
 @$pcase_var=$_POST['pcaseid'];
 
-var_dump($case_var);
 init_db();
 checkUser();
 
@@ -28,6 +27,41 @@ if ((count($cases) || count($police_cases)) < 1) {
 
 
 ?>
+<?php
+//logic to approve or reject  cases in the table and change the case status
+   if (isset($_POST['approve'])) {
+
+    $approve_qry="UPDATE `police_cases`  set `case_status` ='1' WHERE `pcase_id` = '$pcase_var'";
+     header("refresh:0.0000000000001;");
+    exec_sql($approve_qry);
+    
+
+}
+ if(isset($_POST['reject'])){
+     $reject_qry="UPDATE `police_cases`  set `case_status` ='2' WHERE `pcase_id` = '$pcase_var'";
+    exec_sql($reject_qry);
+   header("refresh:0.0000000000001;");
+
+}
+
+if (isset($_POST['approved'])) {
+
+    $approve_qry="UPDATE `cases`  set `case_status` ='1' WHERE `case_id` = '$case_var'";
+    exec_sql($approve_qry);
+    header("refresh:0.0000000000001;");
+
+}
+ if(isset($_POST['rejected'])){
+     $reject_qry="UPDATE `cases`  set `case_status` ='2'  WHERE `case_id` = '$case_var'";
+    exec_sql($reject_qry);
+   header("refresh:0.0000000000001;");    
+
+}
+
+
+
+?>
+
 
 
 
@@ -328,36 +362,3 @@ if ((count($cases) || count($police_cases)) < 1) {
 
 
 </html>
-<?php
-//logic to approve or reject  cases in the table and change the case status
-   if (isset($_POST['approve'])) {
-
-    $approve_qry="UPDATE `police_cases`  set `case_status` ='1' WHERE `pcase_id` = '$pcase_var'";
-    exec_sql($approve_qry);
-     header("location:reported_cases.php");
-
-}
- if(isset($_POST['reject'])){
-     $reject_qry="UPDATE `police_cases`  set `case_status` ='2' WHERE `pcase_id` = '$pcase_var'";
-    exec_sql($reject_qry);
-    header("location:reported_cases.php");
-
-}
-
-if (isset($_POST['approved'])) {
-
-    $approve_qry="UPDATE `cases`  set `case_status` ='1' WHERE `case_id` = '$case_var'";
-    exec_sql($approve_qry);
-    header("location:reported_cases.php");
-
-}
- if(isset($_POST['rejected'])){
-     $reject_qry="UPDATE `cases`  set `case_status` ='2'  WHERE `case_id` = '$case_var'";
-    exec_sql($reject_qry);
-    header("location:reported_cases.php");
-
-}
-
-
-
-?>

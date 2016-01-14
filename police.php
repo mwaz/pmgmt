@@ -140,7 +140,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                     <a href="#">
                     <div class="col-sm-4">
                         <div class="text-center">
-                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
                             <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
                           if  ($_SESSION['isAdmin'] == true){
                             echo "Police Officer";

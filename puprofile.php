@@ -158,20 +158,32 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-6">
-                                        <h4>Upload Picture</h4>
-
-                                        <input type="file" name="file to upload"
-                                               id="file to upload"> </br>
-                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                
+                                    <div class="col-md-12">
+                                        
+                                        <button class="btn btn-lg btn-primary pull-right m-t-n-xs"
                                                 type="submit">
+                                               
                                             <strong>Update Profile </strong>
                                         </button>
+                                          <div class="clearfix"></div>
 
 
                                     </div>
                                 </form>
+                                <div class="clearfix"></div>
+                                <h4>Upload Picture</h4>
+                                 <div class="clearfix"></div>
+
+                                            <form method="POST"  action="userimgupload.php" enctype="multipart/form-data" >
+
+                                          <input type="file" name="file" > <br> <br>
+                                
+
+                                         <input  type="submit" name="submit" value="Update Image"> 
+                                               
+                                                        </form>
+                                        
                             </div>
                         </div>
                     </div>
@@ -198,7 +210,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                     <div class="col-sm-4">
                                                         <div class="text-center">
                                                             <img alt="image" class="img-circle m-t-xs img-responsive"
-                                                                 src="img/a4.jpg">
+                                                                 src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
 
                                                             <div class="m-t-xs font-bold"><?php
                                                                 foreach ($res as $x) {

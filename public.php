@@ -65,7 +65,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                     <div class="text-center">
                                                         <img alt="image"
                                                              class="img-circle m-t-xs img-responsive"
-                                                             src="img/a4.jpg">
+                                                             src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
 
                                                         <div
                                                             class="m-t-xs font-bold"><?php foreach ($res as $x) {
