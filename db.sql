@@ -97,7 +97,7 @@ CREATE TABLE `claims` (
   `userID`         VARCHAR(255) NOT NULL,
   `claim_status`   INT(1)       NOT NULL,
   `claim_email`    VARCHAR(255) NOT NULL,
-  `claim_report_date` TIMESTAMP  DEFAULT NOW(),
+  `date_lost`       DATETIME     NOT NULL,
   
   PRIMARY KEY (`claim_id`)
 );

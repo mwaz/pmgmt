@@ -2,7 +2,9 @@
 
 include 'utils.php';
 include 'db.php';
-
+include 'timeout.php';
+ header("refresh:300;");
+ 
 $msg;
 init_db();
 checkUser();
@@ -48,22 +50,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <!--date picker stylesheets -->
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css"
-          rel="stylesheet">
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-date-picker.css" rel="stylesheet">
+   <?php require 'css.html';?>
 </head>
 
 <body>
@@ -199,8 +186,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
             </div>
 
 <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
+
 
 
 <script>

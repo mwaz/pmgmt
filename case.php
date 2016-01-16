@@ -3,6 +3,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 $msg;
 
 $db = init_db();
@@ -51,20 +53,7 @@ if ($qry==true){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Rongai Police | Dashboard</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+<?php require 'css.html';?>
 
 </head>
 
@@ -157,6 +146,19 @@ if ($qry==true){
             </div>
 
 
+
+            <div class="form-group col-md-4">
+             <label>Date of Loss </label>
+
+             <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <span class="input-group-addon">
+            <i class="fa fa-calendar"> </i></span>
+    <input type="text" name="doe" class="form-control" placeholder="yyyy-mm-dd" value="<?php date('Y-m-d') ?>" required>
+                 </div>
+
+                     </div>
+
+
            <div class="form-group col-md-12">
            <label for="InputName">Report case (explanation 200 words max)</label>
 
@@ -216,8 +218,7 @@ if ($qry==true){
     </div>
 
     <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -233,46 +234,7 @@ if ($qry==true){
             }, 1300);
 
 
-            
-            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-                data1, data2
-            ],
-                    {
-                        series: {
-                            lines: {
-                                show: false,
-                                fill: true
-                            },
-                            splines: {
-                                show: true,
-                                tension: 0.4,
-                                lineWidth: 1,
-                                fill: 0.4
-                            },
-                            points: {
-                                radius: 0,
-                                show: true
-                            },
-                            shadowSize: 2
-                        },
-                        grid: {
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: "#d5d5d5",
-                            borderWidth: 1,
-                            color: '#d5d5d5'
-                        },
-                        colors: ["#1ab394", "#1C84C6"],
-                        xaxis:{
-                        },
-                        yaxis: {
-                            ticks: 4
-                        },
-                        tooltip: false
-                    }
-            );
-
-        });
+        
     </script>
         
 </body>

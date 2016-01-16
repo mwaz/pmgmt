@@ -1,4 +1,4 @@
-<?php
+<html>
 WHAT DESMA   WIL CONSIST OF..
 
 *Events.(1)
@@ -46,7 +46,6 @@ place of  meeting
 
 
 
-?>
 DESMA MEETINGN STREGIC PLAN...
 AGENDA:
 BUSINESS PLAN
@@ -59,3 +58,4 @@ FINANCING  AND REPAYMENTS
 6,000  Transport
 .......................
 
+<?

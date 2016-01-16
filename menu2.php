@@ -8,7 +8,7 @@ $profile=readProfile($_SESSION['login']);
                 <ul class="nav metismenu" id="side-menu">
         <li class="nav-header">
             <div class="dropdown profile-element"> <span>
-    <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
+    <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:150px;width:150px;" />
           </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['login'] ?></strong>
@@ -115,39 +115,23 @@ $profile=readProfile($_SESSION['login']);
                         <i class="fa fa-tasks"></i>
                     </a>
                 </li>
+            <li>
+                    <a class="right-sidebar-toggle" href="lock.php">
+                        <i class="fa fa-lock"> </i> LOCK 
+                    </a>
+                </li>
             </ul>
 
         </nav>
+    </div>
+    <div class="row  border-bottom white-bg dashboard-header">
+
+        <div class="col-sm-12">
+            <h2>RONGAI POLICE STATION </h2>
+            <ul class="list-group clear-list m-t">
+
+            </ul>
         </div>
-                <div class="row  border-bottom white-bg dashboard-header">
-
-                    <div class="col-sm-3">
-                        <h2> <strong> Welcome </strong> <?php echo $_SESSION['login'] ?></h2>
-
-                        <ol class="breadcrumb">
-                        <li>
-                            <a href="police.php">Home</a>
-                        </li>
-                        <li class="#">
-                            <strong>Profile</strong>
-                        </li>
-                    </ol>
+        </div>
 
               
-                        <ul class="list-group clear-list m-t">
-                           
-                        </ul>
-                    </div>
-                   
-                    <div class="col-sm-3">
-                        <div class="statistic-box">
-                        <h4>
-                       
-                            <div class="m-t">
-                                <h4>RONGAI POLICE STATION </h4>
-                            </div>
-
-                        </div>
-                    
-            </div>
-            </div>

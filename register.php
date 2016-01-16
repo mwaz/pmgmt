@@ -1,7 +1,8 @@
 <?php
 require 'db.php';
 require 'utils.php';
-
+include 'timeout.php';
+ header("refresh:300;");
 $err_msg;
 $res;
 
@@ -96,12 +97,9 @@ if ($_POST) {
 
     <title>Rongai Police | Register</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    
+   
+    <?php require 'css.html';?>
 
 </head>
 
@@ -174,12 +172,8 @@ if ($_POST) {
         </p>
     </div>
 </dMiv>
+<?php require 'scripts.html'; ?>
 
-<!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.i-checks').iCheck({

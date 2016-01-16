@@ -11,7 +11,7 @@ $userid = getUserId();
 
 
 
-$usr_qry=decode_result(exec_sql("SELECT `fname`,`lname`,`idNumber` FROM  `users` WHERE `userid`= '$userid'"));
+$usr_qry=decode_result(exec_sql("SELECT `fname`,`lname`,`idNumber` ,`email` FROM  `users` WHERE `userid`= '$userid'"));
 $res= decode_result(exec_sql("SELECT * FROM `claims` WHERE `userID` ='$userid' "));
 
 
@@ -82,7 +82,7 @@ foreach ($res as $x) {
 	 $pdf->SetFont('Arial','B',14);
 
 	
-$pdf->Cell(64,5,$x['claim_report_date'],0,'R',FALSE);
+$pdf->Cell(64,5,$x['date_lost'],0,'R',FALSE);
 
 }
 
@@ -104,7 +104,13 @@ $pdf->Cell(64,5,$x['idNumber'],0,'R',FALSE);
 	
 }
  $pdf->SetFont('Arial','',12);
-$pdf->Cell(90,5,"ISSUING OFFICER :",0,'L',FALSE);
+$pdf->Cell(20,5,"EMAIL  :",0,'L',FALSE);
+foreach ($usr_qry as $x) {
+	 $pdf->SetFont('Arial','B',14);
+$pdf->Cell(64,5,$x['email'],0,'R',FALSE);
+
+	
+}
 $pdf->Ln(10);
 $pdf->SetFont('Arial','B',14);
  $pdf->Cell(2,3,"",0,'L',FALSE);	

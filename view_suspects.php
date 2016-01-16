@@ -2,6 +2,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 
 $msg;
 
@@ -35,20 +37,13 @@ if (count($no_suspects) < 1) {
 
     <title>Rongai Police | Cases Reported </title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- FooTable -->
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   <?php require 'css.html'; ?> 
 
 
 </head>
 <body>
 <div id="wrapper">
-    <?php include 'menu2.php'?>
+    <?php include 'menu2.php';?>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
             <div class="row">
@@ -185,20 +180,7 @@ if (count($no_suspects) < 1) {
 </div>
 
 
-<!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
-
-<!-- FooTable -->
-<script src="js/plugins/footable/footable.all.min.js"></script>
-
-<!-- Page-Level Scripts -->
+<?php require 'scripts.html'; ?>
 <script>
     $(document).ready(function () {
 
@@ -209,12 +191,7 @@ if (count($no_suspects) < 1) {
 </script>
 
 </body>
-                          <!--   <p><span class="badge badge-primary">Beginner</span></p>
-                           
-                            
-                            <p><span class="badge badge-warning">intermediate</span></p>
-                            <p><span class="badge badge-danger">Wanted</span></p>
- -->
+                    
 
 </html>
 

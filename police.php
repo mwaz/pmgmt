@@ -2,6 +2,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 
 $msg;
 init_db();
@@ -9,59 +11,11 @@ checkUser();
 checkAdmin();
 $qry=false;
 $db=init_db();
-if($_POST){
 
-
-
-$Fname=$db->escape_string($_POST['Fname']);
-$Oname=$db->escape_string($_POST['Oname']);
-$email=$db->escape_string($_POST['email']);
-$pf=$db->escape_string($_POST['pf']);
-$age=$db->escape_string($_POST['age']);
-$phone=$db->escape_string($_POST['phone']);
-
-
-
-
-$sql= "INSERT INTO `users`(`userID`,`pf_no`,`age`,`phone_no`) VALUES('$_SESSION[login]','$pf','$age','$phone') ";
-
-$qry="UPDATE `users` set `idnumber`='$pf',`fname`='$Fname',`lname`='$Oname',`email`='$email' WHERE `username`='$_SESSION[login]'";
- var_dump($qry);
-
-if($qry&&$sql==true){
-    $msg="Successfully Updated profile";
-}
-else
-{
-    $msg="Failed to update profile,Please review details";
-}
-
-
-exec_sql($qry);
-exec_sql($sql);
-
-
-
-}
 $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
-// if (count($res<1)){
-//    $msg="No records";
-    
-// }
+
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -75,17 +29,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   <?php require 'css.html';?>
 
 </head>
 
@@ -140,7 +84,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                     <a href="#">
                     <div class="col-sm-4">
                         <div class="text-center">
-                            <img alt="image" class="img-circle m-t-xs img-responsive" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
                             <div class="m-t-xs font-bold"><?php foreach ($res as $x ) {
                           if  ($_SESSION['isAdmin'] == true){
                             echo "Police Officer";
@@ -205,24 +149,8 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
                 </div>
            
 <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Rongai police Management', 'Welcome  ');
 
-            }, 1300);
-        });
-    </script>
-        
 </body>
 
 </html>

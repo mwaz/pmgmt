@@ -1,7 +1,9 @@
 <?php
 require 'db.php';
+require 'utils.php';
+
 $db = init_db();
-session_start();
+@session_start();
 $error = false;
 if ($_POST) {
     $post = true;
@@ -13,13 +15,20 @@ if ($_POST) {
     $user = decode_result(exec_sql("SELECT `userid`, `rank` FROM `users` WHERE `username`='$_SESSION[login]' 
     	AND `password`='$password'"));
     if (count($user) != 0) {
-        $_SESSION['login'] = $username;
-        header("location:police.php");
+
+        if(isset($_SESSION['isAdmin'])){
+            header("location:police.php");
+}
+            else{
+                  header("location:public.php");
+            }
+        
+
+      
 
 
-
-
-
+}}
+$profile=readProfile($_SESSION['login']);
     ?>
 <!DOCTYPE html>
 <html>
@@ -33,25 +42,23 @@ if ($_POST) {
 
     <title>Rongai Police| 404 Error</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+   <?php require 'css.html';?>
 </head>
 
 <body class="gray-bg">
 
 <div class="lock-word animated fadeInDown">
-    <span class="first-word">LOCKED</span><span>SCREEN</span>
+    <span> LOCKED SCREEN</span>
 </div>
+
+<div class="clearfix"> <br> <br> <br> <br>  <br> <br> </div>
     <div class="middle-box text-center lockscreen animated fadeInDown">
+    
         <div>
-            <div class="m-b-md">
-            <img alt="image" class="img-circle circle-border" src="police.jpg">
+            <div class="m-b-md"> 
+            <img alt="image"  class="img-circle circle-border" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:130px;width:200px;" />
             </div>
-            <h3></h3>
+            <h3> Hey <?php echo $_SESSION['login'] ;  ?></h3>
             <p>Your are in lock screen. Main app was shut down and you need to enter your password to go back to app.</p>
             <form class="m-t" role="form"  
             action="lock.php" method="POST">

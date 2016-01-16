@@ -7,7 +7,9 @@ include 'img_functions.php';
 //$size=$_FILES['file']['size'];
 @$type= $_FILES['file']['type'];
 @$tmp_name= $_FILES['file']['tmp_name'];
+
 if(isset($_POST)){
+
 
 $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 	if(!empty($name) ) 
@@ -21,28 +23,27 @@ $extension= strtolower(substr($name, strpos($name, '.')+ 1));
 
 			             	updateDP($_SESSION['login'],$name);
 				       
-				          header("location:puprofile.php");
-				               echo  "Uploaded image";
+				          //header("location:puprofile.php");
+				             $msg ="Uploaded image";
 				           
 			             }  //end of move_uploaded if
 			             else {
-				             echo  "There was an error";
+				           $msg= "There was an error";
 				         }
 			         //error message if file is not an image of type jpg or png
 			       } else { 
-			       	header("location:puprofile.php");
-			           echo "invalid file type";
+			       	//header("location:puprofile.php");
+			        $msg= "invalid file type";
 			       }//end of extension checking if statement
 
 			     } //end of if(!empty ($name)) if statement else{
 			     	else{ 
-			     		header("location:puprofile.php");
-			     	   echo "please choose a file";
+			     		//header("location:puprofile.php");
+			     	   $msg ="please choose a file";
                }
                }
                //end of issset name
 
 
 
-?>
 

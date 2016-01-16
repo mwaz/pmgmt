@@ -9,11 +9,7 @@
 
     <title>Rongai Police | Forgot password</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   <?php require 'css.html';?>
 
 </head>
 

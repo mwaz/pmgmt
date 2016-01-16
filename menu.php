@@ -9,7 +9,7 @@ $profile=readProfile($_SESSION['login']);
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
+                            <img alt="image" class="img-circle" src="uploads/<?php echo $profile['profile_image']; ?> " style="height:150px;width:150px;" />
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs">
@@ -44,11 +44,16 @@ $profile=readProfile($_SESSION['login']);
                 <ul class="nav nav-second-level collapse">
                     <li><a href="abstract.php">Abstract Application </a></li>
                     <li><a href="case.php">Report A Case </a></li>
-                    <li><a href="downloads.php">Abstract Download </a></li>
+                  
 
 
                 </ul>
             </li>
+
+
+                    <li class="special_link">
+                        <a href="downloads.php"><i class="fa fa-download"></i> <span class="nav-label">Abstract Download </span></a>
+                    </li>
         </ul>
 
     </div>
@@ -81,6 +86,11 @@ $profile=readProfile($_SESSION['login']);
                 <li>
                     <a class="right-sidebar-toggle">
                         <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="right-sidebar-toggle" href="lock.php">
+                        <i class="fa fa-lock"> </i> LOCK 
                     </a>
                 </li>
             </ul>

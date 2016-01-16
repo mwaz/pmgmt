@@ -7,17 +7,7 @@
 
         <title>Rongai Police | Dashboard</title>
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-        <!-- Toastr style -->
-        <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-        <!-- Gritter -->
-        <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-        <link href="css/animate.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+       <?php require 'css.html';?>
 
     </head>
     <body>
@@ -79,29 +69,17 @@
 
                     </nav>
                 </div>
-                <div class="row  border-bottom white-bg dashboard-header">
+                
 
-                    <div class="col-lg-4">
-                        <h2> Welcome  To Rongai police </h2>
+                     <div class="row  border-bottom white-bg dashboard-header">
 
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href="police.php">Home</a>
-                            </li>
-                            <li class="#">
-                                <strong>Profile</strong>
-                            </li>
-                        </ol>
+        <div class="col-sm-12">
+            <h2>RONGAI POLICE STATION </h2>
+            <ul class="list-group clear-list m-t">
 
-
-                        <ul class="list-group clear-list m-t">
-
-                        </ul>
-                    </div>
-
-
-
-                </div>
+            </ul>
+        </div>
+        </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="wrapper wrapper-content">
@@ -137,28 +115,9 @@
 </div>
 
 <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
 
 
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
-            toastr.success( 'Please login or signup ','Welcome');
 
-        }, 1300);
-
-
-       
-
-    });
-</script>
 
 </body>
 

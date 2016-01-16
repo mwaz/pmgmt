@@ -3,6 +3,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 $msg;
 
 $db = init_db();
@@ -54,20 +56,7 @@ if ($qry==true){
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+   <?php require 'css.html';?>
 </head>
 
 <body>
@@ -213,20 +202,12 @@ if ($qry==true){
         </div>
 
         </div>
-       
-       
-       
-
             </div>
-
-
-
         </div>
     </div>
 
     <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
+
 
     <script>
         $(document).ready(function() {

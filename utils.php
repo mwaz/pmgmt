@@ -46,7 +46,7 @@ function get_spec_key_values($array, $key)
 
 function checkUser()
 {
-    session_start();
+    @session_start();
     if (!isset($_SESSION['login']))
     {
         header("Location: 404.php");
@@ -55,7 +55,7 @@ function checkUser()
 }
 function checkAdmin()
 {
-    //session_start();
+    @session_start();
     if (!isset($_SESSION['isAdmin']))
     {
         header("Location: 500.php");
@@ -64,7 +64,7 @@ function checkAdmin()
 }
 function checkUserPublic()
 {
-    //session_start();
+    @session_start();
     if (!isset($_SESSION['user']))
     {
         header("Location: 500.php");

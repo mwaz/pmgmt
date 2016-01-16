@@ -2,6 +2,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 
 $msg;
 $val="Abstract";
@@ -16,48 +18,26 @@ $claim_name=$db->escape_string($_POST['claim_name']);
 $claim_desc=$db->escape_string($_POST['claim_desc']);
 $claim_location=$db->escape_string($_POST['claim_location']);
 $claim_email=$db->escape_string($_POST['claim_email']);
+$date_of_loss=$db->escape_string($_POST['dol']);
 
 $user_id = getUserId();
 
-
-
-
-
-$sql= "INSERT INTO `claims`(`claim_name`,`claim_desc`,`claim_location`, `userID`,`claim_email`) VALUES('$claim_name','$claim_desc','$claim_location','$user_id','$claim_email')  " ;
-
-
-
-if($sql==true){
-    $msg="Successfully Sent claim";
-}
-else
-{
-    $msg="Failed to send claim";
+$claim_verification=decode_result(exec_sql("SELECT * FROM `claims`   WHERE `userID` ='$user_id' "));
+if (!empty($claim_verification)){
+    $msg="Cant Send claim,  <br> A previously sent claim is under processing";
 }
 
-
-
-exec_sql($sql);
-
-
-
+    else{
+        $sql= "INSERT INTO `claims`(`date_lost`,`claim_name`,`claim_desc`,`claim_location`, `userID`,`claim_email`) VALUES('$date_of_loss','$claim_name','$claim_desc','$claim_location','$user_id','$claim_email')  " ;
+             $msg="Successfully Sent claim";
+             exec_sql($sql);
+             
+    }
+    
 }
 $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[login]'"));
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -70,20 +50,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-       <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+   <?php require 'css.html';?>
 </head>
 
 <body>
@@ -180,6 +147,16 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
             
 
 
+         <div class="form-group col-md-4">
+             <label>Date of Loss </label>
+
+             <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <span class="input-group-addon">
+            <i class="fa fa-calendar"> </i></span>
+    <input type="text" name="dol" class="form-control" placeholder="yyyy-mm-dd" value="<?php date('Y-M-d') ?>" required>
+                 </div>
+
+                     </div>
 
 
            <div class="form-group col-md-12">
@@ -240,44 +217,7 @@ $res=decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION[l
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Flot -->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
-    <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <!-- GITTER -->
-    <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-    <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
-
-    <!-- ChartJS-->
-    <script src="js/plugins/chartJs/Chart.min.js"></script>
-
-    <!-- Toastr -->
-    <script src="js/plugins/toastr/toastr.min.js"></script>
-
+   <?php  require 'scripts.html';?>
 
     <script>
         $(document).ready(function() {

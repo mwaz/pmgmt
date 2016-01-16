@@ -2,6 +2,9 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
+
 init_db();
 checkUser();
 checkUserPublic();
@@ -19,19 +22,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   <?php require 'css.html';?>
 
 </head>
 
@@ -65,7 +56,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                     <div class="text-center">
                                                         <img alt="image"
                                                              class="img-circle m-t-xs img-responsive"
-                                                             src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
+                                                             src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
 
                                                         <div
                                                             class="m-t-xs font-bold"><?php foreach ($res as $x) {
@@ -134,8 +125,6 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
             </div>
         </div>
 <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
 
         <script>
             $(document).ready(function () {

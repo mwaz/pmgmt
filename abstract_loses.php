@@ -2,6 +2,8 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 
 $msg;
 @$claim_var=$_POST['claimid'];
@@ -58,14 +60,7 @@ if (count($claims) < 1) {
 
     <title>Rongai Police |  Police Abstracts</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- FooTable -->
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   <?php require 'css.html';?>
 
 
 </head>
@@ -123,7 +118,7 @@ if (count($claims) < 1) {
                                     </td>
 
                                     <td>
-                                        <?php echo $x['claim_report_date'] ?>
+                                        <?php  $y=$x['date_lost'];  echo date ('Y M d',strtotime($y)) ?>
                                     </td>
                                     
                                     <td>
@@ -199,20 +194,9 @@ if (count($claims) < 1) {
 </div>
 
 
-<!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<?php require 'scripts.html';?>
 
-<!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
 
-<!-- FooTable -->
-<script src="js/plugins/footable/footable.all.min.js"></script>
-
-<!-- Page-Level Scripts -->
 <script>
     $(document).ready(function () {
 

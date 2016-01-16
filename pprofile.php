@@ -2,11 +2,14 @@
 
 require 'utils.php';
 require 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
 
 
 $msg;
 
 checkUser();
+checkAdmin();
 $userid = getUserId();
 
 
@@ -53,22 +56,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
     <title>Rongai Police | Dashboard</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <!--date picker stylesheets -->
-    <link href="css/plugins/daterangepicker/daterangepicker-bs3.css"
-          rel="stylesheet">
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-date-picker.css" rel="stylesheet">
+   <?php require 'css.html';?>
 </head>
 
 <body>
@@ -82,7 +70,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
                             <div class="col-lg-12">
 
-                                <h3 class="font-bold">Update Profile </h3>
+                                <legend>Update Profile</legend>
 
                                 <?php
                                 if (isset($msg)) {
@@ -95,7 +83,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                     <div class="panel panel-primary">
 
                                         <div class="panel panel-heading">
-                                            Profile Update
+                                            Profile Update 
                                         </div>
 
                                         <div class="panel-body">
@@ -279,7 +267,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
                                                             <div class="text-center">
                                                                 <img alt="image"
                                                                      class="img-circle m-t-xs img-responsive" 
-                                                                     src="uploads/<?php echo $profile['profile_image']; ?> " style="height:120px;width:150px;" />
+                                                                     src="uploads/<?php echo $profile['profile_image']; ?> " style="height:100px;width:100px;" />
                                                                 <div
                                                                     class="m-t-xs font-bold"><?php foreach ($res as $x) {
                                                                         if ($_SESSION['isAdmin'] == true) {
@@ -335,6 +323,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
                     <div class="clearfix"> clear</div>
+                    <div class="clearfix"> clear</div>
 
                     <div class="footer">
                         <div class="pull-right">
@@ -351,8 +340,7 @@ $res = decode_result(exec_sql("SELECT * FROM `users` WHERE `username`='$_SESSION
 
 
 <?php require 'scripts.html'; ?>
-<!-- Toastr -->
-<script src="js/plugins/toastr/toastr.min.js"></script>
+
 <script>
     $(document).ready(function () {
         setTimeout(function () {

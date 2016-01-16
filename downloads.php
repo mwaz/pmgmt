@@ -2,6 +2,9 @@
 
 include 'utils.php';
 include 'db.php';
+include 'timeout.php';
+ header("refresh:300;");
+ 
 init_db();
 checkUser();
 checkUserPublic();
